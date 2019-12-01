@@ -1,6 +1,7 @@
 import Model from '@ember-data/model';
 import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
+import Validator from '../mixins/object-validator';
 
 /**
  * An item category.
@@ -11,7 +12,7 @@ import { hasMany } from 'ember-data/relationships';
  * @property name {String}
  * @property items {ItemModel[]}
  */
-export default class ItemCategoryModel extends Model {
+export default class ItemCategoryModel extends Model.extend(Validator) {
 
     // =attributes
 
@@ -20,5 +21,11 @@ export default class ItemCategoryModel extends Model {
     // =relationships
 
     @hasMany('item') items;
+
+    // =validations
+
+    validations = Object.freeze({
+      name: { presence: true }
+    });
 
 }

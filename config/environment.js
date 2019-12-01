@@ -1,7 +1,7 @@
 'use strict';
 
-const firebaseConfig = (process.env.FIREBASE_CONFIG_FILE) ?
-      JSON.parse(process.env.FIREBASE_CONFIG_FILE) :
+const firebaseConfig = (process.env.FIREBASE_CONFIG_JSON) ?
+      JSON.parse(process.env.FIREBASE_CONFIG_JSON) :
       {
         apiKey: "AIzaSyC4Aglp5xJiWZt-yZBf5SoxfwcNGOygghQ",
         authDomain: "shopping-list-developmen-5cde7.firebaseapp.com",

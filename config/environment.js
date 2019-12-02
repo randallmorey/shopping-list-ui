@@ -1,11 +1,24 @@
 'use strict';
 
+const firebaseConfig = (process.env.FIREBASE_CONFIG_JSON) ?
+      JSON.parse(process.env.FIREBASE_CONFIG_JSON) :
+      {
+        apiKey: "AIzaSyC4Aglp5xJiWZt-yZBf5SoxfwcNGOygghQ",
+        authDomain: "shopping-list-developmen-5cde7.firebaseapp.com",
+        databaseURL: "https://shopping-list-developmen-5cde7.firebaseio.com",
+        projectId: "shopping-list-developmen-5cde7",
+        storageBucket: "shopping-list-developmen-5cde7.appspot.com",
+        messagingSenderId: "263121214343",
+        appId: "1:263121214343:web:408fbb1622407ce4c45122"
+      }
+
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'shopping-list-ui',
     environment,
     rootURL: '/',
     locationType: 'auto',
+    firebase: firebaseConfig,
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

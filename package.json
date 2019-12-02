@@ -11,16 +11,19 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "ember build --environment development",
+    "build": "ember build",
     "build:production": "ember build --environment production",
     "deploy": "firebase deploy --project $FIREBASE_PROJECT_ID",
-    "build": "ember build",
     "precommit": "npm test",
     "commit": "git-cz",
+    "lint": "npm run lint:hbs && npm run lint:js",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",
-    "test": "ember test"
+    "clean:coverage": "rm -rf coverage_*",
+    "pretest": "npm run clean:coverage && npm run lint",
+    "test": "COVERAGE=true ember test",
+    "posttest": "ember coverage-merge && npm run clean:coverage"
   },
   "devDependencies": {
     "@ember/edition-utils": "^1.1.1",
@@ -33,6 +36,7 @@
     "ember-cli": "3.15.0-beta.1",
     "ember-cli-app-version": "^3.2.0",
     "ember-cli-babel": "^7.11.1",
+    "ember-cli-code-coverage": "^1.0.0-beta.8",
     "ember-cli-dependency-checker": "^3.1.0",
     "ember-cli-htmlbars": "^4.0.0",
     "ember-cli-inject-live-reload": "^2.0.1",

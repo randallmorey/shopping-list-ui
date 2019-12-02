@@ -1,0 +1,29 @@
+name: Build and Deploy Development
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Set-up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+        env:
+          ci: true
+      - name: Deploy to Firebase
+        run: npm run deploy
+        env:
+          ci: true
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID_DEVELOPMENT }}

@@ -25,4 +25,5 @@ export default function() {
   */
 
   this.get('/items');
+  this.get('/item-categories/:id');
 }

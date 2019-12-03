@@ -2,30 +2,38 @@ import Model from '@ember-data/model';
 import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
 import Validator from '../mixins/object-validator';
+import DatedModelAttributesMixin from '../mixins/dated-model-attributes';
+import DatedModelMethodsMixin from '../mixins/dated-model-attributes';
 
 /**
  * An item category.
  *
  * @class ItemModel
  * @augments Model
+ * @augments Validator
+ * @augments DatedModelAttributesMixin
+ * @augments DatedModelMethodsMixin
  *
  * @property name {String}
  * @property items {ItemModel[]}
  */
-export default class ItemCategoryModel extends Model.extend(Validator) {
+export default class ItemCategoryModel extends Model.extend(
+  Validator,
+  DatedModelAttributesMixin,
+  DatedModelMethodsMixin) {
 
-    // =attributes
+  // =attributes
 
-    @attr('string') name;
+  @attr('string') name;
 
-    // =relationships
+  // =relationships
 
-    @hasMany('item') items;
+  @hasMany('item') items;
 
-    // =validations
+  // =validations
 
-    validations = Object.freeze({
-      name: { presence: true }
-    });
+  validations = Object.freeze({
+    name: { presence: true }
+  });
 
 }

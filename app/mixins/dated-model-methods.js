@@ -6,7 +6,7 @@ import Mixin from '@ember/object/mixin';
  * @class DatedModelMethodsMixin
  * @augments Mixin
  */
-export default Mixin.create({
+export default Mixin.create({ // eslint-disable-line ember/no-new-mixins
 
   // =methods
 

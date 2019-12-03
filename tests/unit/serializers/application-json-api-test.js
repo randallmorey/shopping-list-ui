@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-module('Unit | Serializer | application', function(hooks) {
+module('Unit | Serializer | application json api', function(hooks) {
   setupTest(hooks);
 
   test('it serializes records', function(assert) {

@@ -1,5 +1,8 @@
 'use strict';
 
+const useFirebase = (process.env.USE_FIREBASE) ?
+      JSON.parse(process.env.USE_FIREBASE) : true;
+
 const firebaseConfig = (process.env.FIREBASE_CONFIG_JSON) ?
       JSON.parse(process.env.FIREBASE_CONFIG_JSON) :
       {
@@ -18,7 +21,8 @@ module.exports = function(environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
-    firebase: firebaseConfig,
+    useFirebase,
+    firebase: useFirebase ? firebaseConfig : null,
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -54,6 +58,9 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    // disable firebase for tests
+    ENV.useFirebase = false;
   }
 
   if (environment === 'production') {

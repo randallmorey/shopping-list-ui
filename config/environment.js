@@ -47,16 +47,21 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'default-src': ["'none'"],
       'script-src':  ["'self'"],
-      'frame-src':   [
-        "'self'",
-        `https://${firebaseConfig.projectId}.firebaseapp.com`
-      ],
+      'frame-src':   ["'self'"],
       'font-src':    ["'self'"],
       'connect-src': ["'self'"],
       'img-src':     ["'self'"],
-      'style-src':   ["'self'", "'unsafe-inline'"],
+      'style-src':   ["'self'"],
       'media-src':   ["'self'"]
     }
+  };
+
+  // Firebase requires access to certain Google domains
+  const enableFirebaseCSP = () => {
+    ENV.contentSecurityPolicy['connect-src']
+      .push('https://firestore.googleapis.com');
+    ENV.contentSecurityPolicy['frame-src']
+      .push(`https://${firebaseConfig.projectId}.firebaseapp.com`);
   };
 
   // Unsafe script eval and inline is necessary in
@@ -72,9 +77,6 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    // disable firebase for tests
-    ENV.useFirebase = false;
-
     enableUnsafeCSP();
   }
 
@@ -89,16 +91,22 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
 
-    // disable firebase for tests
-    ENV.useFirebase = false;
-
     // CSP will break test coverage, so it is disabled
     ENV.contentSecurityPolicyMeta = false;
+
+    ENV.useFirebase = false;
   }
 
   if (environment === 'production') {
     ENV.useFirebase = (process.env.USE_FIREBASE) ?
       JSON.parse(process.env.USE_FIREBASE) : true;
+  }
+
+  // When enabled for any environment, Firebase requires Mirage to be
+  // disabled and certain CSP directives to be added.
+  if (ENV.useFirebase) {
+    ENV['ember-cli-mirage'] = {enabled: false};
+    enableFirebaseCSP();
   }
 
   return ENV;

@@ -1,7 +1,9 @@
 'use strict';
 
+// While a firebase config is always required, for safety it is disabled
+// by default, except in production when it is enabled by default.
 const useFirebase = (process.env.USE_FIREBASE) ?
-      JSON.parse(process.env.USE_FIREBASE) : true;
+      JSON.parse(process.env.USE_FIREBASE) : false;
 
 const firebaseConfig = (process.env.FIREBASE_CONFIG_JSON) ?
       JSON.parse(process.env.FIREBASE_CONFIG_JSON) :
@@ -38,7 +40,7 @@ module.exports = function(environment) {
     },
 
     useFirebase,
-    firebase: useFirebase ? firebaseConfig : null,
+    firebase: firebaseConfig,
 
     contentSecurityPolicyHeader: 'Content-Security-Policy',
     contentSecurityPolicyMeta: true,
@@ -95,7 +97,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
+    ENV.useFirebase = (process.env.USE_FIREBASE) ?
+      JSON.parse(process.env.USE_FIREBASE) : true;
   }
 
   return ENV;

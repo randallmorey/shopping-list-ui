@@ -21,6 +21,7 @@ jobs:
         run: npm run build
         env:
           ci: true
+          USE_FIREBASE: true
       - name: Deploy to Firebase
         run: npm run deploy
         env:

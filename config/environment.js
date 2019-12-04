@@ -1,5 +1,10 @@
 'use strict';
 
+// While a firebase config is always required, for safety it is disabled
+// by default, except in production when it is enabled by default.
+const useFirebase = (process.env.USE_FIREBASE) ?
+      JSON.parse(process.env.USE_FIREBASE) : false;
+
 const firebaseConfig = (process.env.FIREBASE_CONFIG_JSON) ?
       JSON.parse(process.env.FIREBASE_CONFIG_JSON) :
       {
@@ -10,7 +15,7 @@ const firebaseConfig = (process.env.FIREBASE_CONFIG_JSON) ?
         storageBucket: "shopping-list-developmen-5cde7.appspot.com",
         messagingSenderId: "263121214343",
         appId: "1:263121214343:web:408fbb1622407ce4c45122"
-      }
+      };
 
 module.exports = function(environment) {
   let ENV = {
@@ -18,6 +23,7 @@ module.exports = function(environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
+    useFirebase,
     firebase: firebaseConfig,
     EmberENV: {
       FEATURES: {
@@ -54,10 +60,14 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    // disable firebase for tests
+    ENV.useFirebase = false;
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
+    ENV.useFirebase = (process.env.USE_FIREBASE) ?
+      JSON.parse(process.env.USE_FIREBASE) : true;
   }
 
   return ENV;

@@ -5,10 +5,11 @@ module('Unit | Model | item category', function(hooks) {
   setupTest(hooks);
 
   test('it validates', function(assert) {
+    assert.expect(2);
     let store = this.owner.lookup('service:store');
-    let model = store.createRecord('item', {});
+    let model = store.createRecord('item-category', {});
     assert.notOk(model.validate());
-    model.name = 'Tomster';
+    model.name = 'Hamster';
     assert.ok(model.validate());
   });
 });

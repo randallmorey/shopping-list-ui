@@ -10,7 +10,7 @@ import attr from 'ember-data/attr';
  * @property dateCreated {Date}
  * @property dateUpdated {Date}
  */
-export default Mixin.create({
+export default Mixin.create({ // eslint-disable-line ember/no-new-mixins
 
   // =attributes
 

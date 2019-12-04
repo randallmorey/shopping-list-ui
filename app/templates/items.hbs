@@ -1,0 +1,6 @@
+Items route
+<ul>
+  {{#each @model as |item|}}
+    <li>{{item.name}} ({{item.category.name}})</li>
+  {{/each}}
+</ul>

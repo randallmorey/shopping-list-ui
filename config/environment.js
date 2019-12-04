@@ -23,8 +23,6 @@ module.exports = function(environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
-    useFirebase,
-    firebase: firebaseConfig,
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -39,7 +37,32 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    useFirebase,
+    firebase: firebaseConfig,
+
+    contentSecurityPolicyHeader: 'Content-Security-Policy',
+    contentSecurityPolicyMeta: true,
+    contentSecurityPolicy: {
+      'default-src': ["'none'"],
+      'script-src':  ["'self'"],
+      'frame-src':   [
+        "'self'",
+        `https://${firebaseConfig.projectId}.firebaseapp.com`
+      ],
+      'font-src':    ["'self'"],
+      'connect-src': ["'self'"],
+      'img-src':     ["'self'"],
+      'style-src':   ["'self'", "'unsafe-inline'"],
+      'media-src':   ["'self'"]
     }
+  };
+
+  // Unsafe script eval and inline is necessary in
+  // development and test environments
+  const enableUnsafeCSP = () => {
+    ENV.contentSecurityPolicy['script-src'].push("'unsafe-eval'");
   };
 
   if (environment === 'development') {
@@ -48,6 +71,11 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    // disable firebase for tests
+    ENV.useFirebase = false;
+
+    enableUnsafeCSP();
   }
 
   if (environment === 'test') {
@@ -63,6 +91,9 @@ module.exports = function(environment) {
 
     // disable firebase for tests
     ENV.useFirebase = false;
+
+    // CSP will break test coverage, so it is disabled
+    ENV.contentSecurityPolicyMeta = false;
   }
 
   if (environment === 'production') {

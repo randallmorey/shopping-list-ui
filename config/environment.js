@@ -74,6 +74,7 @@ module.exports = function(environment) {
   // development and test environments
   const enableUnsafeCSP = () => {
     ENV.contentSecurityPolicy['script-src'].push("'unsafe-eval'");
+    ENV.contentSecurityPolicy['style-src'].push("'unsafe-inline'");
   };
 
   if (environment === 'development') {

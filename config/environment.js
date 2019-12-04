@@ -53,6 +53,12 @@ module.exports = function(environment) {
       'img-src':     ["'self'"],
       'style-src':   ["'self'"],
       'media-src':   ["'self'"]
+    },
+
+    i18nextOptions: {
+      lowerCaseLng: true,
+      fallbackLng: 'en-se',
+      whitelist: ['en-se']
     }
   };
 

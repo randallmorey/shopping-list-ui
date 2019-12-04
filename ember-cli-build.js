@@ -10,6 +10,12 @@ module.exports = function(defaults) {
     sourcemaps: {
       enabled: true,
       extensions: ['js']
+    },
+    sassOptions: {
+      extension: 'sass'
+    },
+    'ember-cli-bootstrap-4': {
+      js: []
     }
   });
 

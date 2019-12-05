@@ -1,5 +1,6 @@
 import DatedModelFactory from './dated-model-factory';
+import faker from 'faker';
 
 export default DatedModelFactory.extend({
-  name: i => `Item ${i + 1}`
+  name: faker.lorem.word
 });

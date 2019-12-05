@@ -9,6 +9,7 @@ module('Acceptance | items', function(hooks) {
   setupMirage(hooks);
 
   test('visiting /items', async function(assert) {
+    assert.expect(1);
     await visit('/items');
     await a11yAudit();
     assert.equal(currentURL(), '/items');

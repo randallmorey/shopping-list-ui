@@ -4,6 +4,8 @@ import { belongsTo } from 'ember-data/relationships';
 import Validator from '../mixins/object-validator';
 import DatedModelAttributesMixin from '../mixins/dated-model-attributes';
 import DatedModelMethodsMixin from '../mixins/dated-model-attributes';
+import TrackedModelRelationshipsMixin from
+  '../mixins/tracked-model-relationships';
 
 /**
  * A simple model representing the universe of available shopping items.
@@ -14,6 +16,7 @@ import DatedModelMethodsMixin from '../mixins/dated-model-attributes';
  * @augments Validator
  * @augments DatedModelAttributesMixin
  * @augments DatedModelMethodsMixin
+ * @augments TrackedModelRelationshipsMixin
  *
  * @property name {String}
  * @property category {ItemCategoryModel}
@@ -21,7 +24,8 @@ import DatedModelMethodsMixin from '../mixins/dated-model-attributes';
 export default class ItemModel extends Model.extend(
   Validator,
   DatedModelAttributesMixin,
-  DatedModelMethodsMixin) {
+  DatedModelMethodsMixin,
+  TrackedModelRelationshipsMixin) {
 
   // =attributes
 
@@ -29,7 +33,7 @@ export default class ItemModel extends Model.extend(
 
   // =relationships
 
-  @belongsTo('item-category') category;
+  @belongsTo('item-category', {trackChanges: true}) category;
 
   // =validations
 

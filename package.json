@@ -24,7 +24,7 @@
     "start:firebase": "USE_FIREBASE=true npm start",
     "clean:coverage": "rm -rf coverage_*",
     "pretest": "npm run clean:coverage && npm run lint",
-    "test": "COVERAGE=true ember test",
+    "test": "COVERAGE=true ember exam --split=4 --parallel=1 --random",
     "posttest": "ember coverage-merge && npm run clean:coverage"
   },
   "devDependencies": {
@@ -51,6 +51,7 @@
     "ember-cli-sri": "^2.1.1",
     "ember-cli-uglify": "^3.0.0",
     "ember-data": "~3.14.0",
+    "ember-exam": "^4.0.5",
     "ember-export-application-global": "^2.0.0",
     "ember-i18next": "^4.0.0",
     "ember-load-initializers": "^2.0.0",

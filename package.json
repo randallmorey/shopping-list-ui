@@ -2,12 +2,22 @@
   "name": "shopping-list-ui",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for shopping-list-ui goes here",
-  "repository": "",
+  "description": "An efficient shopping list for efficient people.",
+  "repository": "https://github.com/randallmorey/shopping-list-ui",
   "license": "MIT",
-  "author": "",
+  "contributors": [
+    {
+      "name" : "Randall Morey",
+      "email" : "randall@randallmorey.com",
+      "url" : "https://www.randallmorey.com"
+    },
+    {
+      "name" : "Fernando Gelin",
+      "email" : "fernando@fernandogelin.com",
+      "url" : "https://www.fernandogelin.com"
+    }
+  ],
   "directories": {
-    "doc": "doc",
     "test": "tests"
   },
   "scripts": {

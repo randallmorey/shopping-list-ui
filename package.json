@@ -67,6 +67,7 @@
     "eslint-plugin-ember": "^7.1.0",
     "eslint-plugin-node": "^10.0.0",
     "faker": "^4.1.0",
+    "firebase-tools": "^7.9.0",
     "git-cz": "^3.3.0",
     "i18next-browser-languagedetector": "^4.0.1",
     "loader.js": "^4.7.0",

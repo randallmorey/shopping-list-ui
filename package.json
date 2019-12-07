@@ -7,14 +7,14 @@
   "license": "MIT",
   "contributors": [
     {
-      "name" : "Randall Morey",
-      "email" : "randall@randallmorey.com",
-      "url" : "https://www.randallmorey.com"
+      "name": "Randall Morey",
+      "email": "randall@randallmorey.com",
+      "url": "https://www.randallmorey.com"
     },
     {
-      "name" : "Fernando Gelin",
-      "email" : "fernando@fernandogelin.com",
-      "url" : "https://www.fernandogelin.com"
+      "name": "Fernando Gelin",
+      "email": "fernando@fernandogelin.com",
+      "url": "https://www.fernandogelin.com"
     }
   ],
   "directories": {

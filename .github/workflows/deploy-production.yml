@@ -1,13 +1,14 @@
-name: Build and Deploy Production
+name: Build & Deploy Production
 on:
   push:
     branches:
       - master
 
 jobs:
-  build:
-    name: Build
+  build_and_deploy_production:
+    name: Build & Deploy
     runs-on: ubuntu-latest
+    needs: build_and_test
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v1

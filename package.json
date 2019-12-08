@@ -7,14 +7,14 @@
   "license": "MIT",
   "contributors": [
     {
-      "name" : "Randall Morey",
-      "email" : "randall@randallmorey.com",
-      "url" : "https://www.randallmorey.com"
+      "name": "Randall Morey",
+      "email": "randall@randallmorey.com",
+      "url": "https://www.randallmorey.com"
     },
     {
-      "name" : "Fernando Gelin",
-      "email" : "fernando@fernandogelin.com",
-      "url" : "https://www.fernandogelin.com"
+      "name": "Fernando Gelin",
+      "email": "fernando@fernandogelin.com",
+      "url": "https://www.fernandogelin.com"
     }
   ],
   "directories": {
@@ -26,9 +26,10 @@
     "deploy": "firebase deploy --project $FIREBASE_PROJECT_ID",
     "precommit": "npm test",
     "commit": "git-cz",
-    "lint": "npm run lint:hbs && npm run lint:js && npm run lint:sass",
+    "lint": "npm run lint:licenses && npm run lint:hbs && npm run lint:js && npm run lint:sass",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
+    "lint:licenses": "license-checker --onlyAllow 'Apache*;Apache-2.0;Apache License, Version 2.0;BSD;BSD-2-Clause;BSD-3-Clause;CC0-1.0;CC-BY-3.0;CC-BY-4.0;ISC;MIT;MPL-2.0;Public Domain;Unlicense' --excludePackages 'buffers@0.1.1;cycle@1.0.3;shopping-list-ui@0.0.0;xmldom@0.1.27'",
     "lint:sass": "sass-lint -v -q",
     "start": "ember serve",
     "start:firebase": "USE_FIREBASE=true npm start",
@@ -80,6 +81,7 @@
     "firebase-tools": "^7.9.0",
     "git-cz": "^3.3.0",
     "i18next-browser-languagedetector": "^4.0.1",
+    "license-checker": "^25.0.1",
     "loader.js": "^4.7.0",
     "popper.js": "^1.16.0",
     "qunit-dom": "^0.9.0",

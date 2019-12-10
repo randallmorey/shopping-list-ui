@@ -7,14 +7,14 @@
   "license": "MIT",
   "contributors": [
     {
-      "name" : "Randall Morey",
-      "email" : "randall@randallmorey.com",
-      "url" : "https://www.randallmorey.com"
+      "name": "Randall Morey",
+      "email": "randall@randallmorey.com",
+      "url": "https://www.randallmorey.com"
     },
     {
-      "name" : "Fernando Gelin",
-      "email" : "fernando@fernandogelin.com",
-      "url" : "https://www.fernandogelin.com"
+      "name": "Fernando Gelin",
+      "email": "fernando@fernandogelin.com",
+      "url": "https://www.fernandogelin.com"
     }
   ],
   "directories": {
@@ -34,7 +34,7 @@
     "start:firebase": "USE_FIREBASE=true npm start",
     "clean:coverage": "rm -rf coverage_*",
     "pretest": "npm run clean:coverage && npm run lint",
-    "test": "COVERAGE=true ember exam --split=4 --parallel=1 --random",
+    "test": "COVERAGE=true ember exam --random",
     "posttest": "ember coverage-merge && npm run clean:coverage"
   },
   "devDependencies": {

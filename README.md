@@ -33,6 +33,7 @@ You will need the following things properly installed on your computer.
 ### Linting
 
 * Lint all:  `npm run lint`
+* `npm run lint:licenses`
 * `npm run lint:hbs`
 * `npm run lint:js`
 * `npm run lint:sass`

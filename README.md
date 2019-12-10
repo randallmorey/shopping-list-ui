@@ -74,7 +74,7 @@ Automated a11y testing is performed via
 
 ### Styles
 
-This project is based on Bootstrap 4 and uses OOCSS with `sass` syntax.  Styles
+This project is based on Bulma and uses OOCSS with `sass` syntax.  Styles
 are neatly separated by component or type into **layout**:  styles that affect
 size and position, and **theme**:  purely presentational concerns like color,
 font, and other styles that don't affect layout.  This makes it easier to

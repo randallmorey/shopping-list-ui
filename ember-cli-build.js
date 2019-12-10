@@ -13,9 +13,6 @@ module.exports = function(defaults) {
     },
     sassOptions: {
       extension: 'sass'
-    },
-    'ember-cli-bootstrap-4': {
-      js: []
     }
   });
 

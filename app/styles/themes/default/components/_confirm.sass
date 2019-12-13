@@ -1,0 +1,27 @@
+.confirm
+  @extend .modal, .is-active
+
+  &::before
+    @extend .modal-background
+    content: ''
+
+  .confirm-card
+    @extend .modal-card
+
+    .confirm-card-header
+      @extend .modal-card-head, .is-block
+
+      .confirm-card-heading
+        @extend .has-text-centered, .has-text-weight-bold
+
+    .confirm-card-body
+      @extend .modal-card-body, .has-text-centered
+
+    .confirm-card-foot
+      @extend .modal-card-foot, .is-block
+
+      .confirm-button-safe
+        @extend .button, .is-pulled-right, .is-dark, .is-outlined
+
+      .confirm-button-unsafe
+        @extend .button, .is-danger, .is-outlined

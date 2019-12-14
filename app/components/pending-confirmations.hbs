@@ -1,0 +1,6 @@
+{{#each @confirmations.pending as |confirmation|}}
+  {{yield
+    confirmation
+    (action "confirm" confirmation)
+    (action "dismiss" confirmation)}}
+{{/each}}

@@ -1,2 +1,14 @@
 Home route
+
 {{outlet}}
+
+<PendingConfirmations as |confirmation confirm dismiss|>
+  <Confirm
+    @headingText={{t (concat "confirm." confirmation.type ".heading")}}
+    @confirmText={{t (concat "confirm." confirmation.type ".confirm")}}
+    @dismissText={{t (concat "confirm." confirmation.type ".dismiss")}}
+    @confirmAction={{confirm}}
+    @dismissAction={{dismiss}}>
+    {{t (concat "confirm." confirmation.type ".message")}}
+  </Confirm>
+</PendingConfirmations>

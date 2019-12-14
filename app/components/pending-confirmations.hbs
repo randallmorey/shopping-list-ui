@@ -1,4 +1,4 @@
-{{#each @confirmations.pending as |confirmation|}}
+{{#each this.confirmations.pending as |confirmation|}}
   {{yield
     confirmation
     (action "confirm" confirmation)

@@ -1,6 +1,6 @@
 <Layouts::LayoutSplit as |layout|>
 
-  <layout.pane @active={{true}}>
+  <layout.pane @active={{@activePane.isSidebar}}>
     Items route
     <ul>
       {{#each @model as |item|}}
@@ -9,7 +9,7 @@
     </ul>
   </layout.pane>
 
-  <layout.pane>
+  <layout.pane @active={{@activePane.isBody}}>
     <button class="button is-primary">Primary Button</button>
     <button class="button is-primary is-outlined">Primary Button</button>
     <br>

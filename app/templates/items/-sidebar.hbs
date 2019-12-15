@@ -1,0 +1,9 @@
+Items route
+<ul>
+  {{#each @model as |item|}}
+    <li>
+      <LinkTo @route="items.item" @model={{item}}>{{item.name}}</LinkTo>
+      ({{item.category.name}})
+    </li>
+  {{/each}}
+</ul>

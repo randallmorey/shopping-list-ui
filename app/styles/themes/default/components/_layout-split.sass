@@ -1,0 +1,18 @@
+.layout-split
+  @extend .columns, .is-gapless
+
+  .pane
+    @extend .column
+
+    &:first-child
+      @extend .is-one-quarter
+
+    & + .pane
+      @extend .is-three-quarters
+
+  +mobile
+    .pane
+      display: none
+
+      &.active
+        display: block

@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 
 /**
  * A route to load and display all items.
@@ -26,8 +27,21 @@ export default class ItemsRoute extends Route {
    * Activate the sidebar, as this pane is dominant for this route.
    */
   render() {
-    this.activePane.activateSidebar();
     super.render(...arguments);
+    super.render('items/-sidebar', {
+      outlet: 'sidebar',
+      into: 'items'
+    });
+  }
+
+  // =actions
+
+  /**
+   * Activates the sidebar pane as dominant for this route.
+   */
+  @action
+  didTransition() {
+    this.activePane.activateSidebar();
   }
 
 }

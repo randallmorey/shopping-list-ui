@@ -1,3 +1,21 @@
 {
-  
+  "confirm": {
+    "default": {
+      "message": "This action cannot be undone.",
+      "confirm": "Yes",
+      "dismiss": "No"
+    },
+    "delete": {
+      "heading": "Confirm Delete?",
+      "message": "$t(confirm.default.message)",
+      "confirm": "$t(confirm.default.confirm)",
+      "dismiss": "$t(confirm.default.dismiss)"
+    },
+    "abandon": {
+      "heading": "Abandon Changes?",
+      "message": "$t(confirm.default.message)",
+      "confirm": "$t(confirm.default.confirm)",
+      "dismiss": "$t(confirm.default.dismiss)"
+    }
+  }
 }

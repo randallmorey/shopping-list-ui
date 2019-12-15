@@ -1,0 +1,26 @@
+<section class="confirm"
+    tabindex="-1"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="confirm-header"
+    aria-describedby="confirm-body">
+  <div class="confirm-card">
+    <header id="confirm-header" class="confirm-card-header">
+      <h1 class="confirm-card-heading">{{@headingText}}</h1>
+    </header>
+    <div id="confirm-body" class="confirm-card-body">{{yield}}</div>
+    <footer class="confirm-card-foot">
+      <button
+        class="confirm-button-safe"
+        autofocus="autofocus"
+        {{action @dismissAction}}>
+        {{@dismissText}}
+      </button>
+      <button
+        class="confirm-button-unsafe"
+        {{action @confirmAction}}>
+        {{@confirmText}}
+      </button>
+    </footer>
+  </div>
+</section>

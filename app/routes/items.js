@@ -6,7 +6,7 @@ import Route from '@ember/routing/route';
  * @augments Route
  */
 export default class ItemsRoute extends Route {
-
+  
   // =methods
 
   /**

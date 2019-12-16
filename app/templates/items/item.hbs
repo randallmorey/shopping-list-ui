@@ -1,2 +1,13 @@
-<h1>Single Item</h1>
-{{@model.name}}
+<Section::Panel as |panel|>
+
+  <panel.header as |header|>
+    <button class="button is-warning is-outlined">Cancel</button>
+    <header.title>{{@model.name}}</header.title>
+    <button class="button is-primary is-outlined">Save</button>
+  </panel.header>
+
+  <panel.body>
+    Item stuff goes here
+  </panel.body>
+
+</Section::Panel>

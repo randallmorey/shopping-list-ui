@@ -1,5 +1,7 @@
 .section-panel
   @extend .card
+  display: flex
+  flex-direction: column
   height: 100vh
 
   .section-panel-header
@@ -16,6 +18,6 @@
 
   .section-panel-body
     @extend .card-content
-    max-height: calc(100vh - #{$size-1})
+    flex-grow: 1
     overflow-y: scroll
     padding: 0

@@ -17,5 +17,9 @@
       "confirm": "$t(confirm.default.confirm)",
       "dismiss": "$t(confirm.default.dismiss)"
     }
+  },
+  "resources": {
+    "item": "Item",
+    "item_plural": "Items"
   }
 }

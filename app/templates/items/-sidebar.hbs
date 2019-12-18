@@ -1,9 +1,19 @@
-Items route
-<ul>
-  {{#each @model as |item|}}
-    <li>
-      <LinkTo @route="items.item" @model={{item}}>{{item.name}}</LinkTo>
-      ({{item.category.name}})
-    </li>
-  {{/each}}
-</ul>
+<Section::Panel as |panel|>
+
+  <panel.header as |header|>
+    <header.title>{{t "resources.item_plural"}}</header.title>
+    <button class="button is-dark is-outlined">Add Item</button>
+  </panel.header>
+
+  <panel.body>
+    <ul>
+      {{#each @model as |item|}}
+        <li>
+          <LinkTo @route="items.item" @model={{item}}>{{item.name}}</LinkTo>
+          ({{item.category.name}})
+        </li>
+      {{/each}}
+    </ul>
+  </panel.body>
+
+</Section::Panel>

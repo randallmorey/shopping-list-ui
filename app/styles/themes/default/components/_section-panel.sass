@@ -1,0 +1,23 @@
+.section-panel
+  @extend .card
+  display: flex
+  flex-direction: column
+  height: 100vh
+
+  .section-panel-header
+    @extend .card-header
+    align-items: center
+    justify-content: space-between
+    padding-left: $size-6 / 2
+    padding-right: $size-6 / 2
+
+    .section-panel-heading
+      @extend .card-header-title
+      flex: none
+      margin: auto
+
+  .section-panel-body
+    @extend .card-content
+    flex-grow: 1
+    overflow-y: scroll
+    padding: 0

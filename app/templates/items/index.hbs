@@ -1,16 +1,24 @@
-<h1>Items Index</h1>
+<Section::Panel as |panel|>
 
-<button class="button is-primary">Primary Button</button>
-<button class="button is-primary is-outlined">Primary Button</button>
-<br>
-<button class="button is-success">Success Button</button>
-<button class="button is-success is-outlined">Success Button</button>
-<br>
-<button class="button is-danger">Danger Button</button>
-<button class="button is-danger is-outlined">Danger Button</button>
-<br>
-<button class="button is-warning">Warning Button</button>
-<button class="button is-warning is-outlined">Warning Button</button>
-<br>
-<button class="button is-dark">Dark Button</button>
-<button class="button is-dark is-outlined">Dark Button</button>
+  <panel.header as |header|>
+    <header.title>{{t "resources.item_plural"}}</header.title>
+  </panel.header>
+
+  <panel.body>
+    <button class="button is-primary">Primary Button</button>
+    <button class="button is-primary is-outlined">Primary Button</button>
+    <br>
+    <button class="button is-success">Success Button</button>
+    <button class="button is-success is-outlined">Success Button</button>
+    <br>
+    <button class="button is-danger">Danger Button</button>
+    <button class="button is-danger is-outlined">Danger Button</button>
+    <br>
+    <button class="button is-warning">Warning Button</button>
+    <button class="button is-warning is-outlined">Warning Button</button>
+    <br>
+    <button class="button is-dark">Dark Button</button>
+    <button class="button is-dark is-outlined">Dark Button</button>
+  </panel.body>
+
+</Section::Panel>

@@ -84,6 +84,16 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
+    ENV['ember-a11y-testing'] = {
+      componentOptions: {
+        axeOptions: {
+          checks: {
+            'color-contrast': {options: {noScroll: true}}
+          }
+        }
+      }
+    };
+
     enableUnsafeCSP();
   }
 

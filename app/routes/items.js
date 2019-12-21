@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import { hash } from 'rsvp';
 
 /**
  * A route to load and display all items.
@@ -20,7 +21,10 @@ export default class ItemsRoute extends Route {
    * @returns {ItemModel[]}
    */
   model() {
-    return this.store.findAll('item');
+    return hash({
+      categories: this.store.findAll('item-category'),
+      items: this.store.findAll('item')
+    });
   }
 
   /**

@@ -7,19 +7,19 @@
 
   <panel.body>
     <ListSet as |listSet|>
-      {{#each this.groupedItems as |group|}}
-      <listSet.heading>
-        {{group.category.name}}
-      </listSet.heading>
-      <listSet.list as |list|>
-        {{#each group.items as |item|}}
-          <list.item as |listItem|>
-            <listItem.link @route="items.item" @model={{item}}>
-              {{item.name}}
-            </listItem.link>
-          </list.item>
-        {{/each}}
-      </listSet.list>
+      {{#each @model.categories as |category|}}
+        {{#if category.items}}
+          <listSet.heading>{{category.name}}</listSet.heading>
+          <listSet.list as |list|>
+            {{#each category.items as |item|}}
+              <list.item as |listItem|>
+                <listItem.link @route="items.item" @model={{item}}>
+                  {{item.name}}
+                </listItem.link>
+              </list.item>
+            {{/each}}
+          </listSet.list>
+        {{/if}}
       {{/each}}
     </ListSet>
   </panel.body>

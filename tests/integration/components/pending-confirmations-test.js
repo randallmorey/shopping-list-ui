@@ -31,7 +31,7 @@ module('Integration | Component | pending-confirmations', function(hooks) {
     confirmation.then(() => assert.ok(true, 'confirmation.then was called'));
     await render(hbs`
       <PendingConfirmations as |confirmations confirm|>
-        <button {{action confirm}}>Confirm</button>
+        <button {{on "click" confirm}}>Confirm</button>
       </PendingConfirmations>
     `);
     assert.notOk(confirmation.done, 'Confirmation is not done');
@@ -46,7 +46,7 @@ module('Integration | Component | pending-confirmations', function(hooks) {
     confirmation.catch(() => assert.ok(true, 'confirmation.catch was called'));
     await render(hbs`
       <PendingConfirmations as |confirmations confirm dismiss|>
-        <button {{action dismiss}}>Dismiss</button>
+        <button {{on "click" dismiss}}>Dismiss</button>
       </PendingConfirmations>
     `);
     assert.notOk(confirmation.done, 'Confirmation is not done');

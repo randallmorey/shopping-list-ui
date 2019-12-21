@@ -6,14 +6,16 @@
   </panel.header>
 
   <panel.body>
-    <ul>
+    <List as |list|>
       {{#each @model as |item|}}
-        <li>
-          <LinkTo @route="items.item" @model={{item}}>{{item.name}}</LinkTo>
+        <list.item as |listItem|>
+          <listItem.link @route="items.item" @model={{item}}>
+            {{item.name}}
+          </listItem.link>
           ({{item.category.name}})
-        </li>
+        </list.item>
       {{/each}}
-    </ul>
+    </List>
   </panel.body>
 
 </Section::Panel>

@@ -13,12 +13,12 @@
       <button
         class="confirm-button-safe"
         autofocus="autofocus"
-        {{action @dismissAction}}>
+        {{on "click" @dismissAction}}>
         {{@dismissText}}
       </button>
       <button
         class="confirm-button-unsafe"
-        {{action @confirmAction}}>
+        {{on "click" @confirmAction}}>
         {{@confirmText}}
       </button>
     </footer>

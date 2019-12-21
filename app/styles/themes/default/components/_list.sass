@@ -1,31 +1,32 @@
-$box-item-padding: $box-padding * 0.4
+$list-heading-padding: $size-6 / 2.25 $size-5
+$list-item-padding: $size-6 - 0.25rem $size-5
 
-.list-set
+.list
+  &:not(:last-child)
+    margin-bottom: 0
+
+.list-heading
   @extend .has-background-light
-  .list
-    box-shadow: none
-    &:not(:last-child)
-      margin-bottom: 0
-  .list-heading
-    @extend .is-uppercase
-    @extend .is-size-7
-    padding: $box-item-padding
-    padding-left: $box-padding
-  .list-item
-    padding: 0
-    .list-item-link
-      @extend .box
+  @extend .is-uppercase
+  @extend .is-size-7
+  padding: $list-heading-padding
+
+.list-item
+  padding: 0
+
+  a
+    &.list-item-link
+      @extend .list-item
+      align-items: center
+      background-color: $white
+      color: $text
       display: flex
       justify-content: space-between
-      align-items: center
-      border-radius: 0
-      box-shadow: none
-      padding: $box-item-padding
-      padding-left: $box-padding
-      &:hover, &:focus
-        @extend .has-background-light
-        box-shadow: none !important
+      padding: $list-item-padding
+
       &.active
-        &, &:hover, &:focus, &:active
-          @extend .has-background-primary
-          @extend .has-text-white
+        @extend .list-item.is-active
+
+      &:hover
+        &:not(.active)
+          @extend .has-background-light

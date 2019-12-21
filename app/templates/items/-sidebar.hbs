@@ -7,22 +7,20 @@
 
   <panel.body>
     <ListSet as |listSet|>
+      {{#each this.groupedItems as |group|}}
       <listSet.heading>
-          Heading
+        {{group.category.name}}
       </listSet.heading>
       <listSet.list as |list|>
-        {{#each @model as |item|}}
+        {{#each group.items as |item|}}
           <list.item as |listItem|>
             <listItem.link @route="items.item" @model={{item}}>
               {{item.name}}
             </listItem.link>
-            ({{item.category.name}})
           </list.item>
         {{/each}}
       </listSet.list>
-      <listSet.emptyListMessage>
-        Empty
-      </listSet.emptyListMessage>
+      {{/each}}
     </ListSet>
   </panel.body>
 

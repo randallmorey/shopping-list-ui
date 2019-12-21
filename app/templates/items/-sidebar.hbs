@@ -7,12 +7,18 @@
 
   <panel.body>
     <List as |list|>
-      {{#each @model as |item|}}
+      {{#each this.groupedItems as |group|}}
         <list.item as |listItem|>
-          <listItem.link @route="items.item" @model={{item}}>
-            {{item.name}}
-          </listItem.link>
-          ({{item.category.name}})
+          {{group.category.name}}
+          <listItem.list as |list|>
+            {{#each group.items as |item|}}
+              <list.item as |listItem|>
+                <listItem.link @route="items.item" @model={{item}}>
+                  {{item.name}}
+                </listItem.link>
+              </list.item>
+            {{/each}}
+          </listItem.list>
         </list.item>
       {{/each}}
     </List>

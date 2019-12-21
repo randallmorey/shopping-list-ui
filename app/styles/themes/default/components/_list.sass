@@ -1,0 +1,21 @@
+$box-padding-half: $box-padding * 0.5
+
+.list-set
+  .list-heading
+    @extend .subtitle
+    @extend .is-4
+    @extend .has-text-white
+    background-color: $info
+    padding: $box-padding-half
+    margin-bottom: 0 !important
+  .list-item
+    .list-item-link
+      @extend .box
+      display: flex
+      justify-content: space-between
+      padding: $box-padding-half
+      border-radius: 0
+      box-shadow: none
+      &:hover, &:active, &:focus
+        background-color: $grey-lighter
+        box-shadow: none !important

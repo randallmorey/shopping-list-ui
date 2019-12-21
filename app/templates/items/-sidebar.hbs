@@ -15,6 +15,7 @@
               <list.item as |listItem|>
                 <listItem.link @route="items.item" @model={{item}}>
                   {{item.name}}
+                  <FaIcon @icon="chevron-right" />
                 </listItem.link>
               </list.item>
             {{/each}}

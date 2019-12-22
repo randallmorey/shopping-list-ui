@@ -1,5 +1,8 @@
 {
   "actions": {
+    "default": {
+      "save": "Save"
+    },
     "items": {
       "add": "Add $t(resources.item)"
     }

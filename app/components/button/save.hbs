@@ -1,0 +1,10 @@
+<button
+  type="submit"
+  class="button-save {{if @loading " is-loading"}}"
+  ...attributes>
+  {{#if hasBlock}}
+    {{yield}}
+  {{else}}
+    {{t "actions.default.save"}}
+  {{/if}}
+</button>

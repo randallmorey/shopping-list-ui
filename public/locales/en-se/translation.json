@@ -1,6 +1,7 @@
 {
   "actions": {
     "default": {
+      "cancel": "Cancel",
       "save": "Save"
     },
     "items": {

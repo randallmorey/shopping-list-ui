@@ -23,7 +23,7 @@
         {{/if}}
       {{/each}}
       {{#if this.uncategorized}}
-        <listSet.heading>Uncategorized</listSet.heading>
+        <listSet.heading>{{t "categories.uncategorized"}}</listSet.heading>
         <listSet.list as |list|>
           {{#each this.uncategorized as |item|}}
             <list.item as |listItem|>

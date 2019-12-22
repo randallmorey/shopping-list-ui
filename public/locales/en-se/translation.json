@@ -33,7 +33,6 @@
   "resources": {
     "item": "Item",
     "item_plural": "Items"
-<<<<<<< HEAD
   },
   "categories": {
     "uncategorized": "Uncategorized"
@@ -42,7 +41,4 @@
     "no-items": "No items yet"
   },
   "welcome": "Welcome message"
-=======
-  }
->>>>>>> develop
 }

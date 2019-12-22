@@ -5,7 +5,7 @@
     <ImageMessage
       @src="images/item"
       @message={{t 'welcome'}}>
-      <button class="button is-primary is-outlined">Primary Button</button>
+      <Link::Add @route="items">{{t "actions.items.add"}}</Link::Add>
     </ImageMessage>
 
   </panel.body>

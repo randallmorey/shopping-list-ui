@@ -19,6 +19,8 @@ export default function() {
 
   this.get('/items');
   this.get('/items/:id');
+
   this.get('/item-categories');
   this.get('/item-categories/:id');
+  this.del('/item-categories/:id');
 }

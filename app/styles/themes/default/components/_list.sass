@@ -1,0 +1,32 @@
+$list-heading-padding: $size-6 / 2.25 $size-5
+$list-item-padding: $size-6 - 0.25rem $size-5
+
+.list
+  &:not(:last-child)
+    margin-bottom: 0
+
+.list-heading
+  @extend .has-background-light
+  @extend .is-uppercase
+  @extend .is-size-7
+  padding: $list-heading-padding
+
+.list-item
+  padding: 0
+
+  a
+    &.list-item-link
+      @extend .list-item
+      align-items: center
+      background-color: transparent
+      color: $text
+      display: flex
+      justify-content: space-between
+      padding: $list-item-padding
+
+      &.active
+        @extend .list-item.is-active
+
+      &:hover
+        &:not(.active)
+          @extend .has-background-light

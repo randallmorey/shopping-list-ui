@@ -21,5 +21,8 @@
   "resources": {
     "item": "Item",
     "item_plural": "Items"
+  },
+  "categories": {
+    "uncategorized": "Uncategorized"
   }
 }

@@ -1,6 +1,9 @@
 .layout-split
   @extend .columns, .is-gapless
 
+  &:not(:last-child)
+    margin-bottom: 0
+
   .pane
     @extend .column
 

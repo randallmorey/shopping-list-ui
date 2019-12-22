@@ -1,4 +1,16 @@
 {
+  "actions": {
+    "default": {
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "items": {
+      "add": "Add $t(resources.item)"
+    }
+  },
+  "categories": {
+    "uncategorized": "Uncategorized"
+  },
   "confirm": {
     "default": {
       "message": "This action cannot be undone.",
@@ -21,6 +33,7 @@
   "resources": {
     "item": "Item",
     "item_plural": "Items"
+<<<<<<< HEAD
   },
   "categories": {
     "uncategorized": "Uncategorized"
@@ -29,4 +42,7 @@
     "no-items": "No items yet"
   },
   "welcome": "Welcome message"
+=======
+  }
+>>>>>>> develop
 }

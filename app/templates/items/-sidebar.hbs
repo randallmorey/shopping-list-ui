@@ -2,7 +2,7 @@
 
   <panel.header as |header|>
     <header.title>{{t "resources.item_plural"}}</header.title>
-    <button class="button is-dark is-outlined">Add Item</button>
+    <Link::Add @route="items">{{t "actions.items.add"}}</Link::Add>
   </panel.header>
 
   <panel.body>

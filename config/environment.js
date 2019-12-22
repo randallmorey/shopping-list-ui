@@ -1,8 +1,5 @@
 'use strict';
 
-// Create mirage scenario variable
-const { MIRAGE_SCENARIO } = process.env;
-
 // While a firebase config is always required, for safety it is disabled
 // by default, except in production when it is enabled by default.
 const useFirebase = (process.env.USE_FIREBASE) ?
@@ -20,6 +17,9 @@ const firebaseConfig = (process.env.FIREBASE_CONFIG_JSON) ?
         appId: "1:263121214343:web:408fbb1622407ce4c45122"
       };
 
+// Support for multiple mirage scenarios
+const mirageScenario = process.env.MIRAGE_SCENARIO || 'development';
+
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'shopping-list-ui',
@@ -36,8 +36,6 @@ module.exports = function(environment) {
         Date: false
       }
     },
-
-    MIRAGE_SCENARIO,
 
     APP: {
       // Here you can pass flags/options to your application instance
@@ -64,7 +62,9 @@ module.exports = function(environment) {
       lowerCaseLng: true,
       fallbackLng: 'en-se',
       whitelist: ['en-se']
-    }
+    },
+
+    mirageScenario
   };
 
   // Firebase requires access to certain Google domains

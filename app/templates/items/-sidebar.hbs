@@ -7,6 +7,11 @@
 
   <panel.body>
     <ListSet as |listSet|>
+      {{#unless @model.items}}
+      <listSet.emptyListMessage>
+        {{t 'list.no-items'}}
+      </listSet.emptyListMessage>
+      {{/unless}}
       {{#each @model.categories as |category|}}
         {{#if category.items}}
           <listSet.heading>{{category.name}}</listSet.heading>

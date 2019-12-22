@@ -1,5 +1,8 @@
 'use strict';
 
+// Create mirage scenario variable
+const { MIRAGE_SCENARIO } = process.env;
+
 // While a firebase config is always required, for safety it is disabled
 // by default, except in production when it is enabled by default.
 const useFirebase = (process.env.USE_FIREBASE) ?
@@ -33,6 +36,8 @@ module.exports = function(environment) {
         Date: false
       }
     },
+
+    MIRAGE_SCENARIO,
 
     APP: {
       // Here you can pass flags/options to your application instance

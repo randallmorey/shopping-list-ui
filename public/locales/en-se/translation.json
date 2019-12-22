@@ -24,5 +24,8 @@
   },
   "categories": {
     "uncategorized": "Uncategorized"
+  },
+  "list": {
+    "no-items": "No items yet"
   }
 }

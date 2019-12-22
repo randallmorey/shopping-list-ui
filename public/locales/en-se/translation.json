@@ -27,5 +27,6 @@
   },
   "list": {
     "no-items": "No items yet"
-  }
+  },
+  "welcome": "Welcome message"
 }

@@ -1,0 +1,7 @@
+<div class="image-message">
+  {{#if @src}}
+    {{inline-svg @src }}
+  {{/if}}
+  <p class="image-message-text">{{@message}}</p>
+  {{yield}}
+</div>

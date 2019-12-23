@@ -2,8 +2,10 @@
 
   <panel.header as |header|>
     <form.cancel {{action "cancel"}} />
-    <header.title>{{@model.item.name}}</header.title>
-    <form.save />
+    <header.title>{{@model.name}}</header.title>
+    <form.save
+      @loading={{@model.isSaving}}
+      disabled={{@model.isClean}} />
   </panel.header>
 
   <panel.body>

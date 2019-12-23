@@ -1,6 +1,6 @@
 export default function(server) {
   // category with items
-  server.createList('item-category', 2).map(category => {
+  server.createList('item-category', 10).map(category => {
     server.createList('item', 3, {category});
   });
   // category without items

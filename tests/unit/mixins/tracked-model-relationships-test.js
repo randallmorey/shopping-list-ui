@@ -34,6 +34,31 @@ module('Unit | Mixin | tracked-model-relationships', function(hooks) {
     assert.equal(item.hasDirtyRelationships, true, 'After changing the relationship, `hasDirtyRelationships` returns `true`');
   });
 
+  test('it\'s `isDirty` and `isClean` properties work', function (assert) {
+    assert.expect(8);
+    const store = this.owner.lookup('service:store');
+    store.push({
+      data: [
+        {id: '1', type: 'item-category'},
+        {id: '2', type: 'item', relationships: {
+          category: {data: {type: 'item-category', id: '1'}}
+        }}
+      ]
+    });
+    const item = store.peekRecord('item', '2');
+    assert.equal(item.isDirty, false, 'Before changing an attribute, `isDirty` returns `false`');
+    assert.equal(item.isClean, true, 'Before changing an attribute, `isClean` returns `true`');
+    item.name = 'Changed';
+    assert.equal(item.isDirty, true, 'After changing an attribute, `isDirty` returns `true`');
+    assert.equal(item.isClean, false, 'After changing an attribute, `isClean` returns `false`');
+    item.rollbackAttributes();
+    assert.equal(item.isDirty, false, 'Before changing the relationship, `isDirty` returns `false`');
+    assert.equal(item.isClean, true, 'Before changing the relationship, `isClean` returns `true`');
+    item.category = null;
+    assert.equal(item.isDirty, true, 'After changing the relationship, `isDirty` returns `true`');
+    assert.equal(item.isClean, false, 'After changing the relationship, `isClean` returns `false`');
+  });
+
   test('it\'s `rollbackRelationships()` method works for unintialized relationships', function (assert) {
     assert.expect(6);
     const store = this.owner.lookup('service:store');

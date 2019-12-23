@@ -10,6 +10,8 @@ $list-item-padding: $size-6 - 0.25rem $size-5
   @extend .is-uppercase
   @extend .is-size-7
   padding: $list-heading-padding
+  position: sticky
+  top: 0
 
 .list-item
   padding: 0
@@ -24,8 +26,12 @@ $list-item-padding: $size-6 - 0.25rem $size-5
       justify-content: space-between
       padding: $list-item-padding
 
-      &.active
-        @extend .list-item.is-active
+      &.active,
+      &:active
+        &,
+        &:hover
+          @extend .list-item.is-active
+          background-color: $primary !important
 
       &:hover
         &:not(.active)

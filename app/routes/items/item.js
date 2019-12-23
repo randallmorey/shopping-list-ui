@@ -36,20 +36,24 @@ export default class ItemsItemRoute extends Route {
   }
 
   /**
-   * If valid, saves the record.
+   * If dirty and valid, save the record.
    */
   @action
   submit() {
-    // TODO
-    console.log('submit');
+    // Only do save if the model has changes that are valid.
+    if (this.currentModel.isDirty && this.currentModel.validate()) {
+      // TODO
+      console.log('submit');
+    }
   }
 
   /**
-   * Rollback any changes to the record.
+   * Rollback attributes and relationships and redirect to items route.
    */
   @action
   cancel() {
-    // TODO
-    console.log('cancel');
+    this.currentModel.rollbackAttributes();
+    this.currentModel.rollbackRelationships();
+    this.transitionTo('items');
   }
 }

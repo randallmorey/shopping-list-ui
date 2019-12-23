@@ -43,7 +43,8 @@
     "uncategorized": "Uncategorized"
   },
   "list": {
-    "no-items": "No items yet"
+    "no-items": "No items yet",
+    "no-item-categories": "No categories yet"
   },
   "messages": {
     "items": {

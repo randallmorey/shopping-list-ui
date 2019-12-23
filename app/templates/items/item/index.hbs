@@ -9,20 +9,39 @@
   </panel.header>
 
   <panel.body>
-    <Container::Centering>
+    <Container>
+
       <Form::Input @name={{@model.name}} />
-      <Form::radioControl as |control|>
-        <List::heading>
-        {{t "resources.item-category"}}
-        </List::heading>
-        {{#each this.categories as |category| }}
-          <control.label @name={{@model.name}}>
-            {{category.name}}
-          </control.label>
-        {{/each}}
-      </Form::radioControl>
+
+      <ListSet as |listSet|>
+        {{#unless this.categories}}
+          <listSet.emptyListMessage>
+            {{t 'list.no-item-categories'}}
+          </listSet.emptyListMessage>
+        {{else}}
+          <fieldset>
+            <listSet.heading>
+              <legend>{{t "resources.item-category_plural"}}</legend>
+            </listSet.heading>
+            <listSet.list as |list|>
+              <Form::radioControl as |control|>
+                {{#each this.categories as |category| }}
+                  <list.item>
+                    <control.label @name={{@model.name}}>
+                      {{category.name}}
+                    </control.label>
+                  </list.item>
+                {{/each}}
+              </Form::radioControl>
+            </listSet.list>
+          </fieldset>
+        {{/unless}}
+      </ListSet>
+
+
       <Link::Add @route="items">{{t "actions.item-category.add"}}</Link::Add>
-    </Container::Centering>
+
+    </Container>
   </panel.body>
 
 </Form::Panel>

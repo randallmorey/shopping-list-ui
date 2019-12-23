@@ -1,6 +1,8 @@
 import Model from '@ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
+import { computed } from '@ember/object';
+import { htmlSafe } from '@ember/template';
 import Validator from '../mixins/object-validator';
 import DatedModelAttributesMixin from '../mixins/dated-model-attributes';
 import DatedModelMethodsMixin from '../mixins/dated-model-attributes';
@@ -34,6 +36,17 @@ export default class ItemModel extends Model.extend(
   // =relationships
 
   @belongsTo('item-category', {trackChanges: true}) category;
+
+  // =computed
+
+  /**
+   * Equal to the value of name or, if no name, an HTML-safe ellipsis.
+   * @return {String}
+   */
+  @computed('name')
+  get displayName() {
+    return this.name ? this.name : htmlSafe('&hellip;');
+  }
 
   // =validations
 

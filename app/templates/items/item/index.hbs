@@ -2,7 +2,7 @@
 
   <panel.header as |header|>
     <form.cancel {{action "cancel"}} />
-    <header.title>{{@model.name}}</header.title>
+    <header.title>{{@model.displayName}}</header.title>
     <form.save
       @loading={{@model.isSaving}}
       disabled={{@model.isClean}} />
@@ -44,7 +44,7 @@
                       type="radio"
                       value={{category}}
                       checked={{eq @model.category.id category.id}}
-                      {{on "change" (action "categoryChange" category)}} />
+                      {{on "change" (fn this.categoryChange category)}} />
                       {{category.name}}
                   </label>
                 </list.item>

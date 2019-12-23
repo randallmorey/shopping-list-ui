@@ -18,9 +18,14 @@ export default function() {
   */
 
   this.get('/items');
+  this.post('/items');
   this.get('/items/:id');
+  this.put('/items/:id');
+  this.del('/items/:id');
 
   this.get('/item-categories');
+  this.post('/item-categories');
   this.get('/item-categories/:id');
+  this.put('/item-categories/:id');
   this.del('/item-categories/:id');
 }

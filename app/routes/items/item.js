@@ -53,8 +53,7 @@ export default class ItemsItemRoute extends Route {
   @action
   cancel() {
     this.currentModel.errors.clear();
-    this.currentModel.rollbackAttributes();
-    this.currentModel.rollbackRelationships();
+    this.currentModel.rollback();
     this.transitionTo('items');
   }
 }

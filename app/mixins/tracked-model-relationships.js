@@ -120,6 +120,14 @@ export default Mixin.create({ // eslint-disable-line ember/no-new-mixins
   },
 
   /**
+   * Convenience to rollback attributes and relationships in one go.
+   */
+  rollback() {
+    this.rollbackAttributes();
+    this.rollbackRelationships();
+  },
+
+  /**
    * Rolls back all dirty tracked relationships.
    * @memberOf TrackedModelRelationshipsMixin
    * @function

@@ -98,4 +98,27 @@ module('Unit | Mixin | tracked-model-relationships', function(hooks) {
     assert.ok(item.get('category.id'), 'After calling `rollbackRelationships`, the relationship ID is set');
     assert.equal(item.hasDirtyRelationships, false, 'After rolling back relationships, `hasDirtyRelationships` returns `false`');
   });
+
+  test('it\'s `rollback()` method works for attributes and relationships', function (assert) {
+    assert.expect(6);
+    const store = this.owner.lookup('service:store');
+    store.push({
+      data: [
+        {id: '1', type: 'item-category'},
+        {id: '2', type: 'item', relationships: {
+          category: {data: {type: 'item-category', id: '1'}}
+        }}
+      ]
+    });
+    const item = store.peekRecord('item', '2');
+    assert.ok(item.get('category.id'), 'Before changing the relationship, it\'s ID is set');
+    assert.notOk(item.get('name'), 'Before changing the name, it is not set');
+    item.name = 'Test';
+    item.category = null;
+    assert.notOk(item.get('category.id'), 'After changing the relationship, it\'s ID is not set');
+    assert.ok(item.get('name'), 'After changing the name, it is set');
+    item.rollback();
+    assert.ok(item.get('category.id'), 'After calling `rollback`, the relationship ID is set');
+    assert.notOk(item.get('name'), 'After calling `rollback`, the name is not set');
+  });
 });

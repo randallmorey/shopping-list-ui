@@ -11,7 +11,7 @@ module('Integration | Component | image-message', function(hooks) {
     assert.expect(2)
     await render(hbs`
       <ImageMessage
-        @src='images/item'
+        @src='images/illustrations/items/welcome.svg'
         @message='test message'
         >
       </ImageMessage>

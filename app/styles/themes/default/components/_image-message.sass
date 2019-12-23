@@ -1,11 +1,12 @@
 $image-size: $size-1 * 5
 
 .image-message
-  align-items: center
   display: flex
+  flex-grow: 1
   flex-direction: column
-  height: 100%
   justify-content: center
+  text-align: center
+
   &-img
-    height: $image-size
+    max-height: $image-size
     padding-bottom: $size-3

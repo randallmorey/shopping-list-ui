@@ -15,7 +15,7 @@
         <List::heading>
         {{t "resources.item-category_plural"}}
         </List::heading>
-        {{#each @model.categories as |category| }}
+        {{#each @categories as |category| }}
           <control.label @name={{@model.item.name}}>
             {{category.name}}
           </control.label>

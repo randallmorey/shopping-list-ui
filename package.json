@@ -73,6 +73,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-model-validator": "^3.10.0",
     "ember-qunit": "^4.6.0",
+    "ember-radio-button": "^2.0.1",
     "ember-resolver": "^7.0.0",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/beta/shas/1d9d6be0773b5f79beb8981da04ad23b972c2fc8.tgz",
     "ember-template-lint": "^1.5.0",

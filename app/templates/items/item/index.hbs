@@ -11,8 +11,15 @@
   <panel.body>
     <Container>
 
-      {{!-- TODO  replace this with html markup for a text input with a label --}}
-      <Form::Input @name={{@model.name}} />
+      <label for="item">{{t 'resources.item'}}</label>
+      {{@model.category.name}}
+      <Input
+        class="input"
+        aria-label={{@model.name}}
+        @id="item"
+        @type="text"
+        @value={{@model.name}}
+         />
 
       <ListSet as |listSet|>
         {{#unless this.categories}}
@@ -27,12 +34,15 @@
             <listSet.list as |list|>
               {{#each this.categories as |category| }}
                 <list.item>
-
-                  {{!-- TODO replace this with html markup for a radio input with a label --}}
-                  <Form::RadioLabel @name={{@model.name}}>
-                    {{category.name}}
-                  </Form::RadioLabel>
-
+                  <label>
+                    <RadioButton
+                      value=category.name
+                      name="categories"
+                      groupValue=@model.category.name
+                    >
+                      {{category.name}}
+                    </RadioButton>
+                  </label>
                 </list.item>
               {{/each}}
             </listSet.list>

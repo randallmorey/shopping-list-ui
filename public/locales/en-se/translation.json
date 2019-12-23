@@ -33,6 +33,11 @@
       "dismiss": "$t(confirm.default.dismiss)"
     }
   },
+  "fields": {
+    "default": {
+      "name": "Name"
+    }
+  },
   "resources": {
     "item": "Item",
     "item_plural": "Items",

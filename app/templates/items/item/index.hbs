@@ -11,35 +11,38 @@
   <panel.body>
     <Container>
 
-      <label for="item">{{t 'resources.item'}}</label>
-      {{@model.category.name}}
-      <Input
-        class="input"
-        aria-label={{@model.name}}
-        @id="item"
-        @type="text"
-        @value={{@model.name}}
-         />
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label" for="name">{{t 'fields.default.name'}}</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <Input
+                class="input"
+                id="name"
+                name="name"
+                type="text"
+                @value={{@model.name}} />
+            </div>
+          </div>
+        </div>
+      </div>
 
       <ListSet as |listSet|>
-        {{#unless this.categories}}
-          <listSet.emptyListMessage>
-            {{t 'list.no-item-categories'}}
-          </listSet.emptyListMessage>
-        {{else}}
+        {{#if this.categories}}
           <fieldset>
             <listSet.heading>
-              <legend>{{t "resources.item-category_plural"}}</legend>
+              <legend>{{t "resources.item-category"}}</legend>
             </listSet.heading>
             <listSet.list as |list|>
               {{#each this.categories as |category| }}
                 <list.item>
                   <label>
                     <RadioButton
-                      value=category.name
+                      value={{category.name}}
                       name="categories"
-                      groupValue=@model.category.name
-                    >
+                      groupValue={{@model.category.name}}>
                       {{category.name}}
                     </RadioButton>
                   </label>
@@ -47,7 +50,11 @@
               {{/each}}
             </listSet.list>
           </fieldset>
-        {{/unless}}
+        {{else}}
+          <listSet.emptyListMessage>
+            {{t 'list.no-item-categories'}}
+          </listSet.emptyListMessage>
+        {{/if}}
       </ListSet>
 
 

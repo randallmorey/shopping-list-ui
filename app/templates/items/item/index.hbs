@@ -38,13 +38,14 @@
             <listSet.list as |list|>
               {{#each this.categories as |category| }}
                 <list.item>
-                  <label>
-                    <RadioButton
-                      value={{category.name}}
-                      name="categories"
-                      groupValue={{@model.category.name}}>
+                  <label class="label">
+                    <Input
+                      name="category"
+                      type="radio"
+                      value={{category}}
+                      checked={{eq @model.category.id category.id}}
+                      {{on "change" (action "categoryChange" category)}} />
                       {{category.name}}
-                    </RadioButton>
                   </label>
                 </list.item>
               {{/each}}

@@ -2,15 +2,25 @@
 
   <panel.header as |header|>
     <form.cancel {{action "cancel"}} />
-    <header.title>{{@model.name}}</header.title>
+    <header.title>{{@model.item.name}}</header.title>
     <form.save />
   </panel.header>
 
   <panel.body>
-    <Container>
-      {{@model.name}} / {{@model.id}}
+    <Container::Centering>
+      <Form::Input @placeholder="{{t "resources.item-category"}}"/>
+      <Form::radioControl as |control|>
+        <List::heading>
+        {{t "resources.item-category_plural"}}
+        </List::heading>
+        {{#each @model.categories as |category| }}
+          <control.label @name={{@model.item.name}}>
+            {{category.name}}
+          </control.label>
+        {{/each}}
+      </Form::radioControl>
       <Link::Add @route="items">{{t "actions.item-category.add"}}</Link::Add>
-    </Container>
+    </Container::Centering>
   </panel.body>
 
 </Form::Panel>

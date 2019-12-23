@@ -2,11 +2,13 @@
 
   <panel.body>
 
-    <ImageMessage
-      @src="images/illustrations/items/welcome.svg"
-      @message={{t 'messages.items.welcome'}}>
-      <Link::Add @route="items">{{t "actions.items.add"}}</Link::Add>
-    </ImageMessage>
+    <Container::Centering>
+      <ImageMessage
+        @src="images/illustrations/items/welcome.svg"
+        @message={{t 'messages.items.welcome'}}>
+        <Link::Add @route="items">{{t "actions.items.add"}}</Link::Add>
+      </ImageMessage>
+    </Container::Centering>
 
   </panel.body>
 

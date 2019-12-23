@@ -17,6 +17,9 @@ const firebaseConfig = (process.env.FIREBASE_CONFIG_JSON) ?
         appId: "1:263121214343:web:408fbb1622407ce4c45122"
       };
 
+// Support for multiple mirage scenarios
+const mirageScenario = process.env.MIRAGE_SCENARIO || 'development';
+
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'shopping-list-ui',
@@ -59,7 +62,9 @@ module.exports = function(environment) {
       lowerCaseLng: true,
       fallbackLng: 'en-se',
       whitelist: ['en-se']
-    }
+    },
+
+    mirageScenario
   };
 
   // Firebase requires access to certain Google domains

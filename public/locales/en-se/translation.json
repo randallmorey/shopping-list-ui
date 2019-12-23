@@ -33,5 +33,16 @@
   "resources": {
     "item": "Item",
     "item_plural": "Items"
+  },
+  "categories": {
+    "uncategorized": "Uncategorized"
+  },
+  "list": {
+    "no-items": "No items yet"
+  },
+  "messages": {
+    "items": {
+      "welcome": "Manage all of your items here.  Once created, items may be added quickly to shopping lists."
+    }
   }
 }

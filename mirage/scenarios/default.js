@@ -1,10 +1,10 @@
+import development from './development';
+import empty from './empty';
+import ENV from '../../config/environment';
+
 export default function(server) {
-  // category with items
-  server.createList('item-category', 2).map(category => {
-    server.createList('item', 3, {category});
-  });
-  // category without items
-  server.createList('item-category', 1);
-  // items without categories
-  server.createList('item', 3);
+  const scenarios = {development, empty};
+  const activeScenario = ENV.mirageScenario;
+  const scenario = scenarios[activeScenario];
+  if (scenario) scenario(server);
 }

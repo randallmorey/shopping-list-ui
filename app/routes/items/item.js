@@ -39,9 +39,11 @@ export default class ItemsItemRoute extends Route {
   @action
   submit() {
     // Only do save if the model has changes that are valid.
-    if (this.currentModel.isDirty && this.currentModel.validate()) {
-      this.currentModel.save();
-    }
+    const canSave =
+      this.currentModel.isDirty &&
+      this.currentModel.validate() &&
+      !this.currentModel.isSaving;
+    if (canSave) this.currentModel.save();
   }
 
   /**

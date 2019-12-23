@@ -12,6 +12,12 @@
     <Container>
       {{@model.name}} / {{@model.id}}
       <Link::Add @route="items">{{t "actions.item-category.add"}}</Link::Add>
+
+      <ul>
+        {{#each @categories as |category|}}
+          <li>{{category.name}}</li>
+        {{/each}}
+      </ul>
     </Container>
   </panel.body>
 

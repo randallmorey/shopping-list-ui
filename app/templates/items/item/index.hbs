@@ -11,6 +11,7 @@
   <panel.body>
     <Container>
 
+      {{!-- TODO  replace this with html markup for a text input with a label --}}
       <Form::Input @name={{@model.name}} />
 
       <ListSet as |listSet|>
@@ -24,15 +25,16 @@
               <legend>{{t "resources.item-category_plural"}}</legend>
             </listSet.heading>
             <listSet.list as |list|>
-              <Form::radioControl as |control|>
-                {{#each this.categories as |category| }}
-                  <list.item>
-                    <control.label @name={{@model.name}}>
-                      {{category.name}}
-                    </control.label>
-                  </list.item>
-                {{/each}}
-              </Form::radioControl>
+              {{#each this.categories as |category| }}
+                <list.item>
+
+                  {{!-- TODO replace this with html markup for a radio input with a label --}}
+                  <Form::RadioLabel @name={{@model.name}}>
+                    {{category.name}}
+                  </Form::RadioLabel>
+
+                </list.item>
+              {{/each}}
             </listSet.list>
           </fieldset>
         {{/unless}}

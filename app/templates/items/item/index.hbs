@@ -1,0 +1,16 @@
+<Form::Panel as |form panel|>
+
+  <panel.header as |header|>
+    <form.cancel />
+    <header.title>{{@model.name}}</header.title>
+    <form.save />
+  </panel.header>
+
+  <panel.body>
+    <Container>
+      item stuff
+      <Link::Add @route="items">Add Category</Link::Add>
+    </Container>
+  </panel.body>
+
+</Form::Panel>

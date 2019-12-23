@@ -1,0 +1,8 @@
+<Section::Panel as |panel|>
+  <form class="form-panel">
+    {{yield (hash
+      save=(component "button/save")
+      cancel=(component "button/cancel")
+    ) panel}}
+  </form>
+</Section::Panel>

@@ -4,7 +4,7 @@ export default class ItemsItemIndexRoute extends Route {
 
   setupController(controller) {
     super.setupController(...arguments);
-    controller.categories = this.modelFor('items').categories;
+    controller.set('categories', this.modelFor('items').categories);
   }
 
 }

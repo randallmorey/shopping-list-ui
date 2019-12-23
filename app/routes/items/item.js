@@ -1,7 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import { hash } from 'rsvp';
 
 /**
  * A route to load and display a single item.
@@ -18,12 +17,9 @@ export default class ItemsItemRoute extends Route {
    * Returns an item by ID.
    * @returns {ItemModel}
    */
-  model(params) {
-    return hash({
-      item: this.store.findRecord('item', params.item_id),
-      categories: this.modelFor('items').categories
-    });
-  }
+   model(params) {
+     return this.store.findRecord('item', params.item_id);
+   }
 
   // =actions
 

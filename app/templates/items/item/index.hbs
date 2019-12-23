@@ -10,13 +10,13 @@
 
   <panel.body>
     <Container::Centering>
-      <Form::Input @placeholder="{{t "resources.item-category"}}"/>
+      <Form::Input @name={{@model.name}} />
       <Form::radioControl as |control|>
         <List::heading>
-        {{t "resources.item-category_plural"}}
+        {{t "resources.item-category"}}
         </List::heading>
-        {{#each @categories as |category| }}
-          <control.label @name={{@model.item.name}}>
+        {{#each this.categories as |category| }}
+          <control.label @name={{@model.name}}>
             {{category.name}}
           </control.label>
         {{/each}}

@@ -14,7 +14,7 @@
       <Link::Add @route="items">{{t "actions.item-category.add"}}</Link::Add>
 
       <ul>
-        {{#each @categories as |category|}}
+        {{#each this.categories as |category|}}
           <li>{{category.name}}</li>
         {{/each}}
       </ul>

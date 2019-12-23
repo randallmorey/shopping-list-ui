@@ -17,9 +17,11 @@ export default class ItemsItemRoute extends Route {
    * Returns an item by ID.
    * @returns {ItemModel}
    */
-   model(params) {
-     return this.store.findRecord('item', params.item_id);
-   }
+  model(params) {
+    return this.store.findRecord('item', params.item_id);
+  }
+
+
 
   // =actions
 
@@ -38,16 +40,17 @@ export default class ItemsItemRoute extends Route {
   submit() {
     // Only do save if the model has changes that are valid.
     if (this.currentModel.isDirty && this.currentModel.validate()) {
-      // TODO
-      console.log('submit');
+      this.currentModel.save();
     }
   }
 
   /**
-   * Rollback attributes and relationships and redirect to items route.
+   * Clear errors, rollback attributes and relationships,
+   * and redirect to items route.
    */
   @action
   cancel() {
+    this.currentModel.errors.clear();
     this.currentModel.rollbackAttributes();
     this.currentModel.rollbackRelationships();
     this.transitionTo('items');

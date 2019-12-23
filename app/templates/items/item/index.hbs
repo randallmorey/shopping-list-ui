@@ -11,22 +11,23 @@
   <panel.body>
     <Container>
 
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label" for="name">{{t 'fields.default.name'}}</label>
+      <div class="field">
+        <label class="label" for="name">{{t 'fields.default.name'}}</label>
+        <div class="control">
+          <Input
+            class="input{{if @model.errors.name " is-danger"}}"
+            id="name"
+            name="name"
+            type="text"
+            @value={{@model.name}} />
         </div>
-        <div class="field-body">
-          <div class="field">
-            <div class="control">
-              <Input
-                class="input"
-                id="name"
-                name="name"
-                type="text"
-                @value={{@model.name}} />
-            </div>
+        {{#each @model.errors.name as |error|}}
+          <div class="help is-danger">
+            {{#each error.message as |message|}}
+              {{message}}
+            {{/each}}
           </div>
-        </div>
+        {{/each}}
       </div>
 
       <ListSet as |listSet|>

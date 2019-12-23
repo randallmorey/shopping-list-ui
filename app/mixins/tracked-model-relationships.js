@@ -98,7 +98,7 @@ export default Mixin.create({ // eslint-disable-line ember/no-new-mixins
    */
   initializeIsDirtyBelongsToProperty: on('init', function () {
     this.trackedBelongsToNames.forEach(name => {
-      const computedProperty = computed(`${name}.id`, function () {
+      const computedProperty = computed(`${name}.id`, `isSaving`, function () {
         return this.isDirtyBelongsTo(name);
       });
       defineProperty(this, `${name}IsDirty`, computedProperty);

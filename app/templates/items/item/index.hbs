@@ -1,15 +1,15 @@
-<Form::Panel as |form panel|>
+<Form::Panel {{action "submit" on="submit"}} as |form panel|>
 
   <panel.header as |header|>
-    <form.cancel />
+    <form.cancel {{action "cancel"}} />
     <header.title>{{@model.name}}</header.title>
     <form.save />
   </panel.header>
 
   <panel.body>
     <Container>
-      item stuff
-      <Link::Add @route="items">Add Category</Link::Add>
+      {{@model.name}} / {{@model.id}}
+      <Link::Add @route="items">{{t "actions.item-category.add"}}</Link::Add>
     </Container>
   </panel.body>
 

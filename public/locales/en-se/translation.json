@@ -6,6 +6,9 @@
     },
     "items": {
       "add": "Add $t(resources.item)"
+    },
+    "item-category": {
+      "add": "Add $t(resources.item-category)"
     }
   },
   "categories": {
@@ -32,7 +35,9 @@
   },
   "resources": {
     "item": "Item",
-    "item_plural": "Items"
+    "item_plural": "Items",
+    "item-category": "Category",
+    "item-category_plural": "Categories"
   },
   "categories": {
     "uncategorized": "Uncategorized"

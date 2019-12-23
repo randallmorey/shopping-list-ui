@@ -31,4 +31,21 @@ export default class ItemsItemRoute extends Route {
     this.activePane.activateBody();
   }
 
+  /**
+   * If valid, saves the record.
+   */
+  @action
+  submit() {
+    // TODO
+    console.log('submit');
+  }
+
+  /**
+   * Rollback any changes to the record.
+   */
+  @action
+  cancel() {
+    // TODO
+    console.log('cancel');
+  }
 }

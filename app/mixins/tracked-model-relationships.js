@@ -1,5 +1,6 @@
 import Mixin from '@ember/object/mixin';
 import { computed, defineProperty, get } from '@ember/object';
+import { not } from '@ember/object/computed';
 import { on } from '@ember/object/evented';
 
 /**
@@ -54,6 +55,20 @@ export default Mixin.create({ // eslint-disable-line ember/no-new-mixins
     });
     return names;
   }),
+
+  /**
+   * True if record has any dirty attributes or relationships.
+   * @type {Boolean}
+   */
+  isDirty: computed('hasDirtyAttributes', 'hasDirtyRelationships', function () {
+    return this.hasDirtyAttributes || this.hasDirtyRelationships;
+  }),
+
+  /**
+   * True if record has is not dirty.
+   * @type {Boolean}
+   */
+  isClean: not('isDirty'),
 
   // =methods
 

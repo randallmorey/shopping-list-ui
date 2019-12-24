@@ -17,7 +17,7 @@ module('Integration | Component | image-message', function(hooks) {
       </ImageMessage>
     `);
 
-    assert.equal(await textContent('p.image-message-text'), 'test message');
+    assert.equal(textContent('p.image-message-text'), 'test message');
     assert.ok(find('svg.image-message-img'));
   });
 });

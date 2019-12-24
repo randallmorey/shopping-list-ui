@@ -21,10 +21,10 @@ module('Integration | Component | confirm', function(hooks) {
         Are you sure?
       </Confirm>
     `);
-    assert.equal(await textContent('#confirm-header'), 'Confirm');
-    assert.equal(await textContent('#confirm-body'), 'Are you sure?');
-    assert.equal(await textContent('.confirm-button-safe'), 'No');
-    assert.equal(await textContent('.confirm-button-unsafe'), 'Yes');
+    assert.equal(textContent('#confirm-header'), 'Confirm');
+    assert.equal(textContent('#confirm-body'), 'Are you sure?');
+    assert.equal(textContent('.confirm-button-safe'), 'No');
+    assert.equal(textContent('.confirm-button-unsafe'), 'Yes');
   });
 
   test('it can trigger dismiss and confirm actions', async function(assert) {

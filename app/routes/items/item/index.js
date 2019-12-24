@@ -60,9 +60,14 @@ export default class ItemsItemIndexRoute extends Route {
    */
   @action
   delete() {
-    this.confirmations.getConfirmation('delete')
-      .then(() => this.currentModel.destroyRecord())
-      .then(() => this.transitionTo('items'))
+    /* istanbul ignore else  */
+    if (!this.deleteConfirmation) {
+      this.deleteConfirmation = this.confirmations.getConfirmation('delete');
+      this.deleteConfirmation
+        .then(() => this.currentModel.destroyRecord())
+        .then(() => this.transitionTo('items'))
+        .finally(() => delete this.deleteConfirmation);
+    }
   }
 
   /**
@@ -71,14 +76,17 @@ export default class ItemsItemIndexRoute extends Route {
    */
   @action
   willTransition(transition) {
-    if (this.currentModel.isDirty) {
+    /* istanbul ignore else  */
+    if (this.currentModel.isDirty && !this.abandonConfirmation) {
       transition.abort();
-      this.confirmations.getConfirmation('abandon')
+      this.abandonConfirmation = this.confirmations.getConfirmation('abandon');
+      this.abandonConfirmation
         .then(() => {
           this.currentModel.errors.clear();
           this.currentModel.rollback();
           transition.retry();
-        });
+        })
+        .finally(() => delete this.abandonConfirmation);
     }
   }
 }

@@ -11,23 +11,25 @@ module('Integration | Component | list-set', function(hooks) {
     assert.expect(4);
     await render(hbs`
       <ListSet as |listSet|>
-        <listSet.heading>
-            Heading
-        </listSet.heading>
-        <listSet.list as |list|>
-          <list.item as |listItem|>
-            Item
-          </list.item>
-        </listSet.list>
+        <listSet.group as |group|>
+          <group.heading>
+              Heading
+          </group.heading>
+          <group.list as |list|>
+            <list.item as |listItem|>
+              Item
+            </list.item>
+          </group.list>
+        </listSet.group>
         <listSet.emptyListMessage>
           Empty
         </listSet.emptyListMessage>
       </ListSet>
     `);
 
-    assert.equal(await textContent('h2.list-heading'), 'Heading');
-    assert.equal(await textContent('li.list-item'), 'Item');
-    assert.equal(await textContent('p.empty-list-message'), 'Empty');
+    assert.equal(textContent('h2.list-heading'), 'Heading');
+    assert.equal(textContent('li.list-item'), 'Item');
+    assert.equal(textContent('p.empty-list-message'), 'Empty');
     assert.ok(find('ul.list'));
 
   });

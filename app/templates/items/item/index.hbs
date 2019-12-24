@@ -39,36 +39,38 @@
 
       <ListSet as |listSet|>
         {{#if this.categories}}
-          <fieldset>
-            <listSet.heading>
-              <legend>{{t "resources.item-category"}}</legend>
-            </listSet.heading>
-            <listSet.list as |list|>
-              {{#each this.categories as |category| }}
-                <list.item as |listItem|>
-                  <label class="list-item-label">
-                    <Input
-                      class="radio"
-                      name="category"
-                      type="radio"
-                      value={{category}}
-                      checked={{eq @model.category.id category.id}}
-                      {{on "change" (fn this.categoryChange category)}} />
-                      {{category.name}}
-                  </label>
-                  <listItem.link
-                    @route="items.item"
-                    @model={{@item}}
-                    @title={{t
-                      'actions.item-category.edit-name'
-                      name=category.name
-                    }}>
-                    <FaIcon @icon="chevron-right" />
-                  </listItem.link>
-                </list.item>
-              {{/each}}
-            </listSet.list>
-          </fieldset>
+          <listSet.group as |group|>
+            <fieldset>
+              <group.heading>
+                <legend>{{t "resources.item-category"}}</legend>
+              </group.heading>
+              <group.list as |list|>
+                {{#each this.categories as |category| }}
+                  <list.item as |listItem|>
+                    <label class="list-item-label">
+                      <Input
+                        class="radio"
+                        name="category"
+                        type="radio"
+                        value={{category}}
+                        checked={{eq @model.category.id category.id}}
+                        {{on "change" (fn this.categoryChange category)}} />
+                        {{category.name}}
+                    </label>
+                    <listItem.link
+                      @route="items.item"
+                      @model={{@item}}
+                      @title={{t
+                        'actions.item-category.edit-name'
+                        name=category.name
+                      }}>
+                      <FaIcon @icon="chevron-right" />
+                    </listItem.link>
+                  </list.item>
+                {{/each}}
+              </group.list>
+            </fieldset>
+          </listSet.group>
         {{else}}
           <listSet.emptyListMessage>
             {{t 'list.no-item-categories'}}

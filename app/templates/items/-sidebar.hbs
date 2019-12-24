@@ -8,15 +8,32 @@
   <panel.body>
     <ListSet as |listSet|>
       {{#unless @model.items}}
-      <listSet.emptyListMessage>
-        {{t 'list.no-items'}}
-      </listSet.emptyListMessage>
+        <listSet.emptyListMessage>
+          {{t 'list.no-items'}}
+        </listSet.emptyListMessage>
       {{/unless}}
       {{#each @model.categories as |category|}}
         {{#if category.items}}
-          <listSet.heading>{{category.name}}</listSet.heading>
-          <listSet.list as |list|>
-            {{#each category.items as |item|}}
+          <listSet.group as |group|>
+            <group.heading>{{category.name}}</group.heading>
+            <group.list as |list|>
+              {{#each category.items as |item|}}
+                <list.item as |listItem|>
+                  <listItem.link @route="items.item" @model={{item}}>
+                    {{item.displayName}}
+                    <FaIcon @icon="chevron-right" />
+                  </listItem.link>
+                </list.item>
+              {{/each}}
+            </group.list>
+          </listSet.group>
+        {{/if}}
+      {{/each}}
+      {{#if this.uncategorized}}
+        <listSet.group as |group|>
+          <group.heading>{{t "categories.uncategorized"}}</group.heading>
+          <group.list as |list|>
+            {{#each this.uncategorized as |item|}}
               <list.item as |listItem|>
                 <listItem.link @route="items.item" @model={{item}}>
                   {{item.displayName}}
@@ -24,21 +41,8 @@
                 </listItem.link>
               </list.item>
             {{/each}}
-          </listSet.list>
-        {{/if}}
-      {{/each}}
-      {{#if this.uncategorized}}
-        <listSet.heading>{{t "categories.uncategorized"}}</listSet.heading>
-        <listSet.list as |list|>
-          {{#each this.uncategorized as |item|}}
-            <list.item as |listItem|>
-              <listItem.link @route="items.item" @model={{item}}>
-                {{item.displayName}}
-                <FaIcon @icon="chevron-right" />
-              </listItem.link>
-            </list.item>
-          {{/each}}
-        </listSet.list>
+          </group.list>
+        </listSet.group>
       {{/if}}
     </ListSet>
   </panel.body>

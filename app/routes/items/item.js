@@ -21,8 +21,6 @@ export default class ItemsItemRoute extends Route {
     return this.store.findRecord('item', params.item_id);
   }
 
-
-
   // =actions
 
   /**
@@ -31,29 +29,5 @@ export default class ItemsItemRoute extends Route {
   @action
   didTransition() {
     this.activePane.activateBody();
-  }
-
-  /**
-   * If dirty and valid, save the record.
-   */
-  @action
-  submit() {
-    // Only do save if the model has changes that are valid.
-    const canSave =
-      this.currentModel.isDirty &&
-      this.currentModel.validate() &&
-      !this.currentModel.isSaving;
-    if (canSave) this.currentModel.save();
-  }
-
-  /**
-   * Clear errors, rollback attributes and relationships,
-   * and redirect to items route.
-   */
-  @action
-  cancel() {
-    this.currentModel.errors.clear();
-    this.currentModel.rollback();
-    this.transitionTo('items');
   }
 }

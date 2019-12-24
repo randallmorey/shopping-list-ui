@@ -4,9 +4,8 @@ import { setupTest } from 'ember-qunit';
 module('Unit | Controller | items/item/index', function(hooks) {
   setupTest(hooks);
 
-  // Replace this with your real tests.
   test('it exists', function(assert) {
-    let controller = this.owner.lookup('controller:items/item/index');
+    const controller = this.owner.lookup('controller:items/item/index');
     assert.ok(controller);
   });
 });

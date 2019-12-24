@@ -30,6 +30,11 @@
         {{/each}}
       </div>
 
+      <form.delete
+        @loading={{@model.isSaving}}
+        disabled={{@model.isDirty}}
+        {{action "delete"}} />
+
       <ListSet as |listSet|>
         {{#if this.categories}}
           <fieldset>

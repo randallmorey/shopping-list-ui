@@ -11,8 +11,9 @@ module('Integration | Component | form/panel', function(hooks) {
     setupI18nMockService({
       actions: {
         default: {
+          save: "Mock Save",
           cancel: "Mock Cancel",
-          save: "Mock Save"
+          delete: "Mock Delete"
         }
       }
     });
@@ -22,9 +23,10 @@ module('Integration | Component | form/panel', function(hooks) {
     await render(hbs`
       <Form::Panel as |form panel|>
         <panel.header as |header|>
-          <form.cancel />
           <header.title>Title</header.title>
           <form.save />
+          <form.cancel />
+          <form.delete />
         </panel.header>
         <panel.body>
           Body
@@ -33,8 +35,9 @@ module('Integration | Component | form/panel', function(hooks) {
     `);
     assert.ok(find('.section-panel'), 'Section panel renders');
     assert.ok(find('.form-panel'), 'Form panel renders');
-    assert.ok(find('.button-cancel'), 'Cancel button renders');
     assert.ok(find('.button-save'), 'Save button renders');
+    assert.ok(find('.button-cancel'), 'Cancel button renders');
+    assert.ok(find('.button-delete'), 'Delete button renders');
     assert.equal(find('.section-panel-heading').textContent.trim(), 'Title');
     assert.equal(find('.section-panel-body').textContent.trim(), 'Body');
   });

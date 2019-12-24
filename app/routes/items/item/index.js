@@ -1,10 +1,15 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 /**
  * Handles item persistence and post-persistence actions.
  */
 export default class ItemsItemIndexRoute extends Route {
+
+  // =services
+
+  @service confirmations;
 
   // =methods
 
@@ -45,5 +50,16 @@ export default class ItemsItemIndexRoute extends Route {
     this.currentModel.errors.clear();
     this.currentModel.rollback();
     this.transitionTo('items');
+  }
+
+  /**
+   * Requests delete confirmation from user.  If confirmed, destroys
+   * record and redirects to items.
+   */
+  @action
+  delete() {
+    this.confirmations.getConfirmation('delete')
+      .then(() => this.currentModel.destroyRecord())
+      .then(() => this.transitionTo('items'))
   }
 }

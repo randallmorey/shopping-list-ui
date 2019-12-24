@@ -1,0 +1,10 @@
+<button
+  type="button"
+  class="button-delete{{if @loading " is-loading"}}"
+  ...attributes>
+  {{#if hasBlock}}
+    {{yield}}
+  {{else}}
+    {{t "actions.default.delete"}}
+  {{/if}}
+</button>

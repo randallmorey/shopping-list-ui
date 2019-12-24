@@ -1,8 +1,16 @@
 [class^='button-']
   @extend .button, .is-outlined, .is-rounded
 
+%button-block
+  display: block
+  margin-bottom: $size-7
+  width: 100%
+
 .button-save
   @extend .is-primary
 
 .button-cancel
   @extend .is-warning
+
+.button-delete
+  @extend %button-block, .is-danger

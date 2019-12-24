@@ -12,7 +12,7 @@
     <Container>
 
       <div class="field">
-        <label class="label" for="name">{{t 'fields.default.name'}}</label>
+        <label class="label" for="name">{{t 'fields.labels.default.name'}}</label>
         <div class="control">
           <Input
             class="input{{if @model.errors.name " is-danger"}}"
@@ -24,7 +24,7 @@
         {{#each @model.errors.name as |error|}}
           <div class="help is-danger">
             {{#each error.message as |message|}}
-              {{message}}
+              {{t (concat 'fields.errors.default.' (slugify message))}}
             {{/each}}
           </div>
         {{/each}}

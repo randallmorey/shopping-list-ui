@@ -31,7 +31,10 @@ $list-item-padding: $size-6 - 0.25rem $size-5
         &,
         &:hover
           @extend .list-item.is-active
+          // Important is necessary here because apparently Bulma uses it.
+          // sass-lint:disable no-important
           background-color: $primary !important
+          // sass-lint:enable no-important
 
       &:hover
         &:not(.active)

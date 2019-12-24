@@ -66,7 +66,7 @@ export default class ItemsItemIndexRoute extends Route {
       this.deleteConfirmation
         .then(() => this.currentModel.destroyRecord())
         .then(() => this.transitionTo('items'))
-        .then(() => delete this.deleteConfirmation);
+        .finally(() => delete this.deleteConfirmation);
     }
   }
 
@@ -86,7 +86,7 @@ export default class ItemsItemIndexRoute extends Route {
           this.currentModel.rollback();
           transition.retry();
         })
-        .then(() => delete this.abandonConfirmation);
+        .finally(() => delete this.abandonConfirmation);
     }
   }
 }

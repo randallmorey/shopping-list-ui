@@ -35,6 +35,8 @@ export default class ItemsItemIndexRoute extends Route {
       this.currentModel.isDirty &&
       this.currentModel.validate() &&
       !this.currentModel.isSaving;
+
+    /* istanbul ignore else  */
     if (canSave) {
       await this.currentModel.save();
       this.transitionTo('items');
@@ -61,5 +63,22 @@ export default class ItemsItemIndexRoute extends Route {
     this.confirmations.getConfirmation('delete')
       .then(() => this.currentModel.destroyRecord())
       .then(() => this.transitionTo('items'))
+  }
+
+  /**
+   * Requests abandon confirmation from user if record has changes.
+   * @param {Transition} transition
+   */
+  @action
+  willTransition(transition) {
+    if (this.currentModel.isDirty) {
+      transition.abort();
+      this.confirmations.getConfirmation('abandon')
+        .then(() => {
+          this.currentModel.errors.clear();
+          this.currentModel.rollback();
+          transition.retry();
+        });
+    }
   }
 }

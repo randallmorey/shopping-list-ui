@@ -1,7 +1,8 @@
 <Form::Panel {{action "submit" on="submit"}} as |form panel|>
 
   <panel.header as |header|>
-    <form.cancel {{action "cancel"}} />
+    <form.cancel {{action "cancel"}}
+      disabled={{@model.isSaving}} />
     <header.title>{{@model.displayName}}</header.title>
     <form.save
       @loading={{@model.isSaving}}

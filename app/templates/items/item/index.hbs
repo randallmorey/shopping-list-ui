@@ -38,9 +38,10 @@
             </listSet.heading>
             <listSet.list as |list|>
               {{#each this.categories as |category| }}
-                <list.item>
-                  <label class="label">
+                <list.item as |listItem|>
+                  <label class="list-item-label">
                     <Input
+                      class="radio"
                       name="category"
                       type="radio"
                       value={{category}}
@@ -48,6 +49,15 @@
                       {{on "change" (fn this.categoryChange category)}} />
                       {{category.name}}
                   </label>
+                  <listItem.link
+                    @route="items.item"
+                    @model={{@item}}
+                    @title={{t
+                      'actions.item-category.edit-name'
+                      name=category.name
+                    }}>
+                    <FaIcon @icon="chevron-right" />
+                  </listItem.link>
                 </list.item>
               {{/each}}
             </listSet.list>

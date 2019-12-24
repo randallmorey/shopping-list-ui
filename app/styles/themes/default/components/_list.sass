@@ -14,7 +14,15 @@ $list-item-padding: $size-6 - 0.25rem $size-5
   top: 0
 
 .list-item
+  display: flex
+  justify-content: space-between
   padding: 0
+
+  &-label
+    align-items: center
+    display: flex
+    flex: 100
+    padding: $list-item-padding
 
   a
     &.list-item-link
@@ -23,6 +31,7 @@ $list-item-padding: $size-6 - 0.25rem $size-5
       background-color: transparent
       color: $text
       display: flex
+      flex: 1
       justify-content: space-between
       padding: $list-item-padding
 
@@ -36,6 +45,7 @@ $list-item-padding: $size-6 - 0.25rem $size-5
       &:hover
         &:not(.active)
           @extend .has-background-light
+
 
 .empty-list-message
   padding: $size-4

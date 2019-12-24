@@ -10,7 +10,6 @@ export default class ItemsItemRoute extends Route {
   // =services
 
   @service activePane;
-  @service confirmations;
 
   // =methods
 
@@ -30,22 +29,5 @@ export default class ItemsItemRoute extends Route {
   @action
   didTransition() {
     this.activePane.activateBody();
-  }
-
-  /**
-   * Requests abandon confirmation from user if record has changes.
-   * @param {Transition} transition
-   */
-  @action
-  willTransition(transition) {
-    if (this.currentModel.isDirty) {
-      transition.abort();
-      this.confirmations.getConfirmation('abandon')
-        .then(() => {
-          this.currentModel.errors.clear();
-          this.currentModel.rollback();
-          transition.retry();
-        });
-    }
   }
 }

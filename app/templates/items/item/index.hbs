@@ -20,7 +20,8 @@
             id="name"
             name="name"
             type="text"
-            @value={{@model.name}} />
+            @value={{@model.name}}
+            {{autofocus}} />
         </div>
         {{#each @model.errors.name as |error|}}
           <div class="help is-danger">

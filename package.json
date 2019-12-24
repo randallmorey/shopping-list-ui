@@ -72,6 +72,7 @@
     "ember-load-initializers": "^2.1.1",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-model-validator": "^3.10.0",
+    "ember-modifier": "^1.0.2",
     "ember-qunit": "^4.6.0",
     "ember-resolver": "^7.0.0",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/beta/shas/1d9d6be0773b5f79beb8981da04ad23b972c2fc8.tgz",

@@ -35,8 +35,15 @@
     }
   },
   "fields": {
-    "default": {
-      "name": "Name"
+    "labels": {
+      "default": {
+        "name": "Name"
+      }
+    },
+    "errors": {
+      "default": {
+        "cant-be-blank": "This field is required."
+      }
     }
   },
   "resources": {

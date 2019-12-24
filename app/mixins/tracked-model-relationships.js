@@ -1,5 +1,6 @@
 import Mixin from '@ember/object/mixin';
 import { computed, defineProperty, get } from '@ember/object';
+import { not } from '@ember/object/computed';
 import { on } from '@ember/object/evented';
 
 /**
@@ -55,6 +56,20 @@ export default Mixin.create({ // eslint-disable-line ember/no-new-mixins
     return names;
   }),
 
+  /**
+   * True if record has any dirty attributes or relationships.
+   * @type {Boolean}
+   */
+  isDirty: computed('hasDirtyAttributes', 'hasDirtyRelationships', function () {
+    return this.hasDirtyAttributes || this.hasDirtyRelationships;
+  }),
+
+  /**
+   * True if record has is not dirty.
+   * @type {Boolean}
+   */
+  isClean: not('isDirty'),
+
   // =methods
 
   /**
@@ -83,7 +98,7 @@ export default Mixin.create({ // eslint-disable-line ember/no-new-mixins
    */
   initializeIsDirtyBelongsToProperty: on('init', function () {
     this.trackedBelongsToNames.forEach(name => {
-      const computedProperty = computed(`${name}.id`, function () {
+      const computedProperty = computed(`${name}.id`, `isSaving`, function () {
         return this.isDirtyBelongsTo(name);
       });
       defineProperty(this, `${name}IsDirty`, computedProperty);
@@ -102,6 +117,14 @@ export default Mixin.create({ // eslint-disable-line ember/no-new-mixins
       get(this.belongsTo(name), 'belongsToRelationship.canonicalState.id');
     const currentId = this.get(`${name}.id`);
     return canonicalId != currentId;
+  },
+
+  /**
+   * Convenience to rollback attributes and relationships in one go.
+   */
+  rollback() {
+    this.rollbackAttributes();
+    this.rollbackRelationships();
   },
 
   /**

@@ -1,0 +1,78 @@
+<Form::Panel {{action "submit" on="submit"}} as |form panel|>
+
+  <panel.header as |header|>
+    <form.cancel {{action "cancel"}} />
+    <header.title>{{@model.displayName}}</header.title>
+    <form.save
+      @loading={{@model.isSaving}}
+      disabled={{@model.isClean}} />
+  </panel.header>
+
+  <panel.body>
+    <Container>
+
+      <div class="field">
+        <label class="label" for="name">{{t 'fields.labels.default.name'}}</label>
+        <div class="control">
+          <Input
+            class="input{{if @model.errors.name " is-danger"}}"
+            id="name"
+            name="name"
+            type="text"
+            @value={{@model.name}} />
+        </div>
+        {{#each @model.errors.name as |error|}}
+          <div class="help is-danger">
+            {{#each error.message as |message|}}
+              {{t (concat 'fields.errors.default.' (slugify message))}}
+            {{/each}}
+          </div>
+        {{/each}}
+      </div>
+
+      <ListSet as |listSet|>
+        {{#if this.categories}}
+          <fieldset>
+            <listSet.heading>
+              <legend>{{t "resources.item-category"}}</legend>
+            </listSet.heading>
+            <listSet.list as |list|>
+              {{#each this.categories as |category| }}
+                <list.item as |listItem|>
+                  <label class="list-item-label">
+                    <Input
+                      class="radio"
+                      name="category"
+                      type="radio"
+                      value={{category}}
+                      checked={{eq @model.category.id category.id}}
+                      {{on "change" (fn this.categoryChange category)}} />
+                      {{category.name}}
+                  </label>
+                  <listItem.link
+                    @route="items.item"
+                    @model={{@item}}
+                    @title={{t
+                      'actions.item-category.edit-name'
+                      name=category.name
+                    }}>
+                    <FaIcon @icon="chevron-right" />
+                  </listItem.link>
+                </list.item>
+              {{/each}}
+            </listSet.list>
+          </fieldset>
+        {{else}}
+          <listSet.emptyListMessage>
+            {{t 'list.no-item-categories'}}
+          </listSet.emptyListMessage>
+        {{/if}}
+      </ListSet>
+
+
+      <Link::Add @route="items">{{t "actions.item-category.add"}}</Link::Add>
+
+    </Container>
+  </panel.body>
+
+</Form::Panel>

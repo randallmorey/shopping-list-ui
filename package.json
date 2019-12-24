@@ -76,6 +76,7 @@
     "ember-resolver": "^7.0.0",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/beta/shas/1d9d6be0773b5f79beb8981da04ad23b972c2fc8.tgz",
     "ember-template-lint": "^1.5.0",
+    "ember-truth-helpers": "^2.1.0",
     "ember-welcome-page": "^4.0.0",
     "emberfire": "^3.0.0-rc.6",
     "eslint": "^6.1.0",
@@ -90,7 +91,8 @@
     "popper.js": "^1.16.0",
     "qunit-dom": "^0.9.2",
     "sass": "^1.23.7",
-    "sass-lint": "^1.13.1"
+    "sass-lint": "^1.13.1",
+    "speakingurl": "^14.0.1"
   },
   "engines": {
     "node": "8.* || >= 10.*"

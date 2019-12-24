@@ -19,7 +19,7 @@
             {{#each category.items as |item|}}
               <list.item as |listItem|>
                 <listItem.link @route="items.item" @model={{item}}>
-                  {{item.name}}
+                  {{item.displayName}}
                   <FaIcon @icon="chevron-right" />
                 </listItem.link>
               </list.item>
@@ -33,7 +33,7 @@
           {{#each this.uncategorized as |item|}}
             <list.item as |listItem|>
               <listItem.link @route="items.item" @model={{item}}>
-                {{item.name}}
+                {{item.displayName}}
                 <FaIcon @icon="chevron-right" />
               </listItem.link>
             </list.item>

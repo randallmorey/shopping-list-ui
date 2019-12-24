@@ -6,6 +6,10 @@
     },
     "items": {
       "add": "Add $t(resources.item)"
+    },
+    "item-category": {
+      "add": "Add $t(resources.item-category)",
+      "edit-name": "Edit category {{name}}"
     }
   },
   "categories": {
@@ -30,15 +34,30 @@
       "dismiss": "$t(confirm.default.dismiss)"
     }
   },
+  "fields": {
+    "labels": {
+      "default": {
+        "name": "Name"
+      }
+    },
+    "errors": {
+      "default": {
+        "cant-be-blank": "This field is required."
+      }
+    }
+  },
   "resources": {
     "item": "Item",
-    "item_plural": "Items"
+    "item_plural": "Items",
+    "item-category": "Category",
+    "item-category_plural": "Categories"
   },
   "categories": {
     "uncategorized": "Uncategorized"
   },
   "list": {
-    "no-items": "No items yet"
+    "no-items": "No items yet",
+    "no-item-categories": "No categories yet"
   },
   "messages": {
     "items": {

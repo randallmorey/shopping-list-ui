@@ -30,5 +30,4 @@ export default class ItemsItemRoute extends Route {
   didTransition() {
     this.activePane.activateBody();
   }
-
 }

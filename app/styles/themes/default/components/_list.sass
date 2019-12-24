@@ -1,5 +1,12 @@
-$list-heading-padding: $size-6 / 2.25 $size-5
-$list-item-padding: $size-6 - 0.25rem $size-5
+$list-item-x-padding: $size-5
+$list-heading-padding: $size-6 / 2.25 $list-item-x-padding
+$list-item-padding: $size-6 - 0.25rem $list-item-x-padding
+
++mobile
+  .list-set
+    .container &
+      margin-left: -$size-4
+      margin-right: -$size-4
 
 .list
   &:not(:last-child)

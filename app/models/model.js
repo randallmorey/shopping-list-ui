@@ -31,10 +31,20 @@ export default class ModelModel extends Model.extend(
   }
 
   /**
-   *
+   * Set autodate fields, save the record, then conditionally reload to
+   * support firebase.
    */
   save() {
     this.setAutoDateFields();
-    return super.save(...arguments);
+    return super.save(...arguments)
+      .then(record => {
+        // This is a hack to make firebase fully normalize a record, which
+        // it doesn't do for all request types, but will do for GET.
+        if (!record.isDeleted) {
+          return record.reload();
+        } else {
+          return record;
+        }
+      });
   }
 }

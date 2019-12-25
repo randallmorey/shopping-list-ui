@@ -21,5 +21,6 @@
 
 # emberfire files pulled local
 /app/adapters/application-firebase.js
+/app/serializers/application-firebase.js
 /app/mixins/realtime-route.js
 /app/services/realtime-listener.js

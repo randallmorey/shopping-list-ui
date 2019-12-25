@@ -28,11 +28,12 @@ export default class ApplicationFirebaseSerializer extends FirestoreSerializer {
    */
   normalizeCreateRecordResponse(store, primaryModelClass, payload, id) {
     const type = primaryModelClass.modelName;
-    const attributes = Object.assign({}, payload.data);
+    const payloadData = payload.data.length ? payload.data() : payload.data;
+    const attributes = Object.assign({}, payloadData);
     // Relationship normalization is missing from the official version
     // of this method.  So relationships remain in a dirty state after create.
     const { relationships, included } =
-      normalizeRelationships(store, primaryModelClass, payload.data);
+      normalizeRelationships(store, primaryModelClass, payloadData);
     const data = { id, type, attributes, relationships };
     const normalized = { data, included };
     // Attribute transformations are not applied on create in the official

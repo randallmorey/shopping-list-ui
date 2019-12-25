@@ -18,8 +18,12 @@ module('Acceptance | items/item/index', function(hooks) {
   });
 
   test('can navigate to /items/:item_id from /items', async function(assert) {
-    assert.expect(0);
-    // TODO
+    const item = this.server.create('item', 1);
+    const url = `/items/${item.id}`;
+    assert.expect(1);
+    await visit('/items');
+    await click('.list-item-link');
+    assert.equal(currentURL(), url);
   });
 
   test('canceling changes redirects to /items', async function(assert) {
@@ -33,14 +37,26 @@ module('Acceptance | items/item/index', function(hooks) {
   });
 
   test('cannot save an invalid record (e.g. with blank name field)', async function(assert) {
-    assert.expect(0);
-    // TODO
+    const item = this.server.create('item', 1);
+    const url = `/items/${item.id}`;
+    assert.expect(2);
+    await visit(url);
+    await fillIn('[name="name"]', '');
+    await click('.button-save');
+    assert.equal(find('.help.is-danger').textContent.trim(), 'This field is required.', 'Error message is present.');
+    assert.equal(currentURL(), url, 'Remained on current route')
   });
 
   test('can see error message for invalid record (e.g. with blank name field)', async function(assert) {
-    assert.expect(0);
-    // TODO
-    // do an a11y test once the error message is visible
+    // This is the same as the test above...
+    const item = this.server.create('item', 1);
+    const url = `/items/${item.id}`;
+    assert.expect(1);
+    await visit(url);
+    await fillIn('[name="name"]', '');
+    await click('.button-save');
+    assert.equal(find('.help.is-danger').textContent.trim(), 'This field is required.', 'Error message is present.');
+    await a11yAudit();
   });
 
   test('changing record\'s category moves it within the items list', async function(assert) {
@@ -55,8 +71,14 @@ module('Acceptance | items/item/index', function(hooks) {
   });
 
   test('redirects to /items after save', async function(assert) {
-    assert.expect(0);
-    // TODO
+    const item = this.server.create('item', 1);
+    const url = `/items/${item.id}`;
+    assert.expect(1);
+    await visit(url);
+    await fillIn('[name="name"]', 'New Name');
+    await click('.button-save');
+    await settled();
+    assert.equal(currentURL(), '/items', 'Transitioned to /items after save')
   });
 
   test('can cancel delete through confirmation modal', async function(assert) {

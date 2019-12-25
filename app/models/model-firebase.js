@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import Model from '@ember-data/model';
 
 export default class ModelFirebaseModel extends Model {

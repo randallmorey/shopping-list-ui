@@ -18,6 +18,6 @@ module('Integration | Component | image-message', function(hooks) {
     `);
 
     assert.equal(textContent('p.image-message-text'), 'test message');
-    assert.ok(find('svg.image-message-img'));
+    assert.ok(find('.image-message-image svg'));
   });
 });

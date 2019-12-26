@@ -10,7 +10,13 @@
   @extend .is-primary
 
 .button-cancel
-  @extend .is-warning
+  @extend .is-dark, .is-outlined
 
 .button-delete
-  @extend %button-block, .is-danger
+  @extend %button-block, .is-danger, .is-outlined
+
+  &:focus,
+  &:hover
+    // sass-lint:disable no-important
+    color: $white !important
+    // sass-lint:enable no-important

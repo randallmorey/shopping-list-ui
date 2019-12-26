@@ -13,6 +13,14 @@ module.exports = function(defaults) {
     },
     sassOptions: {
       extension: 'sass'
+    },
+    outputPaths: {
+      app: {
+        css: {
+          'app': '/assets/app.css',
+          'app-dark': '/assets/app-dark.css'
+        }
+      }
     }
   });
 

@@ -1,6 +1,8 @@
 <div class="image-message">
   {{#if @src}}
-    {{inline-svg @src }}
+    <div class="image-message-image">
+      {{inline-svg @src }}
+    </div>
   {{/if}}
   <p class="image-message-text">{{@message}}</p>
   {{yield}}

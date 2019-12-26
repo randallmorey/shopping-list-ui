@@ -14,7 +14,7 @@ export default class ItemsController extends Controller {
   // =properties
 
   /**
-   * Lists only items *without* categories.
+   * Lists only saved items *without* categories.
    * @type {ItemModel[]}
    */
   @computed('model.items.@each.{category,isNew}')

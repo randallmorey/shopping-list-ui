@@ -3,7 +3,7 @@
   <panel.header as |header|>
     <form.cancel {{action "cancel" @model}}
       disabled={{@model.isSaving}} />
-    <header.title>{{@model.displayName}}</header.title>
+    <header.title>{{t "titles.item.new"}}</header.title>
     <form.save
       @loading={{@model.isSaving}}
       disabled={{@model.isClean}}

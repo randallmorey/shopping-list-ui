@@ -17,6 +17,14 @@ module('Acceptance | items/item/index', function(hooks) {
     assert.equal(currentURL(), url);
   });
 
+  test('second pane is active', async function(assert) {
+    const item = this.server.create('item', 1);
+    const url = `/items/${item.id}`;
+    assert.expect(1);
+    await visit(url);
+    assert.ok(find('.layout-split > .pane:nth-child(2).active'), 'second pane is active');
+  });
+
   test('can navigate to /items/:item_id from /items', async function(assert) {
     const item = this.server.create('item', 1);
     const url = `/items/${item.id}`;

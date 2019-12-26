@@ -14,12 +14,13 @@ export default class ItemsController extends Controller {
   // =properties
 
   /**
-   * Lists only items *without* categories.
+   * Lists only saved items *without* categories.
    * @type {ItemModel[]}
    */
-  @computed('model.items.@each.category')
+  @computed('model.items.@each.{category,isNew}')
   get uncategorized() {
-    return this.model.items.filter(item => !item.get('category.content'));
+    return this.model.items
+      .filter(item => !item.get('category.content') && !item.isNew);
   }
 
 }

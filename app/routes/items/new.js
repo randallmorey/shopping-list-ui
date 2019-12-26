@@ -3,10 +3,7 @@ import PersitenceRouteMixin from '../../mixins/persitence-route';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-/**
- * A route to load and display a single item.
- */
-export default class ItemsItemRoute extends Route.extend(PersitenceRouteMixin) {
+export default class ItemsNewRoute extends Route.extend(PersitenceRouteMixin) {
 
   // =services
 
@@ -15,18 +12,19 @@ export default class ItemsItemRoute extends Route.extend(PersitenceRouteMixin) {
   // =methods
 
   /**
-   * Returns an item by ID.
+   * Returns an new unsaved item.
    * @returns {ItemModel}
    */
-  model(params) {
-    return this.store.findRecord('item', params.item_id);
+  model() {
+    return this.store.createRecord('item')
   }
 
   /**
-   * Redirect to items route.
+   * Redirect to items route, replacing the history item.  We do not want
+   * the back button to reach the now-stale new route.
    */
   afterPersistence() {
-    this.transitionTo('items');
+    this.replaceWith('items.item', this.currentModel);
   }
 
   /**

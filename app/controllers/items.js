@@ -17,9 +17,10 @@ export default class ItemsController extends Controller {
    * Lists only items *without* categories.
    * @type {ItemModel[]}
    */
-  @computed('model.items.@each.category')
+  @computed('model.items.@each.{category,isNew}')
   get uncategorized() {
-    return this.model.items.filter(item => !item.get('category.content'));
+    return this.model.items
+      .filter(item => !item.get('category.content') && !item.isNew);
   }
 
 }

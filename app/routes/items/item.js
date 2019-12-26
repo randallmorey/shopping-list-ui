@@ -30,4 +30,14 @@ export default class ItemsItemRoute extends Route {
   didTransition() {
     this.activePane.activateBody();
   }
+
+  /**
+   * Requests abandon confirmation from user if record has changes.
+   * @param {Transition} transition
+   */
+  @action
+  willTransition(transition) {
+    this.send('confirmAbandon', this.currentModel, transition);
+  }
+
 }

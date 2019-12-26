@@ -30,6 +30,13 @@ export default class ItemsItemRoute extends Route.extend(PersitenceRouteMixin) {
   }
 
   /**
+   * Redirect to items route.
+   */
+  afterCancel() {
+    this.transitionTo('items');
+  }
+
+  /**
    * Activates the body pane as dominant for this route.
    */
   @action

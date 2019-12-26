@@ -15,8 +15,14 @@ export default Mixin.create({ // eslint-disable-line ember/no-new-mixins
 
   /**
    * Classes implementing this mixin may override this method to
-   * handle what happens next, such as redirecting.
+   * handle what happens after save or delete, such as redirecting.
    * @function afterPersistence
+   */
+
+  /**
+   * Classes implementing this mixin may override this method to
+   * handle what happens after cancel, such as redirecting.
+   * @function afterCancel
    */
 
   // =actions
@@ -70,19 +76,8 @@ export default Mixin.create({ // eslint-disable-line ember/no-new-mixins
     },
 
     /**
-     * Clear errors, rollback attributes and relationships,
-     * and redirect to items route.  Redirect to items.
-     * @param {Model} record
-     */
-    cancel(record) {
-      record.errors.clear();
-      record.rollback();
-      this.afterPersistence();
-    },
-
-    /**
      * Requests delete confirmation from user.  If confirmed, destroys
-     * record and redirects to items.
+     * record and calls afterPersistence().
      * @param {Model} record
      */
     delete(record) {
@@ -94,6 +89,17 @@ export default Mixin.create({ // eslint-disable-line ember/no-new-mixins
           .then(() => this.afterPersistence())
           .finally(() => delete this.deleteConfirmation);
       }
+    },
+
+    /**
+     * Clear errors, rollback attributes and relationships,
+     * and calls afterCancel().
+     * @param {Model} record
+     */
+    cancel(record) {
+      record.errors.clear();
+      record.rollback();
+      this.afterCancel();
     }
   }
 });

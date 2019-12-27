@@ -85,12 +85,13 @@ module('Acceptance | items/item/index', function(hooks) {
     });
     const url = `/items/${items[0].id}`;
     await visit(url);
-    await fillIn('[name="name"]', 'test name');
+    await fillIn('[name="name"]', 'Test Category Name');
     assert.equal(items[0].category.name, findAll('.pane:nth-child(2) .list-group ul.list label')[0].textContent.trim())
     await click(findAll('.pane:nth-child(2) .list-group ul.list label')[1])
     await click('.button-save');
-    assert.equal(currentURL(), url);
-    assert.equal(findAll('.pane:first-child .list-group ul.list li')[1].textContent.trim(), 'test name')
+    await settled();
+    assert.equal(currentURL(), '/items');
+    assert.equal(findAll('.pane:first-child .list-group ul.list li')[1].textContent.trim(), 'Test Category Name')
     const lists = findAll('.pane:first-child .list-group ul.list').map(group => group.children.length)
     assert.equal(lists.length, 1, 'Only one list after saving.')
     assert.equal(lists[0], 2, 'List has 2 items.')

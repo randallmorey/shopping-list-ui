@@ -58,8 +58,8 @@
                         {{category.name}}
                     </label>
                     <listItem.link
-                      @route="items.item"
-                      @model={{@item}}
+                      @route="items.item.categories.category"
+                      @model={{category}}
                       @title={{t
                         'actions.item-category.edit-name'
                         name=category.name
@@ -79,7 +79,7 @@
       </ListSet>
 
 
-      <Link::Add @route="items">{{t "actions.item-category.add"}}</Link::Add>
+      <Link::Add @route="items.item.categories.new">{{t "actions.item-category.add"}}</Link::Add>
 
     </Container>
   </panel.body>

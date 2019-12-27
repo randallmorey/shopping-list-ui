@@ -1,6 +1,8 @@
 import Model from './model';
 import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
+import { computed } from '@ember/object';
+import { htmlSafe } from '@ember/template';
 
 /**
  * An item category.
@@ -17,6 +19,17 @@ export default class ItemCategoryModel extends Model {
   // =relationships
 
   @hasMany('item') items;
+
+  // =computed
+
+  /**
+   * Equal to the value of name or, if no name, an HTML-safe ellipsis.
+   * @return {String}
+   */
+  @computed('name')
+  get displayName() {
+    return this.name ? this.name : htmlSafe('&hellip;');
+  }
 
   // =validations
 

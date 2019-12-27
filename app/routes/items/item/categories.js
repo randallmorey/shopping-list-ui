@@ -1,7 +1,12 @@
 import Route from '@ember/routing/route';
 import PersitenceRouteMixin from '../../../mixins/persitence-route';
 
-export default class ItemsItemCategoriesRoute extends Route.extend(PersitenceRouteMixin) {
+export default class ItemsItemCategoriesRoute extends Route.extend(
+  PersitenceRouteMixin
+) {
+
+  // =methods
+  
   /**
    * Redirect to items route, replacing the history item.  We do not want
    * the back button to reach the now-stale new route.
@@ -16,4 +21,5 @@ export default class ItemsItemCategoriesRoute extends Route.extend(PersitenceRou
   afterCancel() {
     this.transitionTo('items.item');
   }
+
 }

@@ -59,33 +59,33 @@ module('Acceptance | items/item/categories/new', function(hooks) {
     assert.equal(findAll('.pane .list-group ul.list')[1].textContent.trim(), 'Test Category Name', 'Correctly save new name.')
   });
 
-  // test('can cancel navigation through confirmation modal', async function(assert) {
-  //   const item = this.server.create('item', 1);
-  //   const url = `/items/${item.id}/categories/new`;
-  //   assert.expect(4);
-  //   await visit(url);
-  //   await fillIn('input[name="name"]', 'Test Category Name');
-  //   assert.equal(currentURL(), url);
-  //   await visit(`/items/${item.id}`).catch(() => assert.equal(currentURL(), url,
-  //     'URL is unchanged because item has changes'));
-  //   await a11yAudit();
-  //   assert.ok(find('.confirm .confirm-button-safe'), 'Safe confirm action button is present');
-  //   await click('.confirm-button-safe');
-  //   assert.equal(currentURL(), url, 'Remained on current route');
-  // });
-  //
-  // test('can abandon changes through confirmation modal', async function(assert) {
-  //   const item = this.server.create('item', 1);
-  //   const url = `/items/${item.id}/categories/new`;
-  //   assert.expect(4);
-  //   await visit(url);
-  //   await fillIn('[name="name"]', 'Test Category Name');
-  //   assert.equal(currentURL(), url);
-  //   await visit(`/items/${item.id}`).catch(() => assert.equal(currentURL(), url,
-  //     'URL is unchanged because item has changes'));
-  //   await a11yAudit();
-  //   assert.ok(find('.confirm .confirm-button-unsafe'), 'Unsafe confirm action button is present');
-  //   await click('.confirm-button-unsafe');
-  //   assert.equal(currentURL(), '/items', 'Abandoned changes and navigated to desired route');
-  // });
+  test('can cancel navigation through confirmation modal', async function(assert) {
+    const item = this.server.create('item', 1);
+    const url = `/items/${item.id}/categories/new`;
+    assert.expect(4);
+    await visit(url);
+    await fillIn('input[name="name"]', 'Test Category Name');
+    assert.equal(currentURL(), url);
+    await visit(`/items/${item.id}`).catch(() => assert.equal(currentURL(), url,
+      'URL is unchanged because item has changes'));
+    await a11yAudit();
+    assert.ok(find('.confirm .confirm-button-safe'), 'Safe confirm action button is present');
+    await click('.confirm-button-safe');
+    assert.equal(currentURL(), url, 'Remained on current route');
+  });
+
+  test('can abandon changes through confirmation modal', async function(assert) {
+    const item = this.server.create('item', 1);
+    const url = `/items/${item.id}/categories/new`;
+    assert.expect(4);
+    await visit(url);
+    await fillIn('[name="name"]', 'Test Category Name');
+    assert.equal(currentURL(), url);
+    await visit(`/items/${item.id}`).catch(() => assert.equal(currentURL(), url,
+      'URL is unchanged because item has changes'));
+    await a11yAudit();
+    assert.ok(find('.confirm .confirm-button-unsafe'), 'Unsafe confirm action button is present');
+    await click('.confirm-button-unsafe');
+    assert.equal(currentURL(), `/items/${item.id}`, 'Abandoned changes and navigated to desired route');
+  });
 });

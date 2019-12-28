@@ -11,25 +11,24 @@
 
   <panel.body>
     <Container>
-      <div class="field">
-        <label class="label" for="name">{{t 'fields.labels.default.name'}}</label>
-        <div class="control">
-          <Input
-            class="input{{if @model.errors.name " is-danger"}}"
-            id="name"
-            name="name"
-            type="text"
-            @value={{@model.name}}
-            {{autofocus}} />
-        </div>
+
+      <form.text
+        @label={{t 'fields.labels.default.name'}}
+        @id="name"
+        @name="name"
+        @value={{@model.name}}
+        @autofocus={{true}}
+        @hasError={{@model.errors.name}}
+        as |field|>
         {{#each @model.errors.name as |error|}}
-          <div class="help is-danger">
+          <field.error>
             {{#each error.message as |message|}}
               {{t (concat 'fields.errors.default.' (slugify message))}}
             {{/each}}
-          </div>
+          </field.error>
         {{/each}}
-      </div>
-      </Container>
-    </panel.body>
-  </Form::Panel>
+      </form.text>
+
+    </Container>
+  </panel.body>
+</Form::Panel>

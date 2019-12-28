@@ -43,7 +43,7 @@ module('Acceptance | items/item/categories/new', function(hooks) {
     await fillIn('[name="name"]', '');
     await click('.button-save');
     await a11yAudit();
-    assert.equal(find('.help.is-danger').textContent.trim(), 'This field is required.', 'Error message is present.');
+    assert.equal(find('.field-error').textContent.trim(), 'This field is required.', 'Error message is present.');
     assert.equal(currentURL(), url, 'Remained on current route')
   });
 

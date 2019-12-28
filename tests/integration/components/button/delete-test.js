@@ -40,4 +40,12 @@ module('Integration | Component | button/delete', function(hooks) {
     await render(hbs`<Button::Delete @loading={{true}} />`);
     assert.ok(find('.is-loading'), 'Button has is-loading class');
   });
+
+  test('it supports a disabled state', async function(assert) {
+    assert.expect(2);
+    await render(hbs`<Button::Delete @disabled={{false}} />`);
+    assert.notOk(find('[disabled]'), 'Button is not disabled');
+    await render(hbs`<Button::Delete @disabled={{true}} />`);
+    assert.ok(find('[disabled]'), 'Button is disabled');
+  });
 });

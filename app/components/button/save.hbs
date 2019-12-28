@@ -1,6 +1,7 @@
 <button
   type="submit"
   class="button-save{{if @loading " is-loading"}}"
+  disabled={{if @disabled "disabled"}}
   ...attributes>
   {{#if hasBlock}}
     {{yield}}

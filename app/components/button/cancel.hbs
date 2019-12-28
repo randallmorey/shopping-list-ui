@@ -1,11 +1,11 @@
-<button
-  type="button"
-  class="button-cancel{{if @loading " is-loading"}}"
-  disabled={{if @disabled "disabled"}}
+<Button
+  @loading={{@loading}}
+  @disabled={{@disabled}}
+  class="button-cancel"
   ...attributes>
   {{#if hasBlock}}
     {{yield}}
   {{else}}
     {{t "actions.default.cancel"}}
   {{/if}}
-</button>
+</Button>

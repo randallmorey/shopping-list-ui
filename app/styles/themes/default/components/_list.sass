@@ -1,6 +1,7 @@
+$list-item-y-padding: $size-6 - 0.25rem
 $list-item-x-padding: $size-5
 $list-heading-padding: $size-6 / 2.25 $list-item-x-padding
-$list-item-padding: $size-6 - 0.25rem $list-item-x-padding
+$list-item-padding: $list-item-y-padding $list-item-x-padding
 
 +mobile
   .list-set
@@ -26,11 +27,24 @@ $list-item-padding: $size-6 - 0.25rem $list-item-x-padding
   justify-content: space-between
   padding: 0
 
-  &-label
-    align-items: center
-    display: flex
+  &-radio-group
     flex: 100
-    padding: $list-item-padding
+
+    & .radio
+      &[type='radio']
+        + label
+          align-items: center
+          display: flex
+          margin: 0
+          padding: $list-item-padding
+
+          &::before
+            margin-right: $list-item-x-padding / 2
+            position: static
+
+          &::after
+            left: auto
+            top: calc(50% - 15px)
 
   a
     &.list-item-link

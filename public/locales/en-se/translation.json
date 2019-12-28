@@ -49,9 +49,11 @@
   },
   "titles": {
     "item": {
+      "edit": "Edit $t(resources.item)",
       "new": "New $t(resources.item)"
     },
     "item-category": {
+      "edit": "Edit $t(resources.item-category)",
       "new": "New $t(resources.item-category)"
     }
   },

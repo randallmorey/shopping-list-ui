@@ -1,36 +1,26 @@
-<Form::Panel {{action "submit" @model on="submit"}} as |form panel|>
+<Form::Panel
+  @title={{t "titles.item.new"}}
+  @saving={{@model.isSaving}}
+  @dirty={{@model.isDirty}}
+  @cancel={{route-action "cancel" @model}}
+  {{action "submit" @model on="submit"}}
+  as |form|>
 
-  <panel.header as |header|>
-    <form.cancel {{action "cancel" @model}}
-      disabled={{@model.isSaving}} />
-    <header.title>{{t "titles.item.new"}}</header.title>
-    <form.save
-      @loading={{@model.isSaving}}
-      disabled={{@model.isClean}}
-     />
-  </panel.header>
-
-  <panel.body>
-    <Container>
-
-      <form.text
-        @label={{t 'fields.labels.default.name'}}
-        @id="name"
-        @name="name"
-        @value={{@model.name}}
-        @autofocus={{true}}
-        @hasError={{@model.errors.name}}
-        as |field|>
-        {{#each @model.errors.name as |error|}}
-          <field.error>
-            {{#each error.message as |message|}}
-              {{t (concat 'fields.errors.default.' (slugify message))}}
-            {{/each}}
-          </field.error>
+  <form.text
+    @label={{t 'fields.labels.default.name'}}
+    @id="name"
+    @name="name"
+    @value={{@model.name}}
+    @autofocus={{true}}
+    @hasError={{@model.errors.name}}
+    as |field|>
+    {{#each @model.errors.name as |error|}}
+      <field.error>
+        {{#each error.message as |message|}}
+          {{t (concat 'fields.errors.default.' (slugify message))}}
         {{/each}}
-      </form.text>
-
-    </Container>
-  </panel.body>
+      </field.error>
+    {{/each}}
+  </form.text>
 
 </Form::Panel>

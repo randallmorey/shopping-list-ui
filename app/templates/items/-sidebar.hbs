@@ -15,7 +15,7 @@
       {{#each @model.categories as |category|}}
         {{#if category.items}}
           <listSet.group as |group|>
-            <group.heading>{{category.name}}</group.heading>
+            <group.heading>{{category.displayName}}</group.heading>
             <group.list as |list|>
               {{#each category.items as |item|}}
                 <list.item as |listItem|>

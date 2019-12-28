@@ -50,6 +50,9 @@
   "titles": {
     "item": {
       "new": "New $t(resources.item)"
+    },
+    "item-category": {
+      "new": "New $t(resources.item-category)"
     }
   },
   "resources": {

@@ -43,7 +43,7 @@
                     value={{category}}
                     id={{category.id}}
                     checked={{eq @model.category.id category.id}}
-                    {{on "change" (fn this.categoryChange category)}} />
+                    {{on "change" (fn (mut @model.category) category)}} />
                     <label
                       class="list-item-label"
                       for={{category.id}}>{{category.name}}</label>

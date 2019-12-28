@@ -47,16 +47,19 @@
               <group.list as |list|>
                 {{#each this.categories as |category| }}
                   <list.item as |listItem|>
-                    <label class="list-item-label">
+                    <div class="list-item-radio-group">
                       <Input
                         class="radio"
                         name="category"
                         type="radio"
                         value={{category}}
+                        id={{category.id}}
                         checked={{eq @model.category.id category.id}}
                         {{on "change" (fn this.categoryChange category)}} />
-                        {{category.name}}
-                    </label>
+                        <label
+                          class="list-item-label"
+                          for={{category.id}}>{{category.name}}</label>
+                    </div>
                     <listItem.link
                       @route="items.item.categories.category"
                       @model={{category}}

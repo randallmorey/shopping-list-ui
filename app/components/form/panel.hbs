@@ -2,9 +2,15 @@
   <form class="form-panel" ...attributes>
 
     <panel.header as |header|>
-      <Button::Cancel {{on "click" @cancel}} @disabled={{@saving}} />
-      <header.title>{{@title}}</header.title>
-      <Button::Save @loading={{@saving}} @disabled={{not @dirty}} />
+      <header.columnLeft>
+        <Button::Cancel {{on "click" @cancel}} @disabled={{@saving}} />
+      </header.columnLeft>
+      <header.columnCenter>
+        <header.title>{{@title}}</header.title>
+      </header.columnCenter>
+      <header.columnRight>
+        <Button::Save @loading={{@saving}} @disabled={{not @dirty}} />
+      </header.columnRight>
     </panel.header>
 
     <panel.body>

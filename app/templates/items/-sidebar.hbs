@@ -1,8 +1,13 @@
 <Section::Panel as |panel|>
 
   <panel.header as |header|>
-    <header.title>{{t "resources.item_plural"}}</header.title>
-    <Link::Add @route="items.new">{{t "actions.items.add"}}</Link::Add>
+    <header.columnLeft />
+    <header.columnCenter>
+      <header.title>{{t "resources.item_plural"}}</header.title>
+    </header.columnCenter>
+    <header.columnRight>
+      <Link::Add @route="items.new">{{t "actions.items.add"}}</Link::Add>
+    </header.columnRight>
   </panel.header>
 
   <panel.body>

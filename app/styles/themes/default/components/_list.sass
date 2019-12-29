@@ -29,7 +29,17 @@ $list-item-padding: $list-item-y-padding $list-item-x-padding
 
   > .field-radio
     flex: 100
-    padding: $list-item-padding
+
+    .radio
+      + .label-radio
+        display: block
+        margin: 0
+        padding: $list-item-y-padding ($list-item-x-padding + $size-4)
+
+        &::before,
+        &::after
+          left: $size-7
+          top: calc(50% - #{$size-7})
 
   a
     &.list-item-link

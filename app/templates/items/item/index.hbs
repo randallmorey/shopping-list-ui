@@ -27,41 +27,28 @@
 
   <ListSet as |listSet|>
     {{#if this.categories}}
-      <listSet.group as |group|>
-        <fieldset>
-          <group.heading>
-            <legend>{{t "resources.item-category"}}</legend>
-          </group.heading>
-          <group.list as |list|>
-            {{#each this.categories as |category| }}
-              <list.item as |listItem|>
-                <div class="list-item-radio-group">
-                  <Input
-                    class="radio"
-                    name="category"
-                    type="radio"
-                    value={{category}}
-                    id={{category.id}}
-                    checked={{eq @model.category.id category.id}}
-                    {{on "change" (fn (mut @model.category) category)}} />
-                    <label
-                      class="list-item-label"
-                      for={{category.id}}>{{category.name}}</label>
-                  </div>
-                <listItem.link
-                  @route="items.item.categories.category"
-                  @model={{category}}
-                  @title={{t
-                    'actions.item-category.edit-name'
-                    name=category.name
-                  }}>
-                  <FaIcon @icon="chevron-right" />
-                </listItem.link>
-              </list.item>
-            {{/each}}
-          </group.list>
-        </fieldset>
-      </listSet.group>
+      <form.fieldsetList @legend={{t "resources.item-category"}} as |list|>
+        {{#each this.categories as |category| }}
+          <list.item as |listItem|>
+            <form.radio
+              @label={{category.name}}
+              @id={{category.id}}
+              @name="category"
+              @value={{category}}
+              @checked={{eq @model.category.id category.id}}
+              {{on "change" (fn (mut @model.category) category)}} />
+            <listItem.link
+              @route="items.item.categories.category"
+              @model={{category}}
+              @title={{t
+                'actions.item-category.edit-name'
+                name=category.name
+              }}>
+              <FaIcon @icon="chevron-right" />
+            </listItem.link>
+          </list.item>
+        {{/each}}
+      </form.fieldsetList>
     {{else}}
       <listSet.emptyListMessage>
         {{t 'list.no-item-categories'}}

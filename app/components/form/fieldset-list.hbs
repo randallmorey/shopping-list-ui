@@ -1,0 +1,10 @@
+<List::Group as |group|>
+  <fieldset>
+    <group.heading>
+      <legend>{{@legend}}</legend>
+    </group.heading>
+    <group.list as |list|>
+      {{yield list}}
+    </group.list>
+  </fieldset>
+</List::Group>

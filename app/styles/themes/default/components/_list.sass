@@ -27,24 +27,19 @@ $list-item-padding: $list-item-y-padding $list-item-x-padding
   justify-content: space-between
   padding: 0
 
-  &-radio-group
+  > .field-radio
     flex: 100
 
-    & .radio
-      &[type='radio']
-        + label
-          align-items: center
-          display: flex
-          margin: 0
-          padding: $list-item-padding
+    .radio
+      + .label-radio
+        display: block
+        margin: 0
+        padding: $list-item-y-padding ($list-item-x-padding + $size-4)
 
-          &::before
-            margin-right: $list-item-x-padding / 2
-            position: static
-
-          &::after
-            left: auto
-            top: calc(50% - 15px)
+        &::before,
+        &::after
+          left: $size-7
+          top: calc(50% - #{$size-7})
 
   a
     &.list-item-link

@@ -18,7 +18,9 @@
 
         {{yield (hash
           delete=(component "button/delete" loading=@saving disabled=@dirty)
+          fieldsetList=(component "form/fieldset-list")
           text=(component "form/field/text")
+          radio=(component "form/field/radio")
         )}}
 
       </Container>

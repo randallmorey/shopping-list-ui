@@ -40,4 +40,12 @@ module('Integration | Component | button/cancel', function(hooks) {
     await render(hbs`<Button::Cancel @loading={{true}} />`);
     assert.ok(find('.is-loading'), 'Button has is-loading class');
   });
+
+  test('it supports a disabled state', async function(assert) {
+    assert.expect(2);
+    await render(hbs`<Button::Cancel @disabled={{false}} />`);
+    assert.notOk(find('[disabled]'), 'Button is not disabled');
+    await render(hbs`<Button::Cancel @disabled={{true}} />`);
+    assert.ok(find('[disabled]'), 'Button is disabled');
+  });
 });

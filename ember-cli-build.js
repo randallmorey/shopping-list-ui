@@ -12,7 +12,10 @@ module.exports = function(defaults) {
       extensions: ['js']
     },
     sassOptions: {
-      extension: 'sass'
+      extension: 'sass',
+      includePaths: [
+        'node_modules/bulma-checkradio/dist/css'
+      ]
     },
     outputPaths: {
       app: {

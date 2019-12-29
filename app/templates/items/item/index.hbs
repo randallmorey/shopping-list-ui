@@ -1,87 +1,74 @@
-<Form::Panel {{action "submit" @model on="submit"}} as |form panel|>
+<Form::Panel
+  @title={{t "titles.item.edit"}}
+  @saving={{@model.isSaving}}
+  @dirty={{@model.isDirty}}
+  @cancel={{route-action "cancel" @model}}
+  {{action "submit" @model on="submit"}}
+  as |form|>
 
-  <panel.header as |header|>
-    <form.cancel {{action "cancel" @model}}
-      disabled={{@model.isSaving}} />
-    <header.title>{{@model.displayName}}</header.title>
-    <form.save
-      @loading={{@model.isSaving}}
-      disabled={{@model.isClean}} />
-  </panel.header>
-
-  <panel.body>
-    <Container>
-
-      <div class="field">
-        <label class="label" for="name">{{t 'fields.labels.default.name'}}</label>
-        <div class="control">
-          <Input
-            class="input{{if @model.errors.name " is-danger"}}"
-            id="name"
-            name="name"
-            type="text"
-            @value={{@model.name}}
-            {{autofocus}} />
-        </div>
-        {{#each @model.errors.name as |error|}}
-          <div class="help is-danger">
-            {{#each error.message as |message|}}
-              {{t (concat 'fields.errors.default.' (slugify message))}}
-            {{/each}}
-          </div>
+  <form.text
+    @label={{t 'fields.labels.default.name'}}
+    @id="name"
+    @name="name"
+    @value={{@model.name}}
+    @autofocus={{true}}
+    @hasError={{@model.errors.name}}
+    as |field|>
+    {{#each @model.errors.name as |error|}}
+      <field.error>
+        {{#each error.message as |message|}}
+          {{t (concat 'fields.errors.default.' (slugify message))}}
         {{/each}}
-      </div>
+      </field.error>
+    {{/each}}
+  </form.text>
 
-      <form.delete
-        @loading={{@model.isSaving}}
-        disabled={{@model.isDirty}}
-        {{action "delete" @model}} />
+  <form.delete {{action "delete" @model}} />
 
-      <ListSet as |listSet|>
-        {{#if this.categories}}
-          <listSet.group as |group|>
-            <fieldset>
-              <group.heading>
-                <legend>{{t "resources.item-category"}}</legend>
-              </group.heading>
-              <group.list as |list|>
-                {{#each this.categories as |category| }}
-                  <list.item as |listItem|>
-                    <label class="list-item-label">
-                      <Input
-                        class="radio"
-                        name="category"
-                        type="radio"
-                        value={{category}}
-                        checked={{eq @model.category.id category.id}}
-                        {{on "change" (fn this.categoryChange category)}} />
-                        {{category.name}}
-                    </label>
-                    <listItem.link
-                      @route="items.item.categories.category"
-                      @model={{category}}
-                      @title={{t
-                        'actions.item-category.edit-name'
-                        name=category.name
-                      }}>
-                      <FaIcon @icon="chevron-right" />
-                    </listItem.link>
-                  </list.item>
-                {{/each}}
-              </group.list>
-            </fieldset>
-          </listSet.group>
-        {{else}}
-          <listSet.emptyListMessage>
-            {{t 'list.no-item-categories'}}
-          </listSet.emptyListMessage>
-        {{/if}}
-      </ListSet>
+  <ListSet as |listSet|>
+    {{#if this.categories}}
+      <listSet.group as |group|>
+        <fieldset>
+          <group.heading>
+            <legend>{{t "resources.item-category"}}</legend>
+          </group.heading>
+          <group.list as |list|>
+            {{#each this.categories as |category| }}
+              <list.item as |listItem|>
+                <div class="list-item-radio-group">
+                  <Input
+                    class="radio"
+                    name="category"
+                    type="radio"
+                    value={{category}}
+                    id={{category.id}}
+                    checked={{eq @model.category.id category.id}}
+                    {{on "change" (fn (mut @model.category) category)}} />
+                    <label
+                      class="list-item-label"
+                      for={{category.id}}>{{category.name}}</label>
+                  </div>
+                <listItem.link
+                  @route="items.item.categories.category"
+                  @model={{category}}
+                  @title={{t
+                    'actions.item-category.edit-name'
+                    name=category.name
+                  }}>
+                  <FaIcon @icon="chevron-right" />
+                </listItem.link>
+              </list.item>
+            {{/each}}
+          </group.list>
+        </fieldset>
+      </listSet.group>
+    {{else}}
+      <listSet.emptyListMessage>
+        {{t 'list.no-item-categories'}}
+      </listSet.emptyListMessage>
+    {{/if}}
+  </ListSet>
 
-
-      <Link::Add @route="items.item.categories.new">{{t "actions.item-category.add"}}</Link::Add>
-
-    </Container>
-  </panel.body>
+  <Link::Add @route="items.item.categories.new">{{t "actions.item-category.add"}}</Link::Add>
 
 </Form::Panel>

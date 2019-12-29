@@ -1,0 +1,8 @@
+<button
+  ...attributes
+  type={{if @submit "submit" "button"}}
+  class={{if @loading "is-loading"}}
+  disabled={{if @disabled "disabled"}}
+  >
+  {{yield}}
+</button>

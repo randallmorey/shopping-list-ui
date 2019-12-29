@@ -1,7 +1,6 @@
 import Model from './model';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
-import { computed } from '@ember/object';
 import { htmlSafe } from '@ember/template';
 
 /**
@@ -27,7 +26,6 @@ export default class ItemModel extends Model {
    * Equal to the value of name or, if no name, an HTML-safe ellipsis.
    * @return {String}
    */
-  @computed('name')
   get displayName() {
     return this.name ? this.name : htmlSafe('&hellip;');
   }

@@ -1,0 +1,16 @@
+<div class="field-radio">
+
+  <Input
+    class="radio{{if @hasError " has-error"}}"
+    id={{@id}}
+    name={{@name}}
+    type="radio"
+    @value={{@value}}
+    checked={{@checked}}
+    ...attributes />
+
+  <label class="label-radio" for={{@id}}>{{@label}}</label>
+
+  {{yield (hash error=(component "form/field/help/error"))}}
+
+</div>

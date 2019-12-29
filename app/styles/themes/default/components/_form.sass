@@ -4,9 +4,13 @@
 .label
   text-align: left
 
-.radio
-  @extend .is-checkradio
-  margin-right: $size-7
+.field-radio
+  .radio
+    @extend .is-checkradio
+
+    &[type='radio']
+      + .label-radio
+        vertical-align: inherit
 
 .has-error
   @extend .is-danger

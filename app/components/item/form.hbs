@@ -1,0 +1,63 @@
+<Form::Panel
+  @title={{@title}}
+  @saving={{@model.isSaving}}
+  @dirty={{@model.isDirty}}
+  @cancel={{action @cancel}}
+  {{action @submit on="submit"}}
+  as |form|>
+
+  <form.text
+    @label={{t 'fields.labels.default.name'}}
+    @id="name"
+    @name="name"
+    @value={{@model.name}}
+    @autofocus={{true}}
+    @hasError={{@model.errors.name}}
+    as |field|>
+    {{#each @model.errors.name as |error|}}
+      <field.error>
+        {{#each error.message as |message|}}
+          {{t (concat 'fields.errors.default.' (slugify message))}}
+        {{/each}}
+      </field.error>
+    {{/each}}
+  </form.text>
+
+  {{#unless @model.isNew}}
+    <form.delete {{action @delete}} />
+
+    <ListSet as |listSet|>
+      {{#if @categories}}
+        <form.fieldsetList @legend={{t "resources.item-category"}} as |list|>
+          {{#each @categories as |category| }}
+            <list.item as |listItem|>
+              <form.radio
+                @label={{category.name}}
+                @id={{category.id}}
+                @name="category"
+                @value={{category}}
+                @checked={{eq @model.category.id category.id}}
+                {{on "change" (fn (mut @model.category) category)}} />
+              <listItem.link
+                @route="items.item.categories.category"
+                @model={{category}}
+                @title={{t
+                  'actions.item-category.edit-name'
+                  name=category.name
+                }}>
+                <FaIcon @icon="chevron-right" />
+              </listItem.link>
+            </list.item>
+          {{/each}}
+        </form.fieldsetList>
+      {{else}}
+        <listSet.emptyListMessage>
+          {{t 'list.no-item-categories'}}
+        </listSet.emptyListMessage>
+      {{/if}}
+    </ListSet>
+
+    <Link::Add @route="items.item.categories.new">{{t "actions.item-category.add"}}</Link::Add>
+  {{/unless}}
+
+</Form::Panel>

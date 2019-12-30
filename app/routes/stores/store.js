@@ -19,7 +19,7 @@ export default class StoresStoreRoute extends Route.extend(
   // =methods
 
   /**
-   * Returns an store by ID.
+   * Returns a store by ID.
    * @returns {StoreModel}
    */
   model(params) {

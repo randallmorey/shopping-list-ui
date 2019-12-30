@@ -39,6 +39,8 @@ export default class StoresNewRoute extends Route.extend(PersitenceRouteMixin) {
     this.transitionTo('stores');
   }
 
+  // =actions
+
   /**
    * Activates the body pane as dominant for this route.
    */

@@ -39,6 +39,8 @@ export default class ItemsNewRoute extends Route.extend(PersitenceRouteMixin) {
     this.transitionTo('items');
   }
 
+  // =actions
+
   /**
    * Activates the body pane as dominant for this route.
    */

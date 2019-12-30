@@ -24,6 +24,20 @@ export default class StoresStoreRoute extends Route.extend(PersitenceRouteMixin)
     return this.store.findRecord('store', params.store_id);
   }
 
+  afterModel() {
+    return this.store.findAll('item-category')
+      .then(itemCategories => this.setProperties({itemCategories}));
+  }
+
+  /**
+   * Inserts categories into the context as `categories`.
+   * @param {Controller} controller
+   */
+  setupController(controller) {
+    super.setupController(...arguments);
+    controller.set('itemCategories', this.itemCategories);
+  }
+
   /**
    * Redirect to stores route.
    */
@@ -38,21 +52,14 @@ export default class StoresStoreRoute extends Route.extend(PersitenceRouteMixin)
     this.transitionTo('stores');
   }
 
+  // =actions
+
   /**
    * Activates the body pane as dominant for this route.
    */
   @action
   didTransition() {
     this.activePane.activateBody();
-  }
-
-  /**
-   * Inserts categories into the context as `categories`.
-   * @param {Controller} controller
-   */
-  setupController(controller) {
-    super.setupController(...arguments);
-    controller.set('categories', this.store.findAll('item-category'));
   }
 
 }

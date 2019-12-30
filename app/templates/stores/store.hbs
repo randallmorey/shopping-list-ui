@@ -1,8 +1,24 @@
 <Store::Form
   @model={{@model}}
-  @categories={{this.categories}}
   @title={{t "titles.store.edit"}}
   @submit={{route-action "submit" @model}}
   @cancel={{route-action "cancel" @model}}
-  @delete={{route-action "delete" @model}}
-  />
+  @delete={{route-action "delete" @model}}>
+
+  <hr>
+  <strong>Store categories</strong>
+  <ul>
+    {{#each @model.categories as |storeCategory|}}
+      <li>{{storeCategory.name}}</li>
+    {{/each}}
+  </ul>
+
+  <hr>
+  <strong>Item categories</strong>
+  <ul>
+    {{#each this.itemCategories as |itemCategory|}}
+      <li>{{itemCategory.name}}</li>
+    {{/each}}
+  </ul>
+
+</Store::Form>

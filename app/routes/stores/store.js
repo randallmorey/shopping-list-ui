@@ -28,7 +28,7 @@ export default class StoresStoreRoute extends Route.extend(
 
   /**
    * Preload all item categories as well as this store's store item categories.
-   * @param {Store} model
+   * @param {StoreModel} model
    */
   afterModel(model) {
     return model.get('categories')

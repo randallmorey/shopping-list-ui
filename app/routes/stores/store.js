@@ -35,7 +35,7 @@ export default class StoresStoreRoute extends Route.extend(PersitenceRouteMixin)
   }
 
   /**
-   * Inserts categories into the context as `categories`.
+   * Inserts item categories into the context as `itemCategories`.
    * @param {Controller} controller
    */
   setupController(controller) {

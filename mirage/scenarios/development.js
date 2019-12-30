@@ -7,4 +7,6 @@ export default function(server) {
   server.createList('item-category', 1);
   // items without categories
   server.createList('item', 3);
+  // stores
+  server.createList('store', 5);
 }

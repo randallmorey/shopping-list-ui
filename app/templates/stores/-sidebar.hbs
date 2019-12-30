@@ -23,7 +23,11 @@
             <list.item as |listItem|>
               <listItem.link @route="stores.store" @model={{store}}>
                 {{store.displayName}}
-                <FaIcon @icon="chevron-right" />
+                {{#if store.loadingStoreRoute}}
+                  <FaIcon @icon="circle-notch" @spin={{true}} />
+                {{else}}
+                  <FaIcon @icon="chevron-right" />
+                {{/if}}
               </listItem.link>
             </list.item>
           {{/each}}

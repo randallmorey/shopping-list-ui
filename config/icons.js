@@ -4,8 +4,9 @@
 module.exports = function() {
   return {
     'free-solid-svg-icons': [
-      'plus',
-      'chevron-right'
+      'chevron-right',
+      'circle-notch',
+      'plus'
     ]
   };
 };

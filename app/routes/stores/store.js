@@ -28,12 +28,15 @@ export default class StoresStoreRoute extends Route.extend(
 
   /**
    * Preload all item categories as well as this store's store item categories.
+   * Sets loading state on the model and clears it when loading completes.
    * @param {StoreModel} model
    */
   afterModel(model) {
-    return model.get('categories')
-      .then(() => this.store.findAll('item-category'))
-      .then(itemCategories => this.setProperties({itemCategories}));
+    this.setLoading(model);
+    return model.get('categories').reload()
+      .then(() => this.store.query('item-category', {}))
+      .then(itemCategories => this.setProperties({itemCategories}))
+      .finally(() => this.clearLoading(model));
   }
 
   /**
@@ -43,6 +46,24 @@ export default class StoresStoreRoute extends Route.extend(
   setupController(controller) {
     super.setupController(...arguments);
     controller.set('itemCategories', this.itemCategories);
+  }
+
+  /**
+   * This is a potentially slow-loading route, so we want to indicate this to
+   * the user somehow.  This scheme sets a transient property on the store
+   * model, which is picked up by the stores index route.
+   * @param {StoreModel} model
+   */
+  setLoading(model) {
+    model.set('loadingStoreRoute', true);
+  }
+
+  /**
+   * Sets the loading indicator to false.
+   * @param {StoreModel} model
+   */
+  clearLoading(model) {
+    model.set('loadingStoreRoute', false);
   }
 
   /**

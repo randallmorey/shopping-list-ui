@@ -1,26 +1,8 @@
-<Form::Panel
+<Item::Form
+  @model={{@model}}
+  @categories={{this.categories}}
   @title={{t "titles.item.new"}}
-  @saving={{@model.isSaving}}
-  @dirty={{@model.isDirty}}
+  @submit={{route-action "submit" @model}}
   @cancel={{route-action "cancel" @model}}
-  {{action "submit" @model on="submit"}}
-  as |form|>
-
-  <form.text
-    @label={{t 'fields.labels.default.name'}}
-    @id="name"
-    @name="name"
-    @value={{@model.name}}
-    @autofocus={{true}}
-    @hasError={{@model.errors.name}}
-    as |field|>
-    {{#each @model.errors.name as |error|}}
-      <field.error>
-        {{#each error.message as |message|}}
-          {{t (concat 'fields.errors.default.' (slugify message))}}
-        {{/each}}
-      </field.error>
-    {{/each}}
-  </form.text>
-
-</Form::Panel>
+  @delete={{route-action "delete" @model}}
+  />

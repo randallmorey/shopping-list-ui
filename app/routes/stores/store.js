@@ -24,8 +24,13 @@ export default class StoresStoreRoute extends Route.extend(PersitenceRouteMixin)
     return this.store.findRecord('store', params.store_id);
   }
 
-  afterModel() {
-    return this.store.findAll('item-category')
+  /**
+   * Preload all item categories as well as this store's store item categories.
+   * @param {Store} model
+   */
+  afterModel(model) {
+    return model.get('categories')
+      .then(() => this.store.findAll('item-category'))
       .then(itemCategories => this.setProperties({itemCategories}));
   }
 

@@ -8,7 +8,9 @@ import { action } from '@ember/object';
  * @augments Route
  * @augments PersitenceRouteMixin
  */
-export default class StoresStoreRoute extends Route.extend(PersitenceRouteMixin) {
+export default class StoresStoreRoute extends Route.extend(
+  PersitenceRouteMixin
+) {
 
   // =services
 

@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 import FirestoreAdapter from 'emberfire/adapters/firestore';
 import { rootCollection } from 'emberfire/adapters/firestore';
+import { v4 } from 'uuid';
 
 const noop = (ref) => ref;
 const getDoc = (adapter, type, id) => docReference(adapter, type, id).then(doc => doc.get());
@@ -26,6 +27,16 @@ export default class ApplicationFirebaseAdapter extends FirestoreAdapter {
    * @type {Object}
    */
   persistenceSettings = Object.freeze({ synchronizeTabs: true });
+
+  // =methods
+
+  /**
+   * Generates a v4 UUID.
+   * @return {String}
+   */
+  generateIdForRecord() {
+    return v4();
+  }
 
   // Override emberfire findHasMany because..
   // theirs uses the wrong relationship key names

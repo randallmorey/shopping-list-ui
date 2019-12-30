@@ -18,5 +18,8 @@ Router.map(function() {
   });
   this.route('stores', function() {
     this.route('store', {path: ':store_id'});
+    this.route('new');
   });
+
+  this.route('store', function() {});
 });

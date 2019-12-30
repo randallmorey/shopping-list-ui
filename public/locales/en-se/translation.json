@@ -13,7 +13,8 @@
       "edit-name": "Edit category {{name}}"
     },
     "stores": {
-      "add": "$t(resources.add) $t(resources.store)"
+      "add": "$t(resources.add) $t(resources.store)",
+      "edit-name": "Edit store {{name}}"
     }
   },
   "categories": {
@@ -58,6 +59,10 @@
     "item-category": {
       "edit": "Edit $t(resources.item-category)",
       "new": "New $t(resources.item-category)"
+    },
+    "store": {
+      "edit": "Edit $t(resources.store)",
+      "new": "New $t(resources.store)"
     }
   },
   "resources": {

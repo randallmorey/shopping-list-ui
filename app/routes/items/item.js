@@ -4,7 +4,9 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 /**
- * A route to load and display a single item.
+ * A route to edit an item by ID and handle update and delete persistence.
+ * @augments Route
+ * @augments PersitenceRouteMixin
  */
 export default class ItemsItemRoute extends Route.extend(PersitenceRouteMixin) {
 

@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 
 /**
- * Handles item persistence and post-persistence actions.
+ * Simple route to insert item categories into the context.
  */
 export default class ItemsItemIndexRoute extends Route {
 

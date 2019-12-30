@@ -3,7 +3,13 @@ import PersitenceRouteMixin from '../../mixins/persitence-route';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
+/**
+ * A route to edit a store by ID and handle update and delete persistence.
+ * @augments Route
+ * @augments PersitenceRouteMixin
+ */
 export default class StoresStoreRoute extends Route.extend(PersitenceRouteMixin) {
+
   // =services
 
   @service activePane;
@@ -11,7 +17,7 @@ export default class StoresStoreRoute extends Route.extend(PersitenceRouteMixin)
   // =methods
 
   /**
-   * Returns an item by ID.
+   * Returns an store by ID.
    * @returns {StoreModel}
    */
   model(params) {
@@ -19,14 +25,14 @@ export default class StoresStoreRoute extends Route.extend(PersitenceRouteMixin)
   }
 
   /**
-   * Redirect to items route.
+   * Redirect to stores route.
    */
   afterPersistence() {
     this.transitionTo('stores');
   }
 
   /**
-   * Redirect to items route.
+   * Redirect to stores route.
    */
   afterCancel() {
     this.transitionTo('stores');
@@ -39,4 +45,5 @@ export default class StoresStoreRoute extends Route.extend(PersitenceRouteMixin)
   didTransition() {
     this.activePane.activateBody();
   }
+
 }

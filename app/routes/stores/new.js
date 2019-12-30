@@ -3,7 +3,13 @@ import PersitenceRouteMixin from '../../mixins/persitence-route';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
+/**
+ * A route to edit a new unsaved store and handle create persistence.
+ * @augments Route
+ * @augments PersitenceRouteMixin
+ */
 export default class StoresNewRoute extends Route.extend(PersitenceRouteMixin) {
+
   // =services
 
   @service activePane;
@@ -11,15 +17,15 @@ export default class StoresNewRoute extends Route.extend(PersitenceRouteMixin) {
   // =methods
 
   /**
-   * Returns an new unsaved item.
-   * @returns {ItemModel}
+   * Returns an new unsaved store.
+   * @returns {StoreModel}
    */
   model() {
     return this.store.createRecord('store')
   }
 
   /**
-   * Redirect to items route, replacing the history item.  We do not want
+   * Redirect to stores route, replacing the history.  We do not want
    * the back button to reach the now-stale new route.
    */
   afterPersistence() {
@@ -27,7 +33,7 @@ export default class StoresNewRoute extends Route.extend(PersitenceRouteMixin) {
   }
 
   /**
-   * Redirect to items route.
+   * Redirect to stores route.
    */
   afterCancel() {
     this.transitionTo('stores');
@@ -40,4 +46,5 @@ export default class StoresNewRoute extends Route.extend(PersitenceRouteMixin) {
   didTransition() {
     this.activePane.activateBody();
   }
+
 }

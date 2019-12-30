@@ -3,6 +3,11 @@ import PersitenceRouteMixin from '../../mixins/persitence-route';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
+/**
+ * A route to edit a new unsaved item and handle create persistence.
+ * @augments Route
+ * @augments PersitenceRouteMixin
+ */
 export default class ItemsNewRoute extends Route.extend(PersitenceRouteMixin) {
 
   // =services

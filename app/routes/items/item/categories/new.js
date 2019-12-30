@@ -1,6 +1,9 @@
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
 
+/**
+ * A route to edit a new unsaved category.
+ */
 export default class ItemsItemCategoriesNewRoute extends Route {
 
   // =methods

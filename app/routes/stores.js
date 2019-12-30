@@ -4,10 +4,11 @@ import { inject as service } from '@ember/service';
 
 /**
  * A route to load and display all stores.
- * @class StoresRoute
  * @augments Route
+ * @augments RealtimeRouteMixin
  */
 export default class StoresRoute extends Route.extend(RealtimeRouteMixin) {
+
   // =services
 
   @service activePane;
@@ -23,16 +24,16 @@ export default class StoresRoute extends Route.extend(RealtimeRouteMixin) {
    }
 
    /**
-    * Subscribe to realtime updates on items.
+    * Subscribe to realtime updates on stores.
     * @param {Object} model
     */
    afterModel(model) {
-     this.subscribe(model.stores);
+     this.subscribe(model);
      return super.afterModel(...arguments);
    }
 
    /**
-    * Activate the sidebar, as this pane is dominant for this route.
+    * Render the sidebar in addition to the main template.
     */
    render() {
      super.render(...arguments);
@@ -41,4 +42,5 @@ export default class StoresRoute extends Route.extend(RealtimeRouteMixin) {
        into: 'stores'
      });
    }
+
  }

@@ -1,6 +1,9 @@
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
 
+/**
+ * A route to edit an item category by ID.
+ */
 export default class ItemsItemCategoriesCategoryRoute extends Route {
 
   // =methods

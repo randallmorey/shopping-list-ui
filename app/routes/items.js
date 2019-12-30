@@ -6,8 +6,8 @@ import RealtimeRouteMixin from '../mixins/realtime-route';
 
 /**
  * A route to load and display all items.
- * @class ItemsRoute
  * @augments Route
+ * @augments RealtimeRouteMixin
  */
 export default class ItemsRoute extends Route.extend(RealtimeRouteMixin) {
 
@@ -38,7 +38,7 @@ export default class ItemsRoute extends Route.extend(RealtimeRouteMixin) {
   }
 
   /**
-   * Activate the sidebar, as this pane is dominant for this route.
+   * Render the sidebar in addition to the main template.
    */
   render() {
     super.render(...arguments);

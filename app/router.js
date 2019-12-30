@@ -20,6 +20,4 @@ Router.map(function() {
     this.route('store', {path: ':store_id'});
     this.route('new');
   });
-
-  this.route('store', function() {});
 });

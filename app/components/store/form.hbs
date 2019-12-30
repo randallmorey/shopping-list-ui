@@ -23,6 +23,34 @@
     {{/each}}
   </form.text>
 
+  <ListSet as |listSet|>
+    {{#if @model.categories}}
+      <form.fieldsetList @legend={{t "resources.store-item-category"}}>
+        {{#each @model.categories as |category| }}
+          <li>{{category.name}}</li>
+        {{/each}}
+      </form.fieldsetList>
+    {{else}}
+      <listSet.emptyListMessage>
+        {{t 'list.no-item-categories'}}
+      </listSet.emptyListMessage>
+    {{/if}}
+  </ListSet>
+
+  <ListSet as |listSet|>
+    {{#if @categories}}
+      <form.fieldsetList @legend={{t "resources.item-category"}}>
+        {{#each @categories as |category| }}
+            <li>{{category.name}}</li>
+        {{/each}}
+      </form.fieldsetList>
+    {{else}}
+      <listSet.emptyListMessage>
+        {{t 'list.no-item-categories'}}
+      </listSet.emptyListMessage>
+    {{/if}}
+  </ListSet>
+
   {{#unless @model.isNew}}
     <form.delete {{action @delete}} />
   {{/unless}}

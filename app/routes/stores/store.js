@@ -46,4 +46,13 @@ export default class StoresStoreRoute extends Route.extend(PersitenceRouteMixin)
     this.activePane.activateBody();
   }
 
+  /**
+   * Inserts categories into the context as `categories`.
+   * @param {Controller} controller
+   */
+  setupController(controller) {
+    super.setupController(...arguments);
+    controller.set('categories', this.store.findAll('item-category'));
+  }
+
 }

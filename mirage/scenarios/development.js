@@ -8,5 +8,7 @@ export default function(server) {
   // items without categories
   server.createList('item', 3);
   // stores
-  server.createList('store', 5);
+  server.createList('store', 5).map(store => {
+    server.createList('store-item-category', 3, {storeProperty: store})
+  });
 }

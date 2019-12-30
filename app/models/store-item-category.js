@@ -1,22 +1,21 @@
 import Model from './model';
 import attr from 'ember-data/attr';
-import { hasMany } from 'ember-data/relationships';
+import { belongsTo } from 'ember-data/relationships';
 import { htmlSafe } from '@ember/template';
 
 /**
- * A simple model representing the universe of available stores.
+ * A store item category.
  *
  * @property name {String}
- * @property location {String}
+ * @property order {Number}
  */
-export default class StoreModel extends Model {
+export default class StoreItemCategoryModel extends Model {
   // =attributes
-
   @attr('string') name;
-  @attr('string') location;
+  @attr('number') order;
 
   // =relationships
-  @hasMany('store-item-category') categories;
+  @belongsTo('store', {trackChanges: true}) storeProperty;
 
   // =computed
 

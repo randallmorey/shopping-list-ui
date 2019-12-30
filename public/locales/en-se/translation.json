@@ -72,7 +72,8 @@
     "item-category": "Category",
     "item-category_plural": "Categories",
     "store": "Store",
-    "store_plural": "Stores"
+    "store_plural": "Stores",
+    "store-item-category": "Store Item Category"
   },
   "categories": {
     "uncategorized": "Uncategorized"

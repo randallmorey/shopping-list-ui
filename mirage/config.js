@@ -39,4 +39,11 @@ export default function() {
   this.put('/stores/:id');
   this.del('/stores/:id');
 
+  this.get('/store-item-categories');
+  this.post('/store-item-categories');
+  this.get('/store-item-categories/:id');
+  this.patch('/store-item-categories/:id');
+  this.put('/store-item-categories/:id');
+  this.del('/store-item-categories/:id');
+
 }

@@ -27,20 +27,6 @@ $list-item-padding: $list-item-y-padding $list-item-x-padding
   justify-content: space-between
   padding: 0
 
-  > .field-radio
-    flex: 100
-
-    .radio
-      + .label-radio
-        display: block
-        margin: 0
-        padding: $list-item-y-padding ($list-item-x-padding + $size-4)
-
-        &::before,
-        &::after
-          left: $size-7
-          top: calc(50% - #{$size-7})
-
   a
     &.list-item-link
       @extend .list-item
@@ -65,6 +51,45 @@ $list-item-padding: $list-item-y-padding $list-item-x-padding
       &:hover
         &:not(.active)
           @extend .has-background-light
+
+  > .field-radio
+    flex: 100
+
+    .radio
+      + .label-radio
+        display: block
+        margin: 0
+        padding: $list-item-y-padding ($list-item-x-padding + $size-4)
+
+        &::before,
+        &::after
+          left: $size-7
+          top: calc(50% - #{$size-7})
+
+  &.list-item-sortable
+    align-items: center
+    justify-content: flex-start
+    padding: $list-item-y-padding
+
+    .button-order-increase,
+    .button-order-decrease
+      $size: $size-5
+      height: $size
+      padding: 0
+      width: $size
+      margin-right: $size-7 / 2
+
+      svg
+        $svgSize: $size / 2
+        height: $svgSize
+        width: $svgSize
+
+    .button-order-increase
+      margin-right: $size-5
+
+    .drag-handle
+      margin-left: auto
+      margin-right: 0
 
 .link-title-group
   p

@@ -3,7 +3,9 @@
     "default": {
       "cancel": "Cancel",
       "save": "Save",
-      "delete": "Delete"
+      "delete": "Delete",
+      "move-down": "Move Down",
+      "move-up": "Move Up"
     },
     "items": {
       "add": "$t(resources.add) $t(resources.item)"

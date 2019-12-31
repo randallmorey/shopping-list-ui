@@ -21,8 +21,27 @@ export default class StoreModel extends Model {
   // =computed
 
   /**
+   * Store categories sorted by their `order` field.
+   * @type {StoreItemCategory[]}
+   */
+  get categoriesByOrder() {
+    return this.categories.sortBy('order');
+  }
+
+  /**
+   * True if any category is currently saving.
+   * @type {Boolean}
+   */
+  get categoriesSaving() {
+    return this.categories.reduce(
+      (accumulator, currentValue) => currentValue.isSaving || accumulator,
+      false
+    );
+  }
+
+  /**
    * Equal to the value of name or, if no name, an HTML-safe ellipsis.
-   * @return {String}
+   * @type {String}
    */
   get displayName() {
     return this.name ? this.name : htmlSafe('&hellip;');

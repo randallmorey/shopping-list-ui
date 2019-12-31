@@ -1,0 +1,5 @@
+<List::List class="list-sortable" @ordered={{true}} as |list|>
+  {{yield (hash
+    item=(component "list/item/sortable" disabled=@disabled)
+  )}}
+</List::List>

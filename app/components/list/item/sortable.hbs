@@ -1,0 +1,26 @@
+<List::Item class="list-item-sortable{{if @disabled " has-text-grey"}}">
+
+  <Button
+    @disabled={{or @disabled @decreaseDisabled}}
+    class="button-order-decrease"
+    title={{t "actions.default.decrease-order"}}
+    ...attributes
+    {{on "click" @decrease}}>
+    <FaIcon @icon="chevron-up" />
+  </Button>
+  <Button
+    @disabled={{or @disabled @increaseDisabled}}
+    class="button-order-increase"
+    title={{t "actions.default.increase-order"}}
+    ...attributes
+    {{on "click" @increase}}>
+    <FaIcon @icon="chevron-down" />
+  </Button>
+
+  {{yield}}
+
+  <div class="drag-handle">
+    <FaIcon @icon="grip-lines" />
+  </div>
+
+</List::Item>

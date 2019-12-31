@@ -10,16 +10,28 @@
       <listSet.group as |group|>
         <group.heading>
           {{t "titles.store-item-category.order"}}
+          {{#if @model.categoriesSaving}}
+            <FaIcon @icon="circle-notch" @spin={{true}} />
+          {{/if}}
         </group.heading>
-        <group.list @ordered={{true}} as |list|>
-          {{#each @model.categories as |category|}}
-            <list.item>
-              {{category.itemCategory.name}} /
-              {{category.itemCategory.id}} /
-              {{category.order}}
+
+        <List::Sortable
+          @disabled={{or @model.isSaving @model.categoriesSaving}}
+          as |list|>
+          {{#each @model.categoriesByOrder as |category|}}
+            <list.item
+              @decrease={{route-action "decreaseCategoryOrder" category}}
+              @increase={{route-action "increaseCategoryOrder" category}}
+              @increaseDisabled=
+                {{eq category.id @model.categoriesByOrder.lastObject.id}}
+              @decreaseDisabled=
+                {{eq category.id @model.categoriesByOrder.firstObject.id}}
+              >
+              {{category.itemCategory.name}}
             </list.item>
           {{/each}}
-        </group.list>
+        </List::Sortable>
+
       </listSet.group>
     </ListSet>
   {{/if}}

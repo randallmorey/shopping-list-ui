@@ -113,6 +113,31 @@ export default class StoresStoreRoute extends Route.extend(
     this.transitionTo('stores');
   }
 
+  /**
+   * Change the store item category by the specified number of places,
+   * update `order` across store item categories, and save all.
+   * @param {StoreItemCategoryModel} category
+   * @param {Number} places number of places by which to move category
+   */
+  changeCategoryOrderBy(category, places=1) {
+    // Create a quick-and-dirty copy of the categories array that we can mutate
+    const categories = this.currentModel.categoriesByOrder.map(c => c);
+    // Get the current and next indices
+    const currentIndex = categories.indexOf(category);
+    const nextIndex = currentIndex + places;
+    console.log(currentIndex, nextIndex);
+    console.log(categories[currentIndex].get('itemCategory.name'),
+      categories[nextIndex].get('itemCategory.name'));
+    // Swap the items
+    categories[currentIndex] = categories[nextIndex];
+    categories[nextIndex] = category;
+    // Reassign order values and save
+    categories.map((c, i) => {
+      c.order = i;
+      c.save();
+    });
+  }
+
   // =actions
 
   /**
@@ -121,6 +146,26 @@ export default class StoresStoreRoute extends Route.extend(
   @action
   didTransition() {
     this.activePane.activateBody();
+  }
+
+  /**
+   * Move the store item category down one spot, update `order` across store
+   * item categories, and save all.
+   * @param {StoreItemCategoryModel} category
+   */
+  @action
+  decreaseCategoryOrder(category) {
+    this.changeCategoryOrderBy(category, -1);
+  }
+
+  /**
+   * Move the store item category up one spot, update `order` across store
+   * item categories, and save all.
+   * @param {StoreItemCategoryModel} category
+   */
+  @action
+  increaseCategoryOrder(category) {
+    this.changeCategoryOrderBy(category, 1);
   }
 
 }

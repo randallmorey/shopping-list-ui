@@ -88,7 +88,7 @@
       "welcome": "Manage all of your items here.  Once created, items may be added quickly to shopping lists."
     },
     "stores": {
-      "welcome": "Manage all of your stores here.  Once created, categories may be added and ordered."
+      "welcome": "Manage your stores here.  Then sort item categories to optimize shopping routes by store."
     }
   }
 }

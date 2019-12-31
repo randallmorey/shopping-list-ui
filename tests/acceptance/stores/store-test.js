@@ -66,8 +66,8 @@ module('Acceptance | stores/store', function(hooks) {
     await click('.button-save');
     await settled();
     assert.equal(currentURL(), '/stores');
-    assert.equal(find('.link-title').textContent.trim(), 'Test Store Name')
-    assert.equal(find('.link-subtitle').textContent.trim(), 'Test Store Location')
+    assert.equal(find('.multiline-line').textContent.trim(), 'Test Store Name')
+    assert.equal(find('.multiline-line-secondary').textContent.trim(), 'Test Store Location')
   });
 
   test('can save record without location', async function(assert) {
@@ -80,8 +80,8 @@ module('Acceptance | stores/store', function(hooks) {
     await click('.button-save');
     await settled();
     assert.equal(currentURL(), '/stores');
-    assert.equal(find('.link-title').textContent.trim(), 'Test Store Name')
-    assert.equal(find('.link-subtitle').textContent.trim(), '')
+    assert.equal(find('.multiline-line').textContent.trim(), 'Test Store Name')
+    assert.equal(find('.multiline-line-secondary').textContent.trim(), '')
   });
 
   test('redirects to /stores after save', async function(assert) {

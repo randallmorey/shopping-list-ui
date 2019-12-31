@@ -12,14 +12,14 @@
 
   <panel.body>
     <ListSet as |listSet|>
-      {{#unless @model}}
+      {{#unless this.stores}}
         <listSet.emptyListMessage>
           {{t 'list.no-stores'}}
         </listSet.emptyListMessage>
       {{/unless}}
       <listSet.group as |group|>
         <group.list as |list|>
-          {{#each @model as |store|}}
+          {{#each this.stores as |store|}}
             <list.item as |listItem|>
               <listItem.link @route="stores.store" @model={{store}}>
                 <div class="link-title-group">

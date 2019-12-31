@@ -10,6 +10,8 @@ export default class ItemsController extends Controller {
 
   @service activePane;
 
+  //
+
   // =properties
 
   /**
@@ -17,7 +19,8 @@ export default class ItemsController extends Controller {
    * @type {StoreModel[]}
    */
   get stores() {
-    return this.model.filter(store => !store.isNew);
+    const stores = this.model.filter(store => !store.isNew);
+    return stores.sortBy('name')
   }
 
 }

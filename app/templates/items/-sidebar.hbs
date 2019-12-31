@@ -17,7 +17,7 @@
           {{t 'list.no-items'}}
         </listSet.emptyListMessage>
       {{/unless}}
-      {{#each @model.categories as |category|}}
+      {{#each this.categories as |category|}}
         {{#if category.items}}
           <listSet.group as |group|>
             <group.heading>{{category.displayName}}</group.heading>

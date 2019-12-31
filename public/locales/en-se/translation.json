@@ -64,6 +64,9 @@
     "store": {
       "edit": "Edit $t(resources.store)",
       "new": "New $t(resources.store)"
+    },
+    "store-item-category": {
+      "order": "$t(resources.store-item-category) Order"
     }
   },
   "resources": {
@@ -74,7 +77,8 @@
     "item-category_plural": "Categories",
     "store": "Store",
     "store_plural": "Stores",
-    "store-item-category": "Store Item Category"
+    "store-item-category": "Category",
+    "store-item-category_plural": "Categories"
   },
   "categories": {
     "uncategorized": "Uncategorized"

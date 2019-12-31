@@ -5,16 +5,23 @@
   @cancel={{route-action "cancel" @model}}
   @delete={{route-action "delete" @model}}>
 
-  <hr>
-  
-  <ul>
-    {{#each @model.categories as |storeCategory|}}
-      <li>
-        {{storeCategory.itemCategory.name}} /
-        {{storeCategory.itemCategory.id}} /
-        {{storeCategory.order}}
-      </li>
-    {{/each}}
-  </ul>
+  {{#if @model.categories}}
+    <ListSet as |listSet|>
+      <listSet.group as |group|>
+        <group.heading>
+          {{t "titles.store-item-category.order"}}
+        </group.heading>
+        <group.list @ordered={{true}} as |list|>
+          {{#each @model.categories as |category|}}
+            <list.item>
+              {{category.itemCategory.name}} /
+              {{category.itemCategory.id}} /
+              {{category.order}}
+            </list.item>
+          {{/each}}
+        </group.list>
+      </listSet.group>
+    </ListSet>
+  {{/if}}
 
 </Store::Form>

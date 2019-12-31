@@ -7,9 +7,10 @@
 
   <hr>
   <strong>Store categories</strong>
+
   <ul>
     {{#each @model.categories as |storeCategory|}}
-      <li>{{storeCategory.name}}</li>
+      <li>{{storeCategory.storeItemCategory.name}} / {{storeCategory.order}}</li>
     {{/each}}
   </ul>
 

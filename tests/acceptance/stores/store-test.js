@@ -56,6 +56,34 @@ module('Acceptance | stores/store', function(hooks) {
     assert.equal(currentURL(), url, 'Remained on current route')
   });
 
+  test('can change name and location and save record', async function(assert) {
+    assert.expect(3);
+    const store = this.server.create('store', 1);
+    const url = `/stores/${store.id}`;
+    await visit(url);
+    await fillIn('[name="name"]', 'Test Store Name');
+    await fillIn('[name="location"]', 'Test Store Location');
+    await click('.button-save');
+    await settled();
+    assert.equal(currentURL(), '/stores');
+    assert.equal(find('.link-title').textContent.trim(), 'Test Store Name')
+    assert.equal(find('.link-subtitle').textContent.trim(), 'Test Store Location')
+  });
+
+  test('can save record without location', async function(assert) {
+    assert.expect(3);
+    const store = this.server.create('store', 1);
+    const url = `/stores/${store.id}`;
+    await visit(url);
+    await fillIn('[name="name"]', 'Test Store Name');
+    await fillIn('[name="location"]', '');
+    await click('.button-save');
+    await settled();
+    assert.equal(currentURL(), '/stores');
+    assert.equal(find('.link-title').textContent.trim(), 'Test Store Name')
+    assert.equal(find('.link-subtitle').textContent.trim(), '')
+  });
+
   test('redirects to /stores after save', async function(assert) {
     const store = this.server.create('store', 1);
     const url = `/stores/${store.id}`;

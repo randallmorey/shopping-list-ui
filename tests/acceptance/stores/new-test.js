@@ -53,14 +53,27 @@ module('Acceptance | stores/new', function(hooks) {
   });
 
 
-  test('can enter name and save record', async function(assert) {
+  test('can enter name and location and save record', async function(assert) {
     const url = '/stores/new';
-    assert.expect(1);
+    assert.expect(2);
+    await visit(url);
+    await fillIn('[name="name"]', 'Test store Name');
+    await fillIn('[name="location"]', 'Test store Location');
+    await click('.button-save');
+    await settled();
+    assert.equal(find('.link-title').textContent.trim(), 'Test store Name')
+    assert.equal(find('.link-subtitle').textContent.trim(), 'Test store Location')
+  });
+
+  test('can save record without location', async function(assert) {
+    const url = '/stores/new';
+    assert.expect(2);
     await visit(url);
     await fillIn('[name="name"]', 'Test store Name');
     await click('.button-save');
     await settled();
-    assert.equal(find('.pane:first-child .list-group ul.list li').textContent.trim(), 'Test store Name', 'New store name saved correctly.')
+    assert.equal(find('.link-title').textContent.trim(), 'Test store Name')
+    assert.equal(find('.link-subtitle').textContent.trim(), '')
   });
 
   test('redirects to /stores/:store-id after save', async function(assert) {

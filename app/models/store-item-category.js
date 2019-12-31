@@ -6,16 +6,15 @@ import { htmlSafe } from '@ember/template';
 /**
  * A store item category.
  *
- * @property name {String}
  * @property order {Number}
  */
 export default class StoreItemCategoryModel extends Model {
   // =attributes
-  @attr('string') name;
   @attr('number') order;
 
   // =relationships
   @belongsTo('store', {trackChanges: true}) storeProperty;
+  @belongsTo('item-category', {trackChanges: true}) storeItemCategory;
 
   // =computed
 

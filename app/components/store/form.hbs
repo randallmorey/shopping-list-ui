@@ -23,6 +23,15 @@
     {{/each}}
   </form.text>
 
+  <form.text
+    @label={{t 'fields.labels.default.location'}}
+    @id="lication"
+    @name="location"
+    @value={{@model.location}}
+    @autofocus={{false}}
+    >
+  </form.text>
+
   {{#unless @model.isNew}}
     <form.delete {{action @delete}} />
     {{yield}}

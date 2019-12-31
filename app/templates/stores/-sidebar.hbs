@@ -22,7 +22,10 @@
           {{#each @model as |store|}}
             <list.item as |listItem|>
               <listItem.link @route="stores.store" @model={{store}}>
-                {{store.displayName}}
+                <div class="link-title-group">
+                  <p class="link-title">{{store.displayName}}</p>
+                  <p class="link-subtitle">{{store.location}}</p>
+                </div>
                 {{#if store.loadingStoreRoute}}
                   <FaIcon @icon="circle-notch" @spin={{true}} />
                 {{else}}

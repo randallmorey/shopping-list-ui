@@ -12,6 +12,10 @@ export default class ItemsController extends Controller {
 
   // =properties
 
+  /**
+   * List of saved (non-new) stores.
+   * @type {StoreModel[]}
+   */
   get stores() {
     return this.model.filter(store => !store.isNew);
   }

@@ -12,30 +12,31 @@
 
   <panel.body>
     <ListSet as |listSet|>
-      {{#unless this.stores}}
+      {{#if this.stores}}
+        <listSet.group as |group|>
+          <group.list as |list|>
+            {{#each this.stores as |store|}}
+              <list.item as |listItem|>
+                <listItem.link @route="stores.store" @model={{store}}>
+                  <div class="link-title-group">
+                    <p class="link-title">{{store.displayName}}</p>
+                    <p class="link-subtitle">{{store.location}}</p>
+                  </div>
+                  {{#if store.loadingStoreRoute}}
+                    <FaIcon @icon="circle-notch" @spin={{true}} />
+                  {{else}}
+                    <FaIcon @icon="chevron-right" />
+                  {{/if}}
+                </listItem.link>
+              </list.item>
+            {{/each}}
+          </group.list>
+        </listSet.group>
+      {{else}}
         <listSet.emptyListMessage>
           {{t 'list.no-stores'}}
         </listSet.emptyListMessage>
-      {{/unless}}
-      <listSet.group as |group|>
-        <group.list as |list|>
-          {{#each this.stores as |store|}}
-            <list.item as |listItem|>
-              <listItem.link @route="stores.store" @model={{store}}>
-                <div class="link-title-group">
-                  <p class="link-title">{{store.displayName}}</p>
-                  <p class="link-subtitle">{{store.location}}</p>
-                </div>
-                {{#if store.loadingStoreRoute}}
-                  <FaIcon @icon="circle-notch" @spin={{true}} />
-                {{else}}
-                  <FaIcon @icon="chevron-right" />
-                {{/if}}
-              </listItem.link>
-            </list.item>
-          {{/each}}
-        </group.list>
-        </listSet.group>
+      {{/if}}
     </ListSet>
   </panel.body>
 

@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import PersitenceRouteMixin from '../../mixins/persitence-route';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-
+import { all } from 'rsvp';
 /**
  * A route to edit a store by ID and handle update and delete persistence.
  * @augments Route
@@ -31,12 +31,45 @@ export default class StoresStoreRoute extends Route.extend(
    * Sets loading state on the model and clears it when loading completes.
    * @param {StoreModel} model
    */
-  afterModel(model) {
+  async afterModel(model) {
     this.setLoading(model);
-    return model.get('categories').reload()
-      .then(() => this.store.query('item-category', {}))
-      .then(itemCategories => this.setProperties({itemCategories}))
-      .finally(() => this.clearLoading(model));
+    await model.get('categories').reload();
+    const itemCategories = await this.store.findAll('item-category');
+    this.setProperties({itemCategories});
+    await this.reconcileCategories(model, this.itemCategories);
+    this.clearLoading(model);
+  }
+
+  /**
+   * Compares and reconciles list of store item categories with item categories.
+   *
+   * 1)  Removes any store item categories without associated item categories.
+   * 2)  For every item category without an associated store item category,
+   *     creates a store item category.  Ensures created records have ascending
+   *     `order` values.
+   *
+   * @param {StoreModel} model
+   * @param {ItemCategoryModel[]} itemCategories
+   */
+  async reconcileCategories(model, itemCategories) {
+    let storeItemCategories = model.get('categories');
+    // Destroy any store item categories without associated item categories.
+    await all(storeItemCategories.map(storeItemCategory => {
+      if (!storeItemCategory.get('itemCategory.id'))
+        return storeItemCategory.destroyRecord();
+    }));
+    // Find the highest order value among store item categories.
+    const highestOrder = storeItemCategories.length ?
+      Math.max(...storeItemCategories.map(sic => sic.order || 0)) : 0;
+    // current order
+    let order = highestOrder + 1;
+    // Find any item categories without associated store item categories
+    const absentItemCategories = itemCategories
+      .filter(({id}) => !storeItemCategories.findBy('itemCategory.id', id));
+    // Create missing store item categories
+    return all(absentItemCategories.map(itemCategory => {
+      storeItemCategories.createRecord({itemCategory, order: order++}).save();
+    }));
   }
 
   /**

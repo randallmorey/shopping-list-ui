@@ -1,7 +1,6 @@
 import Model from './model';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
-import { htmlSafe } from '@ember/template';
 
 /**
  * A store item category.
@@ -14,17 +13,7 @@ export default class StoreItemCategoryModel extends Model {
 
   // =relationships
   @belongsTo('store', {trackChanges: true}) storeProperty;
-  @belongsTo('item-category', {trackChanges: true}) storeItemCategory;
-
-  // =computed
-
-  /**
-   * Equal to the value of name or, if no name, an HTML-safe ellipsis.
-   * @return {String}
-   */
-  get displayName() {
-    return this.name ? this.name : htmlSafe('&hellip;');
-  }
+  @belongsTo('item-category', {trackChanges: true}) itemCategory;
 
   // =validations
 

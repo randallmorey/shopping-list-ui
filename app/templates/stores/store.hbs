@@ -6,19 +6,14 @@
   @delete={{route-action "delete" @model}}>
 
   <hr>
-  <strong>Store categories</strong>
-
+  
   <ul>
     {{#each @model.categories as |storeCategory|}}
-      <li>{{storeCategory.storeItemCategory.name}} / {{storeCategory.order}}</li>
-    {{/each}}
-  </ul>
-
-  <hr>
-  <strong>Item categories</strong>
-  <ul>
-    {{#each this.itemCategories as |itemCategory|}}
-      <li>{{itemCategory.name}}</li>
+      <li>
+        {{storeCategory.itemCategory.name}} /
+        {{storeCategory.itemCategory.id}} /
+        {{storeCategory.order}}
+      </li>
     {{/each}}
   </ul>
 

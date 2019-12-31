@@ -153,4 +153,59 @@ module('Acceptance | stores/store', function(hooks) {
     await click('.confirm-button-unsafe');
     assert.equal(currentURL(), '/stores', 'Abandoned changes and navigated to desired route');
   });
+
+  test('does nothing interesting when store item categories are synchronised with item categories', async function(assert) {
+    const store = this.server.create('store');
+    this.server.createList('item-category', 3).map(itemCategory => {
+      this.server.create('store-item-category', {
+        storeProperty: store,
+        itemCategory
+      });
+    });
+    const url = `/stores/${store.id}`;
+    assert.expect(2);
+    assert.equal(this.server.db.storeItemCategories.length, 3);
+    await visit(url);
+    assert.equal(this.server.db.storeItemCategories.length, 3);
+  });
+
+  test('adds missing store item categories', async function(assert) {
+    const store = this.server.create('store');
+    this.server.createList('item-category', 3);
+    const url = `/stores/${store.id}`;
+    assert.expect(2);
+    assert.equal(this.server.db.storeItemCategories.length, 0);
+    await visit(url);
+    assert.equal(this.server.db.storeItemCategories.length, 3);
+  });
+
+  test('removes orphaned store item categories (those without item categories)', async function(assert) {
+    const store = this.server.create('store');
+    this.server.createList('store-item-category', 3, {storeProperty: store});
+    const url = `/stores/${store.id}`;
+    assert.expect(2);
+    assert.equal(this.server.db.storeItemCategories.length, 3);
+    await visit(url);
+    assert.equal(this.server.db.storeItemCategories.length, 0);
+  });
+
+  test('reconciles store item categories with item categories', async function(assert) {
+    const store = this.server.create('store');
+    this.server.createList('item-category', 3).map(itemCategory => {
+      this.server.create('store-item-category', {
+        storeProperty: store,
+        itemCategory
+      });
+    });
+    // unassociated item categories
+    this.server.createList('item-category', 4);
+    // orphaned store item categories
+    this.server.createList('store-item-category', 2, {storeProperty: store});
+    const url = `/stores/${store.id}`;
+    assert.expect(2);
+    assert.equal(this.server.db.storeItemCategories.length, 5);
+    await visit(url);
+    assert.equal(this.server.db.storeItemCategories.length, 7);
+  });
+
 });

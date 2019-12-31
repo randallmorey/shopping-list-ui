@@ -80,7 +80,11 @@ module('Acceptance | items/item/index', function(hooks) {
   test('can change name and category and save record', async function(assert) {
     assert.expect(5);
     let items = [];
-    this.server.createList('item-category', 2).map(category => {
+    const itemCategories = this.server.createList('item-category', 2)
+    let sortedItemCategories = itemCategories.sort((a, b) => {
+      return b.name < a.name;
+    });
+    sortedItemCategories.map(category => {
       items.push(this.server.create('item', 1, {category}));
     });
     const url = `/items/${items[0].id}`;

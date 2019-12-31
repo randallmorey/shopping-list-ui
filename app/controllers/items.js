@@ -23,4 +23,14 @@ export default class ItemsController extends Controller {
       .filter(item => !item.get('category.content') && !item.isNew);
   }
 
+  /**
+   * Sort item categories.
+   * @type {ItemCategoryModel[]}
+   */
+  get categories() {
+    return this.model.categories.sortBy('name');
+  }
+
+
+
 }

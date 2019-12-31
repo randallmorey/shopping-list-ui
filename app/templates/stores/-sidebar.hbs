@@ -18,10 +18,10 @@
             {{#each this.stores as |store|}}
               <list.item as |listItem|>
                 <listItem.link @route="stores.store" @model={{store}}>
-                  <div class="link-title-group">
-                    <p class="link-title">{{store.displayName}}</p>
-                    <p class="link-subtitle">{{store.location}}</p>
-                  </div>
+                  <Multiline as |Line|>
+                    <Line>{{store.displayName}}</Line>
+                    <Line @secondary={{true}}>{{store.location}}</Line>
+                  </Multiline>
                   {{#if store.loadingStoreRoute}}
                     <FaIcon @icon="circle-notch" @spin={{true}} />
                   {{else}}

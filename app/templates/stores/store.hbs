@@ -26,9 +26,9 @@
               @decrease={{route-action "decreaseCategoryOrder" category}}
               @increase={{route-action "increaseCategoryOrder" category}}
               @increaseDisabled=
-                (eq category @model.categoriesByOrder.lastObject)
+                {{eq category @model.categoriesByOrder.lastObject}}
               @decreaseDisabled=
-                (eq category @model.categoriesByOrder.firstObject)>
+                {{eq category @model.categoriesByOrder.firstObject}}>
               {{category.itemCategory.name}}
             </list.item>
           {{/each}}

@@ -65,14 +65,20 @@ module('Acceptance | items/item/index', function(hooks) {
     const url = `/items/${items[0].id}`;
     await visit(url);
     assert.equal(currentURL(), url)
+    // TODO simplify selector
     let lists = findAll('.pane:first-child .list-group ul.list').map(group => group.children.length)
+    // TODO test their presence directly with a findall, rather than a mapped array of numbers
     assert.equal(lists.length, 2, 'Two list groups for categories exist.')
     assert.equal(lists[0], 1, 'First list group has one item.')
     assert.equal(lists[1], 1, 'Second list group has one item.')
+    // TODO simplify selector
     await click(findAll('.pane:nth-child(2) .list-group ul.list label')[1])
     await settled();
+    // TODO simplify selector, and this is still weird
     lists = findAll('.pane:first-child .list-group ul.list').map(group => group.children.length)
+    // TODO test their presence directly with a findall, rather than a mapped array of numbers
     assert.equal(lists.length, 1, 'Only one list group exist after changing one item category.')
+    // TODO use a findall selector for this rather than a mapped array
     assert.equal(lists[0], 2, 'List group has now 2 items')
 
     // TODO do an a11y test once the category is changed

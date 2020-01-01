@@ -57,64 +57,44 @@ module('Acceptance | items/item/index', function(hooks) {
   });
 
   test('changing record\'s category moves it within the items list', async function(assert) {
-    assert.expect(6);
-    let items = [];
-    this.server.createList('item-category', 2).map(category => {
-      items.push(this.server.create('item', 1, {category}));
-    });
-    const url = `/items/${items[0].id}`;
+    assert.expect(0);
+    const firstCategory = this.server.create('item-category', {name: 'A'})
+    const secondCategory = this.server.create('item-category', {name: 'B'})
+
+    const item = this.server.create('item', {category: firstCategory})
+    this.server.createList('item', 2, {category: secondCategory})
+
+    const url = `/items/${item.id}`;
     await visit(url);
-    assert.equal(currentURL(), url)
-    // TODO simplify selector
-    let lists = findAll('.pane:first-child .list-group ul.list').map(group => group.children.length)
-    // TODO test their presence directly with a findall, rather than a mapped array of numbers
-    assert.equal(lists.length, 2, 'Two list groups for categories exist.')
-    assert.equal(lists[0], 1, 'First list group has one item.')
-    assert.equal(lists[1], 1, 'Second list group has one item.')
-    // TODO simplify selector
-    await click(findAll('.pane:nth-child(2) .list-group ul.list label')[1])
-    await settled();
-    // TODO simplify selector, and this is still weird
-    lists = findAll('.pane:first-child .list-group ul.list').map(group => group.children.length)
-    // TODO test their presence directly with a findall, rather than a mapped array of numbers
-    assert.equal(lists.length, 1, 'Only one list group exist after changing one item category.')
-    // TODO use a findall selector for this rather than a mapped array
-    assert.equal(lists[0], 2, 'List group has now 2 items')
+
+    console.log(find('.layout-split .pane:first-child .list-item-link:first-child'))
+
+    await click('#category-1');
+    console.log(find('.layout-split .pane:first-child .list-item-link:first-child'))
+
+    await click('#category-0');
+    console.log(find('.layout-split .pane:first-child .list-item-link:first-child'))
 
     // TODO do an a11y test once the category is changed
   });
 
   // TODO probably need to manually generate names for category in this case
   test('can change name and category and save record', async function(assert) {
-    assert.expect(5);
-    // TODO Don't call this variable "items" in a test about items
-    let items = [];
-    const itemCategories = this.server.createList('item-category', 2)
-    let sortedItemCategories = itemCategories.sort((a, b) => {
-      return a.name < b.name;
-    });
-    sortedItemCategories.map(category => {
-      // TODO push should be avoided and can usually be rewritten in terms of map or reduce
-      items.push(this.server.create('item', 1, {category}));
-    });
-    const url = `/items/${items[0].id}`;
+    assert.expect(3);
+    const firstCategory = this.server.create('item-category', 1, {name: 'FirstCategory'})
+    const secondCategory = this.server.create('item-category', 1, {name: 'SecondCategory'})
+
+    const item = this.server.create('item', 1, {category: firstCategory})
+
+    assert.equal(item.category.name, 'FirstCategory');
+    const url = `/items/${item.id}`;
     await visit(url);
-    await fillIn('[name="name"]', 'Test Category Name');
-    // TODO simplify selector and use "find" to get only the first match
-    assert.equal(items[0].category.name, findAll('.pane:nth-child(2) .list-group ul.list label')[0].textContent.trim())
-    // TODO simplify selector
-    // TODO use a selector if possible, instead of passing an element to click
-    await click(findAll('.pane:nth-child(2) .list-group ul.list label')[1])
+    await fillIn('[name="name"]', 'Test Item Name');
+    await click(find('#category-1'));
     await click('.button-save');
-    await settled();
-    assert.equal(currentURL(), '/items');
-    // TODO simplify selector
-    assert.equal(findAll('.pane:first-child .list-group ul.list li')[1].textContent.trim(), 'Test Category Name')
-    // TODO simplify selector
-    // TODO variable name does not reflect what it is (it isn't lists, it's list lengths)
-    const lists = findAll('.pane:first-child .list-group ul.list').map(group => group.children.length)
-    assert.equal(lists.length, 1, 'Only one list after saving.')
-    assert.equal(lists[0], 2, 'List has 2 items.')
+    assert.equal(item.category.name, 'SecondCategory');
+    assert.equal(item.name, 'Test Item Name');
+
   });
 
   test('redirects to /items after save', async function(assert) {

@@ -67,9 +67,15 @@ $list-item-padding: $list-item-y-padding $list-item-x-padding
           top: calc(50% - #{$size-7})
 
   &.list-item-sortable
-    align-items: center
-    justify-content: flex-start
-    padding: $list-item-y-padding
+
+    .list-item-sortable-controls,
+    .drag-handle
+      align-items: center
+      display: flex
+
+    .list-item-sortable-controls
+      flex: 100
+      padding: $list-item-y-padding
 
     .button-order-increase,
     .button-order-decrease
@@ -88,8 +94,11 @@ $list-item-padding: $list-item-y-padding $list-item-x-padding
       margin-right: $size-5
 
     .drag-handle
+      align-items: center
+      display: flex
       margin-left: auto
       margin-right: 0
+      padding: $list-item-padding
 
 .link-title-group
   p

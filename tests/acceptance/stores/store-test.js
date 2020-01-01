@@ -208,4 +208,39 @@ module('Acceptance | stores/store', function(hooks) {
     assert.equal(this.server.db.storeItemCategories.length, 7);
   });
 
+  test('first decrease and last increase buttons are disabled', async function(assert) {
+
+  });
+
+  test('store category item order may be increased', async function(assert) {
+    // create a store
+    // create at least two store item categories with associated item categories
+    // make sure to set the order values
+    // visit the store route
+    // assert the values of order in the database
+    // click increase button
+    // assert values of order in the database have changed
+
+    // HINT:  You can inspect "server" records in this.server to inspect the
+    // order of store category items.
+  });
+
+  test('store category item order may be decreased', async function(assert) {
+    // create a store
+    // create at least two store item categories with associated item categories
+    // make sure to set the order values
+    // visit the store route
+    // assert the values of order in the database
+    // click decrease button
+    // assert values of order in the database have changed
+
+    // HINT:  You can inspect "server" records in this.server to inspect the
+    // order of store category items.
+  });
+
+  test('drag to reorder store category items', async function(assert) {
+    // do this last
+    // the sortable addon comes with test helpers to simulate drag events
+  });
+
 });

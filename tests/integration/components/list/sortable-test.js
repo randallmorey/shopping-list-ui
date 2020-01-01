@@ -7,14 +7,10 @@ module('Integration | Component | list/sortable', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<List::Sortable />`);
+    // Test that an ordered list is rendered with the proper class name
+    // Test that it yields a list item that can be rendered in its block
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
     await render(hbs`
       <List::Sortable>
         template block text

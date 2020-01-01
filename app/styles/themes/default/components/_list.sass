@@ -68,6 +68,15 @@ $list-item-padding: $list-item-y-padding $list-item-x-padding
 
   &.list-item-sortable
 
+    transition: background-color 0.25s
+
+    &.active,
+    &.is-dragging
+      @extend .has-background-primary
+      @extend .has-text-white
+      position: relative
+      z-index: 10
+
     .list-item-sortable-controls,
     .drag-handle
       align-items: center
@@ -96,9 +105,21 @@ $list-item-padding: $list-item-y-padding $list-item-x-padding
     .drag-handle
       align-items: center
       display: flex
+      justify-content: space-around
       margin-left: auto
       margin-right: 0
+      min-width: 70px
       padding: $list-item-padding
+
+      .move
+        display: none
+
+    &.active
+      .drag-handle
+        .move
+          display: inline
+        .grip
+          display: none
 
 .link-title-group
   p

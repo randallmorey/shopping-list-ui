@@ -1,6 +1,6 @@
 <List::Item
   class="list-item-sortable{{if @disabled " has-text-grey"}}"
-  {{sortable-item model=@model}}>
+  {{sortable-item model=@model handle=".drag-handle"}}>
 
   <div class="list-item-sortable-controls">
     <Button
@@ -24,7 +24,9 @@
   </div>
 
   <div class="drag-handle">
-    <FaIcon @icon="grip-lines" />
+    <div class="drag-handle-grip" {{sortable-handle}}>
+      <FaIcon @icon="grip-lines" />
+    </div>
   </div>
 
 </List::Item>

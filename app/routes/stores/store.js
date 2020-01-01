@@ -168,9 +168,18 @@ export default class StoresStoreRoute extends Route.extend(
     this.changeCategoryOrderBy(category, 1);
   }
 
+  /**
+   * Updates order across store item categories and saves all.
+   * @param {StoreItemCategoryModel[]} categories
+   * @param {StoreItemCategoryModel} category
+   */
   @action
-  reorderItems() {
-    console.log(arguments);
+  dragCategoryOrder(categories, category) {
+    // Reassign order values and save
+    categories.map((c, i) => {
+      c.order = i;
+      c.save();
+    });
   }
 
 }

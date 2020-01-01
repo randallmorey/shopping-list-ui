@@ -17,6 +17,7 @@
 
         <List::Sortable
           @disabled={{or @model.isSaving @model.categoriesSaving}}
+          {{sortable-group onChange=(route-action "reorderItems")}}
           as |list|>
           {{#each @model.categoriesByOrder as |category|}}
             <list.item
@@ -26,6 +27,7 @@
                 {{eq category.id @model.categoriesByOrder.lastObject.id}}
               @decreaseDisabled=
                 {{eq category.id @model.categoriesByOrder.firstObject.id}}
+              {{sortable-item model=category}}
               >
               {{category.itemCategory.name}}
             </list.item>

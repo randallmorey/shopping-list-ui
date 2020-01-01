@@ -168,4 +168,9 @@ export default class StoresStoreRoute extends Route.extend(
     this.changeCategoryOrderBy(category, 1);
   }
 
+  @action
+  reorderItems() {
+    console.log(arguments);
+  }
+
 }

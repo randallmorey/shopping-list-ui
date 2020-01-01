@@ -4,8 +4,8 @@
       "cancel": "Cancel",
       "save": "Save",
       "delete": "Delete",
-      "move-down": "Move Down",
-      "move-up": "Move Up"
+      "decrease-order": "Decrease order",
+      "increase-order": "Increase order"
     },
     "items": {
       "add": "$t(resources.add) $t(resources.item)"

@@ -1,6 +1,7 @@
 <List::List
-  class="list-sortable" @ordered={{true}}
-  {{sortable-group onChange=@onChange}}>
+  class="list-sortable"
+  @ordered={{true}}
+  {{sortable-group onChange=@onChange itemVisualClass="active"}}>
 
   {{yield (hash item=(component "list/item/sortable" disabled=@disabled))}}
 

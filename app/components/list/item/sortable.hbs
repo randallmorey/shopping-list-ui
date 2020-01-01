@@ -7,7 +7,6 @@
       @disabled={{or @disabled @decreaseDisabled}}
       class="button-order-decrease"
       title={{t "actions.default.decrease-order"}}
-      ...attributes
       {{on "click" @decrease}}>
       <FaIcon @icon="chevron-up" />
     </Button>
@@ -15,7 +14,6 @@
       @disabled={{or @disabled @increaseDisabled}}
       class="button-order-increase"
       title={{t "actions.default.increase-order"}}
-      ...attributes
       {{on "click" @increase}}>
       <FaIcon @icon="chevron-down" />
     </Button>

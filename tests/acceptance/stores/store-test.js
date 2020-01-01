@@ -1,5 +1,6 @@
 import { module, test } from 'qunit';
-import { visit, currentURL, find, click, fillIn, settled } from '@ember/test-helpers';
+import { visit, currentURL, find, findAll, click, fillIn, settled } from '@ember/test-helpers';
+import { drag }  from 'ember-sortable/test-support/helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { setupMirage } from 'ember-cli-mirage/test-support';
 import a11yAudit from 'ember-a11y-testing/test-support/audit';
@@ -209,38 +210,105 @@ module('Acceptance | stores/store', function(hooks) {
   });
 
   test('first decrease and last increase buttons are disabled', async function(assert) {
+    assert.expect(6)
+    const store = this.server.create('store');
+    this.server.createList('item-category', 3).map(itemCategory => {
+      this.server.create('store-item-category', {
+        storeProperty: store,
+        itemCategory
+      });
+    });
+    const url = `/stores/${store.id}`;
+
+    await visit(url);
+    const decreaseButtons = findAll('.button-order-decrease')
+    assert.ok(decreaseButtons[0].disabled)
+    assert.notOk(decreaseButtons[1].disabled)
+    assert.notOk(decreaseButtons[2].disabled)
+
+    const increaseButtons = findAll('.button-order-increase')
+    assert.notOk(increaseButtons[0].disabled)
+    assert.notOk(increaseButtons[1].disabled)
+    assert.ok(increaseButtons[2].disabled)
+  });
+
+  test('store category item order may be decreased', async function(assert) {
+    assert.expect(2);
+    const store = this.server.create('store');
+    this.server.createList('item-category', 2).map(itemCategory => {
+      this.server.create('store-item-category', {
+        storeProperty: store,
+        itemCategory
+      });
+    });
+
+    const url = `/stores/${store.id}`;
+    assert.equal(this.server.db.storeItemCategories[1].order, 1);
+    await visit(url);
+
+    const decreaseButton = find('ol li:last-child .button-order-decrease');
+    await click(decreaseButton);
+
+    assert.equal(this.server.db.storeItemCategories[1].order, 0);
 
   });
 
   test('store category item order may be increased', async function(assert) {
-    // create a store
-    // create at least two store item categories with associated item categories
-    // make sure to set the order values
-    // visit the store route
-    // assert the values of order in the database
-    // click increase button
-    // assert values of order in the database have changed
+    assert.expect(2);
+    const store = this.server.create('store');
+    this.server.createList('item-category', 2).map(itemCategory => {
+      this.server.create('store-item-category', {
+        storeProperty: store,
+        itemCategory
+      });
+    });
 
-    // HINT:  You can inspect "server" records in this.server to inspect the
-    // order of store category items.
+    const url = `/stores/${store.id}`;
+    assert.equal(this.server.db.storeItemCategories[0].order, 0);
+    await visit(url);
+
+    const increaseButton = find('ol li:first-child .button-order-increase');
+    await click(increaseButton);
+
+    assert.equal(this.server.db.storeItemCategories[0].order, 1);
   });
 
-  test('store category item order may be decreased', async function(assert) {
-    // create a store
-    // create at least two store item categories with associated item categories
-    // make sure to set the order values
-    // visit the store route
-    // assert the values of order in the database
-    // click decrease button
-    // assert values of order in the database have changed
+  test('drag down to reorder store category items', async function(assert) {
+    assert.expect(2);
+    this.drag = () => ({dy: 100, dx: undefined})
+    const store = this.server.create('store');
+    this.server.createList('item-category', 2).map(itemCategory => {
+      this.server.create('store-item-category', {
+        storeProperty: store,
+        itemCategory
+      });
+    });
+    const url = `/stores/${store.id}`;
 
-    // HINT:  You can inspect "server" records in this.server to inspect the
-    // order of store category items.
+    assert.equal(this.server.db.storeItemCategories[0].order, 0);
+    await visit(url);
+    await drag('mouse', 'ol li:first-child .drag-handle', this.drag)
+    assert.equal(this.server.db.storeItemCategories[0].order, 1);
+
   });
 
-  test('drag to reorder store category items', async function(assert) {
-    // do this last
-    // the sortable addon comes with test helpers to simulate drag events
+  test('drag up to reorder store category items', async function(assert) {
+    assert.expect(2);
+    this.drag = () => ({dy: -100, dx: undefined})
+    const store = this.server.create('store');
+    this.server.createList('item-category', 2).map(itemCategory => {
+      this.server.create('store-item-category', {
+        storeProperty: store,
+        itemCategory
+      });
+    });
+    const url = `/stores/${store.id}`;
+
+    assert.equal(this.server.db.storeItemCategories[1].order, 1);
+    await visit(url);
+    await drag('mouse', 'ol li:last-child .drag-handle', this.drag)
+    assert.equal(this.server.db.storeItemCategories[1].order, 0);
+
   });
 
 });

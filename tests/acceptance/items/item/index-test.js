@@ -70,6 +70,7 @@ module('Acceptance | items/item/index', function(hooks) {
     assert.equal(lists[0], 1, 'First list group has one item.')
     assert.equal(lists[1], 1, 'Second list group has one item.')
     await click(findAll('.pane:nth-child(2) .list-group ul.list label')[1])
+    await settled();
     lists = findAll('.pane:first-child .list-group ul.list').map(group => group.children.length)
     assert.equal(lists.length, 1, 'Only one list group exist after changing one item category.')
     assert.equal(lists[0], 2, 'List group has now 2 items')

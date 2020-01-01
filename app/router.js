@@ -20,4 +20,11 @@ Router.map(function() {
     this.route('store', {path: ':store_id'});
     this.route('new');
   });
+  this.route('shopping-lists', {path: 'lists'}, function() {
+    this.route('shopping-list', {path: ':shopping_list_id'}, function() {
+      this.route('shopping-list-items', {path: 'items'}, function() {
+        this.route('shopping-list-item', {path: ':shopping_list_item_id'});
+      });
+    });
+  });
 });

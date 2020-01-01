@@ -1,0 +1,40 @@
+<Section::Panel as |panel|>
+
+  <panel.header as |header|>
+    <header.columnLeft />
+    <header.columnCenter>
+      <header.title>{{t "resources.shopping-list-item_plural"}}</header.title>
+    </header.columnCenter>
+    <header.columnRight />
+  </panel.header>
+
+  <panel.body>
+    <ListSet as |listSet|>
+      {{#unless @model}}
+        <listSet.emptyListMessage>
+          {{t 'list.no-items'}}
+        </listSet.emptyListMessage>
+      {{/unless}}
+      <listSet.group as |group|>
+        <group.heading>Foobars</group.heading>
+        <group.list as |list|>
+          {{#each @model as |item|}}
+            <list.item as |listItem|>
+              <listItem.link
+                @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
+                @model={{item}}>
+                {{#if item.item.isLoading}}
+                  <FaIcon @icon="circle-notch" @spin={{true}} />
+                {{else}}
+                  {{item.item.name}}
+                {{/if}}
+                <FaIcon @icon="chevron-right" />
+              </listItem.link>
+            </list.item>
+          {{/each}}
+        </group.list>
+      </listSet.group>
+    </ListSet>
+  </panel.body>
+
+</Section::Panel>

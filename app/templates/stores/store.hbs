@@ -19,12 +19,19 @@
           @disabled={{or @model.isSaving @model.categoriesSaving}}
           @model={{@model.categoriesByOrder}}
           @onChange={{route-action "dragCategoryOrder"}}
-          as |list category|>
-          <list.item
-            @decrease={{route-action "decreaseCategoryOrder" category}}
-            @increase={{route-action "increaseCategoryOrder" category}}>
-            {{category.itemCategory.name}}
-          </list.item>
+          as |list|>
+          {{#each @model.categoriesByOrder as |category|}}
+            <list.item
+              @model={{category}}
+              @decrease={{route-action "decreaseCategoryOrder" category}}
+              @increase={{route-action "increaseCategoryOrder" category}}
+              @increaseDisabled=
+                (eq category @model.categoriesByOrder.lastObject)
+              @decreaseDisabled=
+                (eq category @model.categoriesByOrder.firstObject)>
+              {{category.itemCategory.name}}
+            </list.item>
+          {{/each}}
         </List::Sortable>
 
       </listSet.group>

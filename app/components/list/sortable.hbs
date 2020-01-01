@@ -2,17 +2,6 @@
   class="list-sortable" @ordered={{true}}
   {{sortable-group onChange=@onChange}}>
 
-  {{#each @model as |model|}}
-    {{yield (hash
-        item=(component "list/item/sortable"
-          disabled=@disabled
-          model=model
-          increaseDisabled=(eq model @model.lastObject)
-          decreaseDisabled=(eq model @model.firstObject)
-          )
-      )
-      model
-    }}
-  {{/each}}
+  {{yield (hash item=(component "list/item/sortable" disabled=@disabled))}}
 
 </List::List>

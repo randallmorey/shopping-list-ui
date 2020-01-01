@@ -125,9 +125,6 @@ export default class StoresStoreRoute extends Route.extend(
     // Get the current and next indices
     const currentIndex = categories.indexOf(category);
     const nextIndex = currentIndex + places;
-    console.log(currentIndex, nextIndex);
-    console.log(categories[currentIndex].get('itemCategory.name'),
-      categories[nextIndex].get('itemCategory.name'));
     // Swap the items
     categories[currentIndex] = categories[nextIndex];
     categories[nextIndex] = category;

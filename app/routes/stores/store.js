@@ -171,7 +171,7 @@ export default class StoresStoreRoute extends Route.extend(
    * @param {StoreItemCategoryModel} category
    */
   @action
-  dragCategoryOrder(categories, category) {
+  dragCategoryOrder(categories, /*category*/) {
     // Reassign order values and save
     categories.map((c, i) => {
       c.order = i;

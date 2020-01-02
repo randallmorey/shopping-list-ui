@@ -15,7 +15,7 @@ export default class ShoppingListItemModel extends Model {
   // =attributes
 
   @attr('boolean', {defaultValue: false}) purchased;
-  @attr('number', {defaultValue: 1}) quantity;
+  @attr('number', {defaultValue: 0}) quantity;
   @attr('string') notes;
 
   // =relationships
@@ -45,7 +45,7 @@ export default class ShoppingListItemModel extends Model {
     quantity: {
       numericality: {
         onlyInteger: true,
-        greaterThan: 0
+        greaterThanOrEqualTo: 0
       }
     }
   });

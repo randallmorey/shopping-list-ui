@@ -4,7 +4,7 @@ import { setupTest } from 'ember-qunit';
 module('Unit | Model | shopping list item', function(hooks) {
   setupTest(hooks);
 
-  test('it validates quantity is a positive integer', function(assert) {
+  test('it validates quantity is an integer >= 0', function(assert) {
     assert.expect(4);
     const store = this.owner.lookup('service:store');
     const list = store.createRecord('shopping-list');
@@ -14,7 +14,7 @@ module('Unit | Model | shopping list item', function(hooks) {
       list,
       quantity: 0
     });
-    assert.notOk(model.validate());
+    assert.ok(model.validate());
     model.quantity = -1;
     assert.notOk(model.validate());
     model.quantity = 1.5;

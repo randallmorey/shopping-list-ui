@@ -10,7 +10,8 @@ module.exports = function() {
       'chevron-up',
       'circle-notch',
       'grip-lines',
-      'plus'
+      'plus',
+      'minus'
     ]
   };
 };

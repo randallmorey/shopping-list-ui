@@ -48,7 +48,8 @@
     "labels": {
       "default": {
         "name": "Name",
-        "location": "Location"
+        "location": "Location",
+        "notes": "Notes"
       }
     },
     "errors": {

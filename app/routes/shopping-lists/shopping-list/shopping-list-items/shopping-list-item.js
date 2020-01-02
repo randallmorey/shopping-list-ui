@@ -33,4 +33,20 @@ export default class
     this.activePane.activateBody();
   }
 
+  // =methods
+
+ /**
+  * Redirect to shoppinh list items, replacing the history item. We do not want
+  * the back button to reach the now-stale new route.
+  */
+  afterPersistence() {
+   this.replaceWith('shopping-lists.shopping-list.shopping-list-items');
+  }
+
+  /**
+  * Redirect to shoppinh list items route.
+  */
+  afterCancel() {
+   this.transitionTo('shopping-lists.shopping-list.shopping-list-items');
+  }
 }

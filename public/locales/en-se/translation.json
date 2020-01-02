@@ -93,7 +93,8 @@
   },
   "list": {
     "no-items": "No items yet",
-    "no-item-categories": "No categories yet"
+    "no-item-categories": "No categories yet",
+    "no-shopping-list-items": "No items yet"
   },
   "messages": {
     "items": {

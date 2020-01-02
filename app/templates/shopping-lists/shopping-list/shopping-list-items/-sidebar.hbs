@@ -12,11 +12,11 @@
     <ListSet as |listSet|>
       {{#unless @model}}
         <listSet.emptyListMessage>
-          {{t 'list.no-items'}}
+          {{t 'list.no-shopping-list-items'}}
         </listSet.emptyListMessage>
       {{/unless}}
       <listSet.group as |group|>
-        <group.heading>Foobars</group.heading>
+        <group.heading></group.heading>
         <group.list as |list|>
           {{#each @model as |item|}}
             <list.item as |listItem|>

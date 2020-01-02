@@ -14,7 +14,7 @@ export default class ShoppingListsShoppingListShoppingListItemsRoute extends Rou
    * Returns a shopping list by ID.
    * @returns {ShoppingListItemModel[]}
    */
-  model(params) {
+  model() {
     return this.modelFor('shopping-lists.shopping-list').get('items');
   }
 

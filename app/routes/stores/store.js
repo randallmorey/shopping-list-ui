@@ -119,7 +119,7 @@ export default class StoresStoreRoute extends Route.extend(
    * @param {StoreItemCategoryModel} category
    * @param {Number} places number of places by which to move category
    */
-  changeCategoryOrderBy(category, places=1) {
+  changeCategoryOrderBy(category, places) {
     // Create a quick-and-dirty copy of the categories array that we can mutate
     const categories = this.currentModel.categoriesByOrder.map(c => c);
     // Get the current and next indices

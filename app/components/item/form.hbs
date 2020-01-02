@@ -29,11 +29,11 @@
     <ListSet as |listSet|>
       {{#if @categories}}
         <form.fieldsetList @legend={{t "resources.item-category"}} as |list|>
-          {{#each @categories as |category| }}
+          {{#each @categories as |category i| }}
             <list.item as |listItem|>
               <form.radio
                 @label={{category.name}}
-                @id={{category.id}}
+                @id={{concat 'category-' i}}
                 @name="category"
                 @value={{category}}
                 @checked={{eq @model.category.id category.id}}

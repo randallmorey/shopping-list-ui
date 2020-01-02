@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, currentURL, find, findAll, click, fillIn, settled } from '@ember/test-helpers';
+import { visit, currentURL, find, click, fillIn, settled } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { setupMirage } from 'ember-cli-mirage/test-support';
 import a11yAudit from 'ember-a11y-testing/test-support/audit';
@@ -56,33 +56,11 @@ module('Acceptance | items/item/index', function(hooks) {
     assert.equal(currentURL(), url, 'Remained on current route')
   });
 
-  test('changing record\'s category moves it within the items list', async function(assert) {
-    assert.expect(0);
-    const firstCategory = this.server.create('item-category', {name: 'A'})
-    const secondCategory = this.server.create('item-category', {name: 'B'})
-
-    const item = this.server.create('item', {category: firstCategory})
-    this.server.createList('item', 2, {category: secondCategory})
-
-    const url = `/items/${item.id}`;
-    await visit(url);
-
-    console.log(find('.layout-split .pane:first-child .list-item-link:first-child'))
-
-    await click('#category-1');
-    console.log(find('.layout-split .pane:first-child .list-item-link:first-child'))
-
-    await click('#category-0');
-    console.log(find('.layout-split .pane:first-child .list-item-link:first-child'))
-
-    // TODO do an a11y test once the category is changed
-  });
-
-  // TODO probably need to manually generate names for category in this case
   test('can change name and category and save record', async function(assert) {
     assert.expect(3);
-    const firstCategory = this.server.create('item-category', 1, {name: 'FirstCategory'})
-    const secondCategory = this.server.create('item-category', 1, {name: 'SecondCategory'})
+    const firstCategory =
+      this.server.create('item-category', 1, {name: 'FirstCategory'})
+    this.server.create('item-category', 1, {name: 'SecondCategory'})
 
     const item = this.server.create('item', 1, {category: firstCategory})
 
@@ -94,7 +72,6 @@ module('Acceptance | items/item/index', function(hooks) {
     await click('.button-save');
     assert.equal(item.category.name, 'SecondCategory');
     assert.equal(item.name, 'Test Item Name');
-
   });
 
   test('redirects to /items after save', async function(assert) {

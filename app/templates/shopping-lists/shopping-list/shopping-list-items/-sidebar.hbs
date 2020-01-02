@@ -24,7 +24,7 @@
               <list.item as |listItem|>
                 <listItem.link
                   @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
-                  @model={{item}}>
+                  @model={{item.id}}>
                   {{t "actions.shopping-list-item.add-name" name=item.name}}
                   <FaIcon @icon="chevron-right" />
                 </listItem.link>
@@ -42,7 +42,7 @@
               <list.item as |listItem|>
                 <listItem.link
                   @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
-                  @model={{item}}>
+                  @model={{item.id}}>
                   {{t "actions.shopping-list-item.add-name" name=item.name}}
                   <FaIcon @icon="chevron-right" />
                 </listItem.link>

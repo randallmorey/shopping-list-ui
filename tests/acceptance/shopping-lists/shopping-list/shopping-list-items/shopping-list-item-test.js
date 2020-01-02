@@ -22,4 +22,13 @@ module('Acceptance | shopping lists/shopping list/shopping list items/shopping l
     await visit('/lists/1/items/1');
     assert.ok(find('.layout-split > .pane:nth-child(2).active'), 'second pane is active');
   });
+
+  test('entering the route on a 0-quantity item sets its quantity to 1', async function(assert) {
+    const list = this.server.create('shopping-list');
+    this.server.create('shopping-list-item', {list, quantity: 0});
+    assert.expect(2);
+    assert.equal(this.server.db.shoppingListItems[0].quantity, 0);
+    await visit('/lists/1/items/1');
+    assert.equal(this.server.db.shoppingListItems[0].quantity, 1);
+  });
 });

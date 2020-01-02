@@ -106,6 +106,9 @@
     },
     "stores": {
       "welcome": "Manage your stores here.  Then sort item categories to optimize shopping routes by store."
+    },
+    "shopping-list-manage": {
+      "welcome": "Manage your shopping list here."
     }
   }
 }

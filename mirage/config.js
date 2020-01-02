@@ -30,4 +30,20 @@ export default function() {
   this.patch('/item-categories/:id');
   this.put('/item-categories/:id');
   this.del('/item-categories/:id');
+
+  this.get('/stores');
+  this.post('/stores');
+  this.get('/stores/:id');
+  this.post('/stores/:id');
+  this.patch('/stores/:id');
+  this.put('/stores/:id');
+  this.del('/stores/:id');
+
+  this.get('/store-item-categories');
+  this.post('/store-item-categories');
+  this.get('/store-item-categories/:id');
+  this.patch('/store-item-categories/:id');
+  this.put('/store-item-categories/:id');
+  this.del('/store-item-categories/:id');
+
 }

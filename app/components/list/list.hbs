@@ -1,5 +1,13 @@
-<ul class="list">
-  {{yield (hash
-    item=(component "list/item")
-  )}}
-</ul>
+{{#if @ordered}}
+  <ol class="list" ...attributes>
+    {{yield (hash
+      item=(component "list/item")
+    )}}
+  </ol>
+{{else}}
+  <ul class="list" ...attributes>
+    {{yield (hash
+      item=(component "list/item")
+    )}}
+  </ul>
+{{/if}}

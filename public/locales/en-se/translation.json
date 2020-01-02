@@ -3,14 +3,20 @@
     "default": {
       "cancel": "Cancel",
       "save": "Save",
-      "delete": "Delete"
+      "delete": "Delete",
+      "decrease-order": "Decrease order",
+      "increase-order": "Increase order"
     },
     "items": {
-      "add": "Add $t(resources.item)"
+      "add": "$t(resources.add) $t(resources.item)"
     },
     "item-category": {
-      "add": "Add $t(resources.item-category)",
+      "add": "$t(resources.add) $t(resources.item-category)",
       "edit-name": "Edit category {{name}}"
+    },
+    "stores": {
+      "add": "$t(resources.add) $t(resources.store)",
+      "edit-name": "Edit store {{name}}"
     }
   },
   "categories": {
@@ -38,7 +44,8 @@
   "fields": {
     "labels": {
       "default": {
-        "name": "Name"
+        "name": "Name",
+        "location": "Location"
       }
     },
     "errors": {
@@ -55,13 +62,25 @@
     "item-category": {
       "edit": "Edit $t(resources.item-category)",
       "new": "New $t(resources.item-category)"
+    },
+    "store": {
+      "edit": "Edit $t(resources.store)",
+      "new": "New $t(resources.store)"
+    },
+    "store-item-category": {
+      "order": "$t(resources.store-item-category) Order"
     }
   },
   "resources": {
+    "add": "Add",
     "item": "Item",
     "item_plural": "Items",
     "item-category": "Category",
-    "item-category_plural": "Categories"
+    "item-category_plural": "Categories",
+    "store": "Store",
+    "store_plural": "Stores",
+    "store-item-category": "Category",
+    "store-item-category_plural": "Categories"
   },
   "categories": {
     "uncategorized": "Uncategorized"
@@ -73,6 +92,9 @@
   "messages": {
     "items": {
       "welcome": "Manage all of your items here.  Once created, items may be added quickly to shopping lists."
+    },
+    "stores": {
+      "welcome": "Manage your stores here.  Then sort item categories to optimize shopping routes by store."
     }
   }
 }

@@ -1,0 +1,11 @@
+<Layouts::LayoutSplit as |layout|>
+
+  <layout.pane @active={{this.activePane.isSidebar}}>
+    {{outlet "sidebar"}}
+  </layout.pane>
+
+  <layout.pane @active={{this.activePane.isBody}}>
+    {{outlet}}
+  </layout.pane>
+
+</Layouts::LayoutSplit>

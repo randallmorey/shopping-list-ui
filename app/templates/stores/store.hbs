@@ -1,0 +1,41 @@
+<Store::Form
+  @model={{@model}}
+  @title={{t "titles.store.edit"}}
+  @submit={{route-action "submit" @model}}
+  @cancel={{route-action "cancel" @model}}
+  @delete={{route-action "delete" @model}}>
+
+  {{#if @model.categories}}
+    <ListSet as |listSet|>
+      <listSet.group as |group|>
+        <group.heading>
+          {{t "titles.store-item-category.order"}}
+          {{#if @model.categoriesSaving}}
+            <FaIcon @icon="circle-notch" @spin={{true}} />
+          {{/if}}
+        </group.heading>
+
+        <List::Sortable
+          @disabled={{or @model.isSaving @model.categoriesSaving}}
+          @model={{@model.categoriesByOrder}}
+          @onChange={{route-action "dragCategoryOrder"}}
+          as |list|>
+          {{#each @model.categoriesByOrder as |category|}}
+            <list.item
+              @model={{category}}
+              @decrease={{route-action "decreaseCategoryOrder" category}}
+              @increase={{route-action "increaseCategoryOrder" category}}
+              @increaseDisabled=
+                {{eq category @model.categoriesByOrder.lastObject}}
+              @decreaseDisabled=
+                {{eq category @model.categoriesByOrder.firstObject}}>
+              {{category.itemCategory.name}}
+            </list.item>
+          {{/each}}
+        </List::Sortable>
+
+      </listSet.group>
+    </ListSet>
+  {{/if}}
+
+</Store::Form>

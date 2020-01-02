@@ -20,4 +20,16 @@ module('Acceptance | shopping lists/shopping list/shopping list items', function
     await visit('/lists/1/items');
     assert.ok(find('.layout-split > .pane:nth-child(1).active'), 'first pane is active');
   });
+
+  test('creates shopping list items for every item as needed', async function(assert) {
+    assert.expect(2);
+    const items = this.server.createList('item-category', 3).map(category =>
+      this.server.create('item', {category})
+    );
+    const list = this.server.create('shopping-list');
+    this.server.create('shopping-list-item', {list, item: items[0]});
+    assert.equal(this.server.db.shoppingListItems.length, 1);
+    await visit('/lists/1/items');
+    assert.equal(this.server.db.shoppingListItems.length, 3);
+  });
 });

@@ -23,6 +23,22 @@ export default class ShoppingListItemModel extends Model {
   @belongsTo('item') item;
   @belongsTo('shopping-list') list;
 
+  // =computed
+
+  /**
+   * @type {String}
+   */
+  get name() {
+    return this.get('item.name');
+  }
+
+  /**
+   * @type {ItemCategoryModel}
+   */
+  get category() {
+    return this.get('item.category');
+  }
+
   // =validations
 
   validations = Object.freeze({

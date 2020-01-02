@@ -3,37 +3,55 @@
   <panel.header as |header|>
     <header.columnLeft />
     <header.columnCenter>
-      <header.title>{{t "resources.shopping-list-item_plural"}}</header.title>
+      <header.title>{{t "titles.shopping-list.manage"}}</header.title>
     </header.columnCenter>
     <header.columnRight />
   </panel.header>
 
   <panel.body>
     <ListSet as |listSet|>
-      {{#unless @model}}
+      {{#unless @model.shoppingListItems}}
         <listSet.emptyListMessage>
           {{t 'list.no-shopping-list-items'}}
         </listSet.emptyListMessage>
       {{/unless}}
-      <listSet.group as |group|>
-        <group.heading></group.heading>
-        <group.list as |list|>
-          {{#each @model as |item|}}
-            <list.item as |listItem|>
-              <listItem.link
-                @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
-                @model={{item}}>
-                {{#if item.item.isLoading}}
-                  <FaIcon @icon="circle-notch" @spin={{true}} />
-                {{else}}
-                  {{item.item.name}}
-                {{/if}}
-                <FaIcon @icon="chevron-right" />
-              </listItem.link>
-            </list.item>
-          {{/each}}
-        </group.list>
-      </listSet.group>
+
+      {{#each this.categoryGroups as |categoryGroup|}}
+        <listSet.group as |group|>
+          <group.heading>{{categoryGroup.category.name}}</group.heading>
+          <group.list as |list|>
+            {{#each categoryGroup.shoppingListItems as |item|}}
+              <list.item as |listItem|>
+                <listItem.link
+                  @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
+                  @model={{item}}>
+                  {{t "actions.shopping-list-item.add-name" name=item.name}}
+                  <FaIcon @icon="chevron-right" />
+                </listItem.link>
+              </list.item>
+            {{/each}}
+          </group.list>
+        </listSet.group>
+      {{/each}}
+
+      {{#if this.uncategorized}}
+        <listSet.group as |group|>
+          <group.heading>{{t "categories.uncategorized"}}</group.heading>
+          <group.list as |list|>
+            {{#each this.uncategorized as |item|}}
+              <list.item as |listItem|>
+                <listItem.link
+                  @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
+                  @model={{item}}>
+                  {{t "actions.shopping-list-item.add-name" name=item.name}}
+                  <FaIcon @icon="chevron-right" />
+                </listItem.link>
+              </list.item>
+            {{/each}}
+          </group.list>
+        </listSet.group>
+      {{/if}}
+
     </ListSet>
   </panel.body>
 

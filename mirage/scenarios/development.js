@@ -13,9 +13,7 @@ export default function(server) {
   server.createList('item-category', 1);
   // item categories
   server.createList('item-category', 5).map(category =>
-    server.createList('item', 2, {category}).map(item =>
-      server.create('shopping-list-item', {item, list})
-    )
+    server.createList('item', 2, {category})
   );
 
   const allItemCategories = server.schema.itemCategories.all().models;

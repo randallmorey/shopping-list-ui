@@ -15,7 +15,7 @@
       "edit-name": "Edit category {{name}}"
     },
     "shopping-list-item": {
-      "add": "Add $t(resources.shopping-list-item)"
+      "add-name": "Add $t(resources.shopping-list-item) {{name}}"
     },
     "stores": {
       "add": "Add $t(resources.store)",
@@ -65,6 +65,9 @@
     "item-category": {
       "edit": "Edit $t(resources.item-category)",
       "new": "New $t(resources.item-category)"
+    },
+    "shopping-list": {
+      "manage": "Manage $t(resources.shopping-list)"
     },
     "store": {
       "edit": "Edit $t(resources.store)",

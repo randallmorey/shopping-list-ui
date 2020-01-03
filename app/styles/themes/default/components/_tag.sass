@@ -1,7 +1,8 @@
-.item-tag
-  @extend .is-rounded, .has-text-weight-bold, .tag
-  padding-bottom: 0
-  width: 2em
-  height: 2em
-  margin-left: -1em
-  margin-right: 1em
+.tag
+  &,
+  &:not(body)
+    @extend .is-rounded, .has-text-weight-bold
+    padding-bottom: 0
+    width: 2rem
+    height: 2rem
+    margin-right: 0.5rem

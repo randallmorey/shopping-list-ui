@@ -26,7 +26,7 @@
                   @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
                   @model={{item.id}}
                   @title={{if (eq item.quantity 0) (t "actions.shopping-list-item.add-name" name=item.name)}}>
-                  {{#if item.quantity}}<Tag>{{item.quantity}}</Tag>{{/if}}
+                  <Tag @invisible={{eq item.quantity 0}}>{{item.quantity}}</Tag>
                   <Span>{{item.name}}</Span>
                   <FaIcon @icon="{{if item.quantity 'chevron-right' 'plus'}}" />
                 </listItem.link>

@@ -22,11 +22,14 @@
           <group.list as |list|>
             {{#each categoryGroup.shoppingListItems as |item|}}
               <list.item as |listItem|>
+                {{#if item.quantity}}
+                <listItem.preLink>{{item.quantity}}</listItem.preLink>
+                {{/if}}
                 <listItem.link
                   @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
                   @model={{item.id}}>
                   {{t "actions.shopping-list-item.add-name" name=item.name}}
-                  <FaIcon @icon="chevron-right" />
+                  <FaIcon @icon="{{if item.quantity 'chevron-right' 'plus'}}" />
                 </listItem.link>
               </list.item>
             {{/each}}

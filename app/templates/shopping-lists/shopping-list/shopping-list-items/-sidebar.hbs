@@ -22,13 +22,12 @@
           <group.list as |list|>
             {{#each categoryGroup.shoppingListItems as |item|}}
               <list.item as |listItem|>
-                {{#if item.quantity}}
-                <listItem.preLink>{{item.quantity}}</listItem.preLink>
-                {{/if}}
                 <listItem.link
                   @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
-                  @model={{item.id}}>
-                  {{t "actions.shopping-list-item.add-name" name=item.name}}
+                  @model={{item.id}}
+                  @title={{if (eq item.quantity 0) (t "actions.shopping-list-item.add-name" name=item.name)}}>
+                  {{#if item.quantity}}<Tag>{{item.quantity}}</Tag>{{/if}}
+                  <Span>{{item.name}}</Span>
                   <FaIcon @icon="{{if item.quantity 'chevron-right' 'plus'}}" />
                 </listItem.link>
               </list.item>

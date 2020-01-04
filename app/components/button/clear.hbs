@@ -1,0 +1,12 @@
+<Button
+  @submit={{true}}
+  @loading={{@loading}}
+  @disabled={{@disabled}}
+  class="button-clear"
+  ...attributes>
+  {{#if hasBlock}}
+    {{yield}}
+  {{else}}
+    {{t "actions.default.clear"}}
+  {{/if}}
+</Button>

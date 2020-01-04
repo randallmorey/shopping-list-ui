@@ -9,6 +9,7 @@
   <form.integer
     @value={{@model.quantity}}
     @disabled={{eq @model.quantity 0}}
+    @title={{@model.item.name}}
     @decrement={{@decrement}}
     @increment={{@increment}}
   >

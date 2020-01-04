@@ -39,4 +39,15 @@ export default class ShoppingListsShoppingListShoppingListItemsController
       .filter(item => !item.get('category.content'));
   }
 
+  /**
+   * Returns true if list has items with quantity grater than 0.
+   * @type {ShoppingListItemModel[]}
+   */
+  @computed('model.shoppingListItems.@each.quantity')
+  get noItemsAdded() {
+    const items = this.model.shoppingListItems
+      .filter(item => item.quantity > 0);
+    const noItemsAdded = (items.length > 0) ? false : true;
+    return noItemsAdded;
+  }
 }

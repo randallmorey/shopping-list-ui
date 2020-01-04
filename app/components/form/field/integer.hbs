@@ -1,10 +1,8 @@
-
-{{!-- TODO what about a11y --}}
 <div class="field-integer">
   <div class="field-integer-column">
-    {{!-- TODO it is critically important for all buttons to have meaninful text --}}
     <Button
       class="button-decrement"
+      title="{{t 'actions.shopping-list-item.decrement' name=@title}}"
       type="button"
       @disabled={{@disabled}}
       {{on "click" @decrement}}>
@@ -12,13 +10,12 @@
     </Button>
   </div>
   <div class="field-integer-column">
-    {{!-- TODO don't mark things up as p if they are not paragraphs --}}
-    <p class="field-integer-quantity">{{@value}}</p>
+    <span class="field-integer-quantity">{{@value}}</span>
   </div>
   <div class="field-integer-column">
-    {{!-- TODO it is critically important for all buttons to have meaninful text --}}
     <Button
      class="button-increment"
+     title="{{t 'actions.shopping-list-item.increment' name=@title}}"
      type="button"
      {{on "click" @increment}}
      >

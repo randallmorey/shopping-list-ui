@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, currentURL, find } from '@ember/test-helpers';
+import { visit, currentURL, find, click, settled } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { setupMirage } from 'ember-cli-mirage/test-support';
 
@@ -43,6 +43,18 @@ module('Acceptance | shopping lists/shopping list/shopping list items', function
   });
 
   test('can clear shopping list items, resetting them to quantity 0', async function(assert) {
-    // TODO
+    const list = this.server.create('shopping-list');
+    const item = this.server.create('item');
+    this.server.create('shopping-list-item', {list, item, quantity: 2});
+    this.server.create('shopping-list-item', {list, item, quantity: 1});
+    const url = '/lists/1/items'
+    assert.expect(4);
+    await visit(url);
+    assert.equal(this.server.db.shoppingListItems[0].quantity, 2);
+    await click('.button-clear');
+    await settled();
+    assert.equal(this.server.db.shoppingListItems[0].quantity, 0);
+    assert.equal(this.server.db.shoppingListItems[1].quantity, 0);
+    assert.equal(currentURL(), url);
   });
 });

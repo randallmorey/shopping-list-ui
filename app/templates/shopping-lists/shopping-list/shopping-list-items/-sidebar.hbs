@@ -6,10 +6,12 @@
       <header.title>{{t "titles.shopping-list.manage"}}</header.title>
     </header.columnCenter>
     <header.columnRight>
-      {{!-- TODO make this a component --}}
-      <button type="button" {{action "clear"}}>
+      <Button::Clear
+      {{action "clear"}}
+      @disabled={{this.noItemsAdded}}
+      >
         {{t "actions.shopping-list-item.clear"}}
-      </button>
+      </Button::Clear>
     </header.columnRight>
   </panel.header>
 

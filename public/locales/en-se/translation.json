@@ -4,6 +4,7 @@
       "cancel": "Cancel",
       "save": "Save",
       "delete": "Delete",
+      "clear": "Clear Items",
       "decrease-order": "Decrease order",
       "increase-order": "Increase order"
     },
@@ -16,6 +17,8 @@
     },
     "shopping-list-item": {
       "add-name": "Add $t(resources.shopping-list-item) {{name}}",
+      "increment": "Increase quantity of {{name}} by one.",
+      "decrement": "Decrease quantity of {{name}} by one.",
       "clear": "Clear $t(resources.shopping-list-item_plural)"
     },
     "stores": {

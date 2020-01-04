@@ -26,9 +26,10 @@ export default class ShoppingListsShoppingListShoppingListItemsRoute extends
     return hash({
       items: this.store.findAll('item'),
       categories: this.store.findAll('item-category'),
-      shoppingListItems:
-        this.modelFor('shopping-lists.shopping-list').get('items')
-    })
+      // for now, return all shopping list items rather than filtering by list,
+      // since only 1 list may exist
+      shoppingListItems: this.store.findAll('shopping-list-item')
+    });
   }
 
   /**
@@ -44,7 +45,7 @@ export default class ShoppingListsShoppingListShoppingListItemsRoute extends
     const list = this.modelFor('shopping-lists.shopping-list');
     // Find items without inverse shopping list items
     const futureListItems = model.items
-      .filter(({id}) => !model.shoppingListItems.findBy('id', id));
+      .filter(({id}) => !model.shoppingListItems.findBy('item.id', id));
     // Find shopping list items without inverse items
     const orphanedListItems = model.shoppingListItems
       .filter(shoppingListItem => !shoppingListItem.get('item.id'));

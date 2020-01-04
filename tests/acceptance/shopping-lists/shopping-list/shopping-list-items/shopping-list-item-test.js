@@ -2,6 +2,7 @@ import { module, test } from 'qunit';
 import { visit, currentURL, find, fillIn, click, settled } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { setupMirage } from 'ember-cli-mirage/test-support';
+import a11yAudit from 'ember-a11y-testing/test-support/audit';
 
 module('Acceptance | shopping lists/shopping list/shopping list items/shopping list item', function(hooks) {
   setupApplicationTest(hooks);
@@ -13,6 +14,7 @@ module('Acceptance | shopping lists/shopping list/shopping list items/shopping l
     const item = this.server.create('item');
     this.server.create('shopping-list-item', {list, item, quantity: 1});
     await visit('/lists/1/items/1');
+    await a11yAudit();
     assert.equal(currentURL(), '/lists/1/items/1');
   });
 

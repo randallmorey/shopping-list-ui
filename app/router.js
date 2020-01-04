@@ -25,6 +25,7 @@ Router.map(function() {
       this.route('shopping-list-items', {path: 'items'}, function() {
         this.route('shopping-list-item', {path: ':shopping_list_item_id'});
       });
+      this.route('shop');
     });
   });
 });

@@ -1,0 +1,78 @@
+<Section::Panel as |panel|>
+
+  <panel.header as |header|>
+    <header.columnLeft />
+    <header.columnCenter>
+      <header.title>{{t "titles.shopping-list.shop"}}</header.title>
+    </header.columnCenter>
+    <header.columnRight />
+  </panel.header>
+
+  <panel.body>
+    <ListSet as |listSet|>
+      {{#unless @model.shoppingListItems}}
+        <listSet.emptyListMessage>
+          {{t 'list.no-shopping-list-items'}}
+        </listSet.emptyListMessage>
+      {{/unless}}
+
+      {{#each this.categoryGroups as |categoryGroup|}}
+        <listSet.group as |group|>
+          <group.heading>{{categoryGroup.category.name}}</group.heading>
+          <group.list as |list|>
+            {{#each categoryGroup.shoppingListItems as |item|}}
+              <list.item as |listItem|>
+                <listItem.link
+                  @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
+                  @model={{item}}
+                  @title={{if
+                    (eq item.quantity 0)
+                    (t "actions.shopping-list-item.add-name" name=item.name)}}
+                  role={{if (eq item.quantity 0) "button"}}>
+                  <Tag @invisible={{eq item.quantity 0}}>{{item.quantity}}</Tag>
+                  <Multiline as |Line|>
+                    <Line>{{item.name}}</Line>
+                    {{#if item.notes}}
+                      <Line @secondary={{true}}>{{item.notes}}</Line>
+                    {{/if}}
+                  </Multiline>
+                  <FaIcon @icon="{{if item.quantity 'chevron-right' 'plus'}}" />
+                </listItem.link>
+              </list.item>
+            {{/each}}
+          </group.list>
+        </listSet.group>
+      {{/each}}
+
+      {{#if this.uncategorized}}
+        <listSet.group as |group|>
+          <group.heading>{{t "categories.uncategorized"}}</group.heading>
+          <group.list as |list|>
+            {{#each this.uncategorized as |item|}}
+              <list.item as |listItem|>
+                <listItem.link
+                  @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
+                  @model={{item}}
+                  @title={{if
+                    (eq item.quantity 0)
+                    (t "actions.shopping-list-item.add-name" name=item.name)}}
+                  role={{if (eq item.quantity 0) "button"}}>
+                  <Tag @invisible={{eq item.quantity 0}}>{{item.quantity}}</Tag>
+                  <Multiline as |Line|>
+                    <Line>{{item.name}}</Line>
+                    {{#if item.notes}}
+                      <Line @secondary={{true}}>{{item.notes}}</Line>
+                    {{/if}}
+                  </Multiline>
+                  <FaIcon @icon="{{if item.quantity 'chevron-right' 'plus'}}" />
+                </listItem.link>
+              </list.item>
+            {{/each}}
+          </group.list>
+        </listSet.group>
+      {{/if}}
+
+    </ListSet>
+  </panel.body>
+
+</Section::Panel>

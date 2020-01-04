@@ -4,6 +4,8 @@ export default function(server) {
 
   // shopping list
   const list = server.create('shopping-list');
+  // shopping list item *without* inverse item
+  server.create('shopping-list-item', {list});
 
   // items *without* categories
   server.createList('item', 3).map(item =>

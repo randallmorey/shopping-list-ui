@@ -32,4 +32,13 @@ module('Acceptance | shopping lists/shopping list/shopping list items', function
     await visit('/lists/1/items');
     assert.equal(this.server.db.shoppingListItems.length, 3);
   });
+
+  test('deletes any shopping list items without inverse items', async function(assert) {
+    assert.expect(2);
+    const list = this.server.create('shopping-list');
+    this.server.create('shopping-list-item', {list});
+    assert.equal(this.server.db.shoppingListItems.length, 1);
+    await visit('/lists/1/items');
+    assert.equal(this.server.db.shoppingListItems.length, 0);
+  });
 });

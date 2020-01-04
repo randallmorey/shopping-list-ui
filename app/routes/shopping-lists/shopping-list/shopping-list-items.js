@@ -33,23 +33,32 @@ export default class ShoppingListsShoppingListShoppingListItemsRoute extends
 
   /**
    * Performs some initial setup tasks:
-   * 1) For every item without an associated shopping list item,
+   * 1) For every item without an inverse shopping list item,
    *    creates a list item.
+   * 2) For every shopping list item without an inverse item, deletes the
+   *    shopping list item.
    * 2) Subscribes to realtime updates on shopping list items.
    * @param {Object} model
    */
   afterModel(model) {
     const list = this.modelFor('shopping-lists.shopping-list');
-    // Find items without associated shopping list items
-    const futureListItems =
-      model.items.filter(({id}) => !model.shoppingListItems.findBy('id', id));
-    // Create shopping list items for these
-    return all(futureListItems.map(item =>
-      this.store.createRecord('shopping-list-item', {list, item}).save()
-    )).then(() =>
-      // Subscribe to realtime updates on shopping list items
-      this.subscribe(model.shoppingListItems)
-    );
+    // Find items without inverse shopping list items
+    const futureListItems = model.items
+      .filter(({id}) => !model.shoppingListItems.findBy('id', id));
+    // Find shopping list items without inverse items
+    const orphanedListItems = model.shoppingListItems
+      .filter(shoppingListItem => !shoppingListItem.get('item.id'));
+    return hash({
+      // Create new shopping list items
+      newShoppingListItems: all(futureListItems.map(item =>
+        this.store.createRecord('shopping-list-item', {list, item}).save()
+      )),
+      // Delete any shopping list items without an inverse item
+      deletedShoppingListItems:
+        all(orphanedListItems.map(sli => sli.destroyRecord()))
+    })
+    // Subscribe to realtime updates on shopping list items
+    .then(() => this.subscribe(model.shoppingListItems));
   }
 
   /**

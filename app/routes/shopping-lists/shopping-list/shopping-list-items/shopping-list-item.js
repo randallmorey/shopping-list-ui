@@ -14,23 +14,28 @@ export default class
   // =methods
 
   /**
-   * Returns a shopping list item by ID.  If the item is at 0 quantity, it is
-   * first incremented to 1 and saved before entering the route (entering the
-   * route is equivalent to adding the item to the list).
+   * Returns a shopping list item by ID.
+   * @param {Object} params
    * @returns {ShoppingListItemModel}
    */
   model(params) {
     const id = params.shopping_list_item_id;
-    return this.store.findRecord('shopping-list-item', id)
-      .then(item => {
-        if (item.quantity === 0) {
-          item.quantity = 1;
-          return item.save();
-        }
-        return item;
-      });
+    return this.store.findRecord('shopping-list-item', id);
   }
 
+  /**
+   * If the item is at 0 quantity, it is first incremented to 1 and saved
+   * before redirecting back to items.  Only items with a quantity of 1 or
+   * greater enter the route, for convenience.
+   * @param {ShoppingListItemModel} model
+   */
+  redirect(model) {
+    if (model.quantity === 0) {
+      model.quantity = 1;
+      model.save();
+      this.transitionTo('shopping-lists.shopping-list.shopping-list-items');
+    }
+  }
 
   // =actions
 

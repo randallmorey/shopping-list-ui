@@ -24,8 +24,11 @@
               <list.item as |listItem|>
                 <listItem.link
                   @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
-                  @model={{item.id}}
-                  @title={{if (eq item.quantity 0) (t "actions.shopping-list-item.add-name" name=item.name)}}>
+                  @model={{item}}
+                  @title={{if
+                    (eq item.quantity 0)
+                    (t "actions.shopping-list-item.add-name" name=item.name)}}
+                  role={{if (eq item.quantity 0) "button"}}>
                   <Tag @invisible={{eq item.quantity 0}}>{{item.quantity}}</Tag>
                   <Span>{{item.name}}</Span>
                   <FaIcon @icon="{{if item.quantity 'chevron-right' 'plus'}}" />
@@ -44,8 +47,11 @@
               <list.item as |listItem|>
                 <listItem.link
                   @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
-                  @model={{item.id}}
-                  @title={{if (eq item.quantity 0) (t "actions.shopping-list-item.add-name" name=item.name)}}>
+                  @model={{item}}
+                  @title={{if
+                    (eq item.quantity 0)
+                    (t "actions.shopping-list-item.add-name" name=item.name)}}
+                  role={{if (eq item.quantity 0) "button"}}>
                   <Tag @invisible={{eq item.quantity 0}}>{{item.quantity}}</Tag>
                   <Span>{{item.name}}</Span>
                   <FaIcon @icon="{{if item.quantity 'chevron-right' 'plus'}}" />

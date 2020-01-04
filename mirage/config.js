@@ -46,4 +46,19 @@ export default function() {
   this.put('/store-item-categories/:id');
   this.del('/store-item-categories/:id');
 
+  this.get('/shopping-lists');
+  this.post('/shopping-lists');
+  this.get('/shopping-lists/:id');
+  this.patch('/shopping-lists/:id');
+  this.put('/shopping-lists/:id');
+  this.del('/shopping-lists/:id');
+
+  this.get('/shopping-list-items');
+  this.post('/shopping-list-items');
+  this.get('/shopping-list-items/:id');
+  this.post('/shopping-list-items/:id');
+  this.patch('/shopping-list-items/:id');
+  this.put('/shopping-list-items/:id');
+  this.del('/shopping-list-items/:id');
+
 }

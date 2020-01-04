@@ -1,0 +1,25 @@
+<div class="field-integer">
+  <div class="field-integer-column">
+    <Button
+      class="button-decrement"
+      title="{{t 'actions.shopping-list-item.decrement' name=@title}}"
+      type="button"
+      @disabled={{@disabled}}
+      {{on "click" @decrement}}>
+      <FaIcon @icon="minus"/>
+    </Button>
+  </div>
+  <div class="field-integer-column">
+    <span class="field-integer-quantity">{{@value}}</span>
+  </div>
+  <div class="field-integer-column">
+    <Button
+     class="button-increment"
+     title="{{t 'actions.shopping-list-item.increment' name=@title}}"
+     type="button"
+     {{on "click" @increment}}
+     >
+      <FaIcon @icon="plus"/>
+    </Button>
+  </div>
+</div>

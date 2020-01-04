@@ -4,18 +4,25 @@
       "cancel": "Cancel",
       "save": "Save",
       "delete": "Delete",
+      "clear": "Clear Items",
       "decrease-order": "Decrease order",
       "increase-order": "Increase order"
     },
     "items": {
-      "add": "$t(resources.add) $t(resources.item)"
+      "add": "Add $t(resources.item)"
     },
     "item-category": {
-      "add": "$t(resources.add) $t(resources.item-category)",
+      "add": "Add $t(resources.item-category)",
       "edit-name": "Edit category {{name}}"
     },
+    "shopping-list-item": {
+      "add-name": "Add $t(resources.shopping-list-item) {{name}}",
+      "increment": "Increase quantity of {{name}} by one.",
+      "decrement": "Decrease quantity of {{name}} by one.",
+      "clear": "Clear $t(resources.shopping-list-item_plural)"
+    },
     "stores": {
-      "add": "$t(resources.add) $t(resources.store)",
+      "add": "Add $t(resources.store)",
       "edit-name": "Edit store {{name}}"
     }
   },
@@ -45,7 +52,8 @@
     "labels": {
       "default": {
         "name": "Name",
-        "location": "Location"
+        "location": "Location",
+        "notes": "Notes"
       }
     },
     "errors": {
@@ -63,6 +71,9 @@
       "edit": "Edit $t(resources.item-category)",
       "new": "New $t(resources.item-category)"
     },
+    "shopping-list": {
+      "manage": "Manage $t(resources.shopping-list)"
+    },
     "store": {
       "edit": "Edit $t(resources.store)",
       "new": "New $t(resources.store)"
@@ -72,11 +83,14 @@
     }
   },
   "resources": {
-    "add": "Add",
     "item": "Item",
     "item_plural": "Items",
     "item-category": "Category",
     "item-category_plural": "Categories",
+    "shopping-list": "List",
+    "shopping-list_plural": "Lists",
+    "shopping-list-item": "Item",
+    "shopping-list-item_plural": "Items",
     "store": "Store",
     "store_plural": "Stores",
     "store-item-category": "Category",
@@ -87,7 +101,8 @@
   },
   "list": {
     "no-items": "No items yet",
-    "no-item-categories": "No categories yet"
+    "no-item-categories": "No categories yet",
+    "no-shopping-list-items": "No items yet"
   },
   "messages": {
     "items": {
@@ -95,6 +110,9 @@
     },
     "stores": {
       "welcome": "Manage your stores here.  Then sort item categories to optimize shopping routes by store."
+    },
+    "shopping-list-items": {
+      "welcome": "Add items to your shopping list, change their quantities, and add notes."
     }
   }
 }

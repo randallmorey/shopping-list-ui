@@ -2,8 +2,15 @@
 
 export default function(server) {
 
+  // shopping list
+  const list = server.create('shopping-list');
+  // shopping list item *without* inverse item
+  server.create('shopping-list-item', {list});
+
   // items *without* categories
-  server.createList('item', 3);
+  server.createList('item', 3).map(item =>
+    server.create('shopping-list-item', {item, list})
+  );
   // category *without* items
   server.createList('item-category', 1);
   // item categories

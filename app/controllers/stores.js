@@ -10,8 +10,6 @@ export default class ItemsController extends Controller {
 
   @service activePane;
 
-  //
-
   // =properties
 
   /**

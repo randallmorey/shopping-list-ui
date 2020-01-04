@@ -15,7 +15,8 @@
       "edit-name": "Edit category {{name}}"
     },
     "shopping-list-item": {
-      "add-name": "Add $t(resources.shopping-list-item) {{name}}"
+      "add-name": "Add $t(resources.shopping-list-item) {{name}}",
+      "clear": "Clear $t(resources.shopping-list-item_plural)"
     },
     "stores": {
       "add": "Add $t(resources.store)",

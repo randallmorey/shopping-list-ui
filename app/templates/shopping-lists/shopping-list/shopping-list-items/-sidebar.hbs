@@ -5,7 +5,12 @@
     <header.columnCenter>
       <header.title>{{t "titles.shopping-list.manage"}}</header.title>
     </header.columnCenter>
-    <header.columnRight />
+    <header.columnRight>
+      {{!-- TODO make this a component --}}
+      <button type="button" {{action "clear"}}>
+        {{t "actions.shopping-list-item.clear"}}
+      </button>
+    </header.columnRight>
   </panel.header>
 
   <panel.body>
@@ -30,7 +35,12 @@
                     (t "actions.shopping-list-item.add-name" name=item.name)}}
                   role={{if (eq item.quantity 0) "button"}}>
                   <Tag @invisible={{eq item.quantity 0}}>{{item.quantity}}</Tag>
-                  <Span>{{item.name}}</Span>
+                  <Multiline as |Line|>
+                    <Line>{{item.name}}</Line>
+                    {{#if item.notes}}
+                      <Line @secondary={{true}}>{{item.notes}}</Line>
+                    {{/if}}
+                  </Multiline>
                   <FaIcon @icon="{{if item.quantity 'chevron-right' 'plus'}}" />
                 </listItem.link>
               </list.item>
@@ -53,7 +63,12 @@
                     (t "actions.shopping-list-item.add-name" name=item.name)}}
                   role={{if (eq item.quantity 0) "button"}}>
                   <Tag @invisible={{eq item.quantity 0}}>{{item.quantity}}</Tag>
-                  <Span>{{item.name}}</Span>
+                  <Multiline as |Line|>
+                    <Line>{{item.name}}</Line>
+                    {{#if item.notes}}
+                      <Line @secondary={{true}}>{{item.notes}}</Line>
+                    {{/if}}
+                  </Multiline>
                   <FaIcon @icon="{{if item.quantity 'chevron-right' 'plus'}}" />
                 </listItem.link>
               </list.item>

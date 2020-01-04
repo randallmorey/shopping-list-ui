@@ -41,4 +41,8 @@ module('Acceptance | shopping lists/shopping list/shopping list items', function
     await visit('/lists/1/items');
     assert.equal(this.server.db.shoppingListItems.length, 0);
   });
+
+  test('can clear shopping list items, resetting them to quantity 0', async function(assert) {
+    // TODO
+  });
 });

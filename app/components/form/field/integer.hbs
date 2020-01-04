@@ -1,5 +1,8 @@
+
+{{!-- TODO what about a11y --}}
 <div class="field-integer">
   <div class="field-integer-column">
+    {{!-- TODO it is critically important for all buttons to have meaninful text --}}
     <Button
       class="button-decrement"
       type="button"
@@ -9,9 +12,11 @@
     </Button>
   </div>
   <div class="field-integer-column">
+    {{!-- TODO don't mark things up as p if they are not paragraphs --}}
     <p class="field-integer-quantity">{{@value}}</p>
   </div>
   <div class="field-integer-column">
+    {{!-- TODO it is critically important for all buttons to have meaninful text --}}
     <Button
      class="button-increment"
      type="button"

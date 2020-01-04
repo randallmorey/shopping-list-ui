@@ -83,4 +83,20 @@ export default class ShoppingListsShoppingListShoppingListItemsRoute extends
     this.activePane.activateSidebar();
   }
 
+  /**
+   * Resets all item quantities to 0, saves, and redirects to index.
+   */
+  @action
+  async clear() {
+    await all(
+      this.currentModel.shoppingListItems
+        .filter(item => item.quantity > 0)
+        .map(item => {
+          item.quantity = 0;
+          return item.save();
+        })
+    );
+    this.transitionTo('shopping-lists.shopping-list.shopping-list-items');
+  }
+
 }

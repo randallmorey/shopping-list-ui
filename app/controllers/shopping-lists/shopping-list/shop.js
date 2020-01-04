@@ -16,7 +16,9 @@ export default class ShoppingListsShoppingListShopController extends Controller 
     return this.model.categories.sortBy('name').map(category => ({
       category,
       shoppingListItems:
-        categorized.filter(item => item.get('category.id') === category.id)
+        categorized
+          .filter(item => item.get('category.id') === category.id)
+          .filter(item => item.quantity)
     })).filter(group => group.shoppingListItems.length);
   }
 
@@ -27,7 +29,8 @@ export default class ShoppingListsShoppingListShopController extends Controller 
   @computed('model.shoppingListItems.@each.category')
   get uncategorized() {
     return this.model.shoppingListItems
-      .filter(item => !item.get('category.content'));
+      .filter(item => !item.get('category.content'))
+      .filter(item => item.quantity);
   }
 
 }

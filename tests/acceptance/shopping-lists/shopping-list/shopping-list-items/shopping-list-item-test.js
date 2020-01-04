@@ -97,4 +97,15 @@ module('Acceptance | shopping lists/shopping list/shopping list items/shopping l
     assert.equal(currentURL(), '/lists/1/items');
   });
 
+  test('canceling changes redirects to /lists/1/items', async function(assert) {
+    const list = this.server.create('shopping-list');
+    const item = this.server.create('item');
+    this.server.create('shopping-list-item', {list, item, quantity: 1});
+    assert.expect(2);
+    await visit('/lists/1/items/1');
+    assert.equal(currentURL(), '/lists/1/items/1');
+    await click('.button-cancel');
+    assert.equal(currentURL(), '/lists/1/items');
+  });
+
 });

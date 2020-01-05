@@ -20,6 +20,12 @@ export default function(server) {
 
   const allItemCategories = server.schema.itemCategories.all().models;
 
+  const allItems = server.schema.items.all().models;
+
+  allItems.map(item =>
+    server.create('shopping-list-item', {item, list})
+  );
+  
   // stores
   server.createList('store', 5).map(storeProperty => {
     // store item categories *with* item categories

@@ -16,7 +16,7 @@
     <ListSet as |listSet|>
       {{#unless @model.shoppingListItems}}
         <listSet.emptyListMessage>
-          {{t 'list.no-shopping-list-items'}}
+          {{t "list.no-shopping-list-items"}}
         </listSet.emptyListMessage>
       {{/unless}}
 
@@ -26,7 +26,9 @@
           <group.list as |list|>
             {{#each categoryGroup.shoppingListItems as |item|}}
               <list.item as |listItem|>
-                <button role="checkbox">
+                <listItem.checkbox
+                @checked={{item.purchased}}
+                @toggleAction={{route-action "togglePurchase" item}}>
                   <Tag>{{item.quantity}}</Tag>
                   <Multiline as |Line|>
                     <Line>{{item.name}}</Line>
@@ -34,8 +36,7 @@
                       <Line @secondary={{true}}>{{item.notes}}</Line>
                     {{/if}}
                   </Multiline>
-                  <FaIcon @icon="{{if item.quantity 'chevron-right' 'plus'}}" />
-                </button>
+                </listItem.checkbox>
               </list.item>
             {{/each}}
           </group.list>
@@ -48,11 +49,9 @@
           <group.list as |list|>
             {{#each this.uncategorized as |item|}}
               <list.item as |listItem|>
-                <button
-                  class="list-item-link"
-                  {{action "togglePurchase" item}}
-                  role="checkbox"
-                  aria-checked={{item.purchased}}>
+                <listItem.checkbox
+                  @checked={{item.purchased}}
+                  @toggleAction={{route-action "togglePurchase" item}}>
                   <Tag>{{item.quantity}}</Tag>
                   <Multiline as |Line|>
                     <Line>{{item.name}}</Line>
@@ -60,13 +59,7 @@
                       <Line @secondary={{true}}>{{item.notes}}</Line>
                     {{/if}}
                   </Multiline>
-                  <span class="fa-layers">
-                    <FaIcon @icon="square" @size="2x" @prefix="far"/>
-                    {{#if item.purchased}}
-                    <FaIcon @icon="check" @size="2x" @transform="shrink-5"/>
-                    {{/if}}
-                  </span>
-                </button>
+                </listItem.checkbox>
               </list.item>
             {{/each}}
           </group.list>

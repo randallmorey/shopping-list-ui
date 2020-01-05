@@ -19,6 +19,10 @@ export default class ShoppingListsShoppingListShopRoute extends Route {
     });
   }
 
+  /**
+   * Toggles purchased property of record.
+   * @param {ShoppingListItemModel}
+   */
   @action
   togglePurchase(record) {
     record.toggleProperty('purchased');

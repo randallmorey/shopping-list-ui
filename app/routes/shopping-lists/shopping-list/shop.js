@@ -20,10 +20,8 @@ export default class ShoppingListsShoppingListShopRoute extends Route {
   }
 
   @action
-  togglePurchase(model) {
-    this.store.findRecord('shopping-list-item', model.id).then(record => {
-      record.toggleProperty('purchased')
-      record.save()
-    })
+  togglePurchase(record) {
+    record.toggleProperty('purchased');
+    record.save();
   }
 }

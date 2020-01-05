@@ -1,11 +1,15 @@
 <Section::Panel as |panel|>
 
   <panel.header as |header|>
-    <header.columnLeft />
+    <header.columnLeft>
+      <Link::Home>{{t "resources.home"}}</Link::Home>
+    </header.columnLeft>
     <header.columnCenter>
       <header.title>{{t "titles.shopping-list.shop"}}</header.title>
     </header.columnCenter>
-    <header.columnRight />
+    <header.columnRight>
+      <Button::Done />
+    </header.columnRight>
   </panel.header>
 
   <panel.body>
@@ -22,14 +26,8 @@
           <group.list as |list|>
             {{#each categoryGroup.shoppingListItems as |item|}}
               <list.item as |listItem|>
-                <listItem.link
-                  @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
-                  @model={{item}}
-                  @title={{if
-                    (eq item.quantity 0)
-                    (t "actions.shopping-list-item.add-name" name=item.name)}}
-                  role={{if (eq item.quantity 0) "button"}}>
-                  <Tag @invisible={{eq item.quantity 0}}>{{item.quantity}}</Tag>
+                <button role="checkbox">
+                  <Tag>{{item.quantity}}</Tag>
                   <Multiline as |Line|>
                     <Line>{{item.name}}</Line>
                     {{#if item.notes}}
@@ -37,7 +35,7 @@
                     {{/if}}
                   </Multiline>
                   <FaIcon @icon="{{if item.quantity 'chevron-right' 'plus'}}" />
-                </listItem.link>
+                </button>
               </list.item>
             {{/each}}
           </group.list>
@@ -50,22 +48,25 @@
           <group.list as |list|>
             {{#each this.uncategorized as |item|}}
               <list.item as |listItem|>
-                <listItem.link
-                  @route="shopping-lists.shopping-list.shopping-list-items.shopping-list-item"
-                  @model={{item}}
-                  @title={{if
-                    (eq item.quantity 0)
-                    (t "actions.shopping-list-item.add-name" name=item.name)}}
-                  role={{if (eq item.quantity 0) "button"}}>
-                  <Tag @invisible={{eq item.quantity 0}}>{{item.quantity}}</Tag>
+                <button
+                  class="list-item-link"
+                  {{action "togglePurchase" item}}
+                  role="checkbox"
+                  aria-checked={{item.purchased}}>
+                  <Tag>{{item.quantity}}</Tag>
                   <Multiline as |Line|>
                     <Line>{{item.name}}</Line>
                     {{#if item.notes}}
                       <Line @secondary={{true}}>{{item.notes}}</Line>
                     {{/if}}
                   </Multiline>
-                  <FaIcon @icon="{{if item.quantity 'chevron-right' 'plus'}}" />
-                </listItem.link>
+                  <span class="fa-layers">
+                    <FaIcon @icon="square" @size="2x" @prefix="far"/>
+                    {{#if item.purchased}}
+                    <FaIcon @icon="check" @size="2x" @transform="shrink-5"/>
+                    {{/if}}
+                  </span>
+                </button>
               </list.item>
             {{/each}}
           </group.list>

@@ -1,8 +1,8 @@
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
+import { action } from '@ember/object';
 
 export default class ShoppingListsShoppingListShopRoute extends Route {
-
   // =methods
 
   /**
@@ -19,4 +19,11 @@ export default class ShoppingListsShoppingListShopRoute extends Route {
     });
   }
 
+  @action
+  togglePurchase(model) {
+    this.store.findRecord('shopping-list-item', model.id).then(record => {
+      record.toggleProperty('purchased')
+      record.save()
+    })
+  }
 }

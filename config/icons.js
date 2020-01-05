@@ -9,9 +9,14 @@ module.exports = function() {
       'chevron-right',
       'chevron-up',
       'circle-notch',
+      'check',
       'grip-lines',
+      'home',
       'plus',
       'minus'
+    ],
+    'free-regular-svg-icons': [
+      'square'
     ]
   };
 };

@@ -1,0 +1,30 @@
+<Section::Panel as |panel|>
+
+  <form class="form-panel" ...attributes>
+
+    <panel.header as |header|>
+      <header.columnLeft>
+        <Link::Home>{{t 'resources.home'}}</Link::Home>
+      </header.columnLeft>
+      <header.columnCenter>
+        <header.title>{{@title}}</header.title>
+      </header.columnCenter>
+      <header.columnRight>
+        <Button::Done @loading={{@saving}} @disabled={{not @dirty}} />
+      </header.columnRight>
+    </panel.header>
+
+    <panel.body>
+      <Container>
+
+        {{yield (hash
+          fieldsetList=(component "form/fieldset-list")
+        )}}
+
+
+      </Container>
+    </panel.body>
+
+  </form>
+
+</Section::Panel>

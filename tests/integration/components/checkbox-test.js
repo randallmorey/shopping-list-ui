@@ -20,7 +20,7 @@ module('Integration | Component | checkbox', function(hooks) {
     `);
 
     assert.ok(find('.list-item-link'), 'renders list item link');
-    assert.ok(find('.tag-inverted'), 'renders outlined tag as checkbox');
+    assert.ok(find('.tag'), 'renders tag as non-inverted checkbox');
     assert.notOk(find('.fa-check'), 'does not have checked icon');
 
   });
@@ -39,7 +39,7 @@ module('Integration | Component | checkbox', function(hooks) {
     `);
 
     assert.ok(find('.list-item-link'), 'renders list item link');
-    assert.ok(find('.tag-inverted'), 'renders outlined tag as checkbox');
+    assert.ok(find('.tag-inverted'), 'renders tag as inverted checkbox');
     assert.ok(find('.fa-check'), 'has checked icon');
 
   });

@@ -4,7 +4,7 @@
   role="checkbox"
   aria-checked={{if @checked "true" "false"}}>
   {{yield}}
-  <Tag @inverted={{true}}>
+  <Tag @inverted={{@checked}}>
     {{#if @checked}}
     <FaIcon @icon="check" @size="2x" @transform="shrink-5"/>
     {{/if}}

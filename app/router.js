@@ -28,4 +28,10 @@ Router.map(function() {
       this.route('shop');
     });
   });
+
+  this.route('list', function() {
+    this.route('manage', function() {
+      this.route('item', {path: ':item_id'});
+    });
+  });
 });

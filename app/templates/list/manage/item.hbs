@@ -1,0 +1,7 @@
+<ShoppingList::Form
+  @model={{@model}}
+  @title={{@model.name}}
+  @submit={{route-action "submit" @model}}
+  @cancel={{route-action "cancel" @model}}
+  @decrement={{this.decrementQuantity}}
+  @increment={{this.incrementQuantity}} />

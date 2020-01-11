@@ -15,6 +15,9 @@ export default class ItemModel extends Model {
   // =attributes
 
   @attr('string') name;
+  @attr('boolean', {defaultValue: false}) purchased;
+  @attr('number', {defaultValue: 0}) quantity;
+  @attr('string') notes;
 
   // =relationships
 
@@ -30,10 +33,32 @@ export default class ItemModel extends Model {
     return this.name ? this.name : htmlSafe('&hellip;');
   }
 
+  // =methods
+
+  /**
+   * Increases quantity by 1.
+   */
+  incrementQuantity() {
+    this.incrementProperty('quantity');
+  }
+
+  /**
+   * Decreases quantity by 1.
+   */
+  decrementQuantity() {
+    this.decrementProperty('quantity');
+  }
+
   // =validations
 
   validations = Object.freeze({
-    name: { presence: true }
+    name: { presence: true },
+    quantity: {
+      numericality: {
+        onlyInteger: true,
+        greaterThanOrEqualTo: 0
+      }
+    }
   });
 
 }

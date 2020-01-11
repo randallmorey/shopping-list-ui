@@ -1,9 +1,25 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
-export default class ShoppingListsShoppingListShopController extends Controller {
+export default class ShoppingListsShoppingListShopController extends
+  Controller {
 
   // =properties
+
+  /**
+   * User-selected store.
+   * @type {StoreModel}
+   */
+  @tracked
+  selectedStore = null;
+
+  // =computed
+
+  @computed('model.stores.[]', 'selectedStore')
+  get currentStore() {
+    return this.selectedStore || this.model.stores[0];
+  }
 
   /**
    * Groups shopping list items by category (for those with categories).

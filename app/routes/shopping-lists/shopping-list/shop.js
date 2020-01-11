@@ -13,6 +13,7 @@ export default class ShoppingListsShoppingListShopRoute extends Route {
     return hash({
       items: this.store.findAll('item'),
       categories: this.store.findAll('item-category'),
+      stores: this.store.findAll('store'),
       // for now, return all shopping list items rather than filtering by list,
       // since only 1 list may exist
       shoppingListItems: this.store.findAll('shopping-list-item')

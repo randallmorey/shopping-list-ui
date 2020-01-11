@@ -11,6 +11,20 @@
   </panel.header>
 
   <panel.body>
+
+    <Container>
+      <Form::Field::Select
+        @id="store"
+        @name="store"
+        @label={{t "resources.store"}}
+        @value={{this.currentStore}}
+        @onChange={{fn (mut this.selectedStore)}} as |xs|>
+        {{#each @model.stores as |store|}}
+          <xs.option @value={{store}}>{{store.name}}</xs.option>
+        {{/each}}
+      </Form::Field::Select>
+    </Container>
+
     <ListSet as |listSet|>
       {{#unless @model.shoppingListItems}}
         <listSet.emptyListMessage>

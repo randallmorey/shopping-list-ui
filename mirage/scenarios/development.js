@@ -25,18 +25,12 @@ export default function(server) {
   allItems.map(item =>
     server.create('shopping-list-item', {item, list})
   );
-  
+
   // stores
   server.createList('store', 5).map(storeProperty => {
-    // store item categories *with* item categories
-    for (let i = 0; i < 3; i++) {
-      server.create('store-item-category', {
-        storeProperty,
-        itemCategory: allItemCategories[i + 1]
-      });
-    }
-    // store item categories *without* item categories
-    server.createList('store-item-category', 3, {storeProperty});
+    allItemCategories.map(itemCategory => {
+      server.create('store-item-category', {storeProperty, itemCategory});
+    });
   });
 
 }

@@ -16,37 +16,64 @@ export default class ShoppingListsShoppingListShopController extends
 
   // =computed
 
-  @computed('model.stores.[]', 'selectedStore')
+  @computed('selectedStore', 'model.stores.[]')
   get currentStore() {
-    return this.selectedStore || this.model.stores[0];
+    return this.selectedStore || this.model.stores.firstObject;
   }
 
   /**
-   * Groups shopping list items by category (for those with categories).
-   * @type {Array}
-   */
-  @computed('model.shoppingListItems.@each.category')
-  get categoryGroups() {
-    const categorized = this.model.shoppingListItems
-      .filter(item => item.get('category.content'));
-    return this.model.categories.sortBy('name').map(category => ({
-      category,
-      shoppingListItems:
-        categorized
-          .filter(item => item.get('category.id') === category.id)
-          .filter(item => item.quantity)
-    })).filter(group => group.shoppingListItems.length);
-  }
-
-  /**
-   * Lists only shopping list items *without* categories.
+   * Returns shopping list items that belong to a store item category for
+   * the current store.
    * @type {ShoppingListItemModel[]}
    */
-  @computed('model.shoppingListItems.@each.category')
+  @computed(
+    'currentStore',
+    'currentStore.categories.@each.itemCategory',
+    'model.shoppingListItems.@each.category'
+  )
+  get categorized() {
+    const store = this.currentStore;
+    const storeItemCategories = store.get('categories');
+    return this.model.shoppingListItems.filter(item =>
+      storeItemCategories.findBy('itemCategory.id', item.get('category.id'))
+    );
+  }
+
+  /**
+   * Lists shopping list items that *do not* belong to a store item category
+   * for the current store.
+   * @type {ShoppingListItemModel[]}
+   */
+   @computed(
+     'currentStore',
+     'currentStore.categories.@each.itemCategory',
+     'model.shoppingListItems.@each.category'
+   )
   get uncategorized() {
-    return this.model.shoppingListItems
-      .filter(item => !item.get('category.content'))
-      .filter(item => item.quantity);
+    const store = this.currentStore;
+    const storeItemCategories = store.get('categories');
+    return this.model.shoppingListItems.filter(item =>
+      !storeItemCategories.findBy('itemCategory.id', item.get('category.id'))
+    );
+  }
+
+  /**
+   * Groups shopping list items by store item category for the current store.
+   * Groups are sorted by category order.
+   * @type {Array}
+   */
+  @computed('categorized.[]', 'currentStore.categories.[]')
+  get categoryGroups() {
+    const categorized = this.categorized;
+    const store = this.currentStore;
+    const storeItemCategories = store.get('categories');
+    return storeItemCategories.sortBy('order').map(category => ({
+        category,
+        shoppingListItems: categorized
+          .filterBy('category.id', category.get('itemCategory.id'))
+          .filter(item => item.quantity)
+      }))
+      .filter(group => group.shoppingListItems.length);
   }
 
 }

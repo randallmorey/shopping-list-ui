@@ -1,7 +1,9 @@
 <Section::Panel as |panel|>
 
   <panel.header as |header|>
-    <header.columnLeft />
+    <header.columnLeft>
+      <Link::Home />
+    </header.columnLeft>
     <header.columnCenter>
       <header.title>{{t "titles.shopping-list.shop"}}</header.title>
     </header.columnCenter>
@@ -34,7 +36,9 @@
 
       {{#each this.categoryGroups as |categoryGroup|}}
         <listSet.group as |group|>
-          <group.heading>{{categoryGroup.category.name}}</group.heading>
+          <group.heading>
+            {{categoryGroup.category.itemCategory.name}}
+          </group.heading>
           <group.list as |list|>
             {{#each categoryGroup.shoppingListItems as |item|}}
               <list.item as |listItem|>

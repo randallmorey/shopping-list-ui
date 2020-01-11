@@ -53,7 +53,8 @@ export default class ShoppingListsShoppingListShopController extends
     const store = this.currentStore;
     const storeItemCategories = store.get('categories');
     return this.model.shoppingListItems.filter(item =>
-      !storeItemCategories.findBy('itemCategory.id', item.get('category.id'))
+      !storeItemCategories.findBy('itemCategory.id', item.get('category.id')) &&
+      item.quantity
     );
   }
 

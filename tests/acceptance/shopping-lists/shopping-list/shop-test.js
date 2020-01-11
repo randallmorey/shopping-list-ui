@@ -15,7 +15,9 @@ module('Acceptance | shopping lists/shopping list/shop', function(hooks) {
     this.server.create('store-item-category', {storeProperty, itemCategory});
     const list = this.server.create('shopping-list');
     const item = this.server.create('item', {category: itemCategory});
+    const item2 = this.server.create('item');
     this.server.create('shopping-list-item', {list, item, quantity: 1});
+    this.server.create('shopping-list-item', {list, item: item2, quantity: 1});
     await visit('/lists/1/shop');
     await a11yAudit();
     assert.equal(currentURL(), '/lists/1/shop');

@@ -27,7 +27,15 @@ $list-item-padding: $list-item-y-padding $list-item-x-padding
   justify-content: space-between
   padding: 0
 
-  a
+  button
+    &.list-item-link
+      @extend .button
+      border-bottom: 0
+      border-top: 0
+      height: 100%
+
+  a,
+  button
     &.list-item-link
       @extend .list-item
       align-items: center

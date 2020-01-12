@@ -235,10 +235,11 @@ module('Acceptance | stores/store', function(hooks) {
   test('store category item order may be decreased', async function(assert) {
     assert.expect(2);
     const store = this.server.create('store');
-    this.server.createList('item-category', 2).map(itemCategory => {
+    this.server.createList('item-category', 2).map((itemCategory, order) => {
       this.server.create('store-item-category', {
         storeProperty: store,
-        itemCategory
+        itemCategory,
+        order
       });
     });
 
@@ -256,10 +257,11 @@ module('Acceptance | stores/store', function(hooks) {
   test('store category item order may be increased', async function(assert) {
     assert.expect(2);
     const store = this.server.create('store');
-    this.server.createList('item-category', 2).map(itemCategory => {
+    this.server.createList('item-category', 2).map((itemCategory, order) => {
       this.server.create('store-item-category', {
         storeProperty: store,
-        itemCategory
+        itemCategory,
+        order
       });
     });
 
@@ -277,10 +279,11 @@ module('Acceptance | stores/store', function(hooks) {
     assert.expect(2);
     this.drag = () => ({dy: 100, dx: undefined})
     const store = this.server.create('store');
-    this.server.createList('item-category', 2).map(itemCategory => {
+    this.server.createList('item-category', 2).map((itemCategory, order) => {
       this.server.create('store-item-category', {
         storeProperty: store,
-        itemCategory
+        itemCategory,
+        order
       });
     });
     const url = `/stores/${store.id}`;
@@ -296,10 +299,11 @@ module('Acceptance | stores/store', function(hooks) {
     assert.expect(2);
     this.drag = () => ({dy: -100, dx: undefined})
     const store = this.server.create('store');
-    this.server.createList('item-category', 2).map(itemCategory => {
+    this.server.createList('item-category', 2).map((itemCategory, order) => {
       this.server.create('store-item-category', {
         storeProperty: store,
-        itemCategory
+        itemCategory,
+        order
       });
     });
     const url = `/stores/${store.id}`;

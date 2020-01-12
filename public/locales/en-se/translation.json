@@ -2,11 +2,12 @@
   "actions": {
     "default": {
       "cancel": "Cancel",
-      "save": "Save",
-      "delete": "Delete",
       "clear": "Clear Items",
       "decrease-order": "Decrease order",
-      "increase-order": "Increase order"
+      "delete": "Delete",
+      "done": "Done",
+      "increase-order": "Increase order",
+      "save": "Save"
     },
     "items": {
       "add": "Add $t(resources.item)"
@@ -72,7 +73,8 @@
       "new": "New $t(resources.item-category)"
     },
     "shopping-list": {
-      "manage": "Manage $t(resources.shopping-list)"
+      "manage": "Manage $t(resources.shopping-list)",
+      "shop": "Shopping"
     },
     "store": {
       "edit": "Edit $t(resources.store)",
@@ -83,6 +85,7 @@
     }
   },
   "resources": {
+    "home": "Home",
     "item": "Item",
     "item_plural": "Items",
     "item-category": "Category",

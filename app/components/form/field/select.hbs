@@ -1,0 +1,12 @@
+<div class="field-select">
+  <label class="label" for={{@id}}>{{@label}}</label>
+  <div class="select">
+    <XSelect
+      @id={{@id}}
+      @name={{@name}}
+      @value={{@value}}
+      @onChange={{@onChange}} as |xs|>
+      {{yield xs}}
+    </XSelect>
+  </div>
+</div>

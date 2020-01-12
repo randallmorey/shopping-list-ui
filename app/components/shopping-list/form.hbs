@@ -12,14 +12,12 @@
     @title={{@model.item.name}}
     @decrement={{@decrement}}
     @increment={{@increment}}
-  >
-  </form.integer>
+  />
 
   <form.textarea
     @id={{concat 'note-item-' @model.id}}
     @label={{t 'fields.labels.default.notes'}}
     @value={{@model.notes}}
-  >
-  </form.textarea>
+  />
 
 </Form::Panel>

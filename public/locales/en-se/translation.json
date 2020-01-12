@@ -8,7 +8,7 @@
       "done": "Done",
       "increase-order": "Increase order",
       "save": "Save",
-      "go_shopping": "Go Shopping"
+      "go-shopping": "Go Shopping"
     },
     "items": {
       "add": "Add $t(resources.item)",

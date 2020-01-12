@@ -7,10 +7,12 @@
       "delete": "Delete",
       "done": "Done",
       "increase-order": "Increase order",
-      "save": "Save"
+      "save": "Save",
+      "go-shopping": "Go Shopping"
     },
     "items": {
-      "add": "Add $t(resources.item)"
+      "add": "Add $t(resources.item)",
+      "add-shopping": "Add $t(resources.item_plural) to $t(resources.shopping-list)"
     },
     "item-category": {
       "add": "Add $t(resources.item-category)",
@@ -74,7 +76,7 @@
     },
     "shopping-list": {
       "manage": "Manage $t(resources.shopping-list)",
-      "shop": "Shopping"
+      "shop": "Shopping List"
     },
     "store": {
       "edit": "Edit $t(resources.store)",
@@ -97,7 +99,8 @@
     "store": "Store",
     "store_plural": "Stores",
     "store-item-category": "Category",
-    "store-item-category_plural": "Categories"
+    "store-item-category_plural": "Categories",
+    "manage": "Manage"
   },
   "categories": {
     "uncategorized": "Uncategorized"
@@ -105,7 +108,8 @@
   "list": {
     "no-items": "No items yet",
     "no-item-categories": "No categories yet",
-    "no-shopping-list-items": "No items yet"
+    "no-shopping-list-items": "No items yet",
+    "no-stores": "No stores yet"
   },
   "messages": {
     "items": {

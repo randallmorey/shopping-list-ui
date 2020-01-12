@@ -3,6 +3,8 @@ import PersitenceRouteMixin from '../../mixins/persitence-route';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { all } from 'rsvp';
+import { later } from '@ember/runloop';
+
 /**
  * A route to edit a store by ID and handle update and delete persistence.
  * @augments Route
@@ -96,7 +98,7 @@ export default class StoresStoreRoute extends Route.extend(
    * @param {StoreModel} model
    */
   clearLoading(model) {
-    model.set('loadingStoreRoute', false);
+    later(() => model.set('loadingStoreRoute', false), 500);
   }
 
   /**

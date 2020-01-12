@@ -1,7 +1,60 @@
+<Section::Panel as |panel|>
 
-<ul>
-  <li><LinkTo @route="items">{{t "resources.item_plural"}}</LinkTo></li>
-  <li><LinkTo @route="stores">{{t "resources.store_plural"}}</LinkTo></li>
-  <li><LinkTo @route="list.manage">{{t "titles.shopping-list.manage"}}</LinkTo></li>
-  <li><LinkTo @route="list.shop">{{t "titles.shopping-list.shop"}}</LinkTo></li>
-</ul>
+  <panel.header as |header|>
+    <header.columnLeft />
+    <header.columnCenter>
+      <header.title>{{t "titles.shopping-list.shop"}}</header.title>
+    </header.columnCenter>
+    <header.columnRight />
+  </panel.header>
+
+  <panel.body>
+    <ListSet as |listSet|>
+      <listSet.group as |group|>
+        <group.heading>
+          {{t "resources.manage"}}
+        </group.heading>
+        <group.list as |list|>
+          <list.item as |listItem|>
+            <listItem.link
+              @title={{t "resources.item_plural"}}
+              @route="items">
+              {{t "resources.item_plural"}}
+              <FaIcon @icon="chevron-right" />
+            </listItem.link>
+          </list.item>
+          <list.item as |listItem|>
+            <listItem.link
+              @title={{t "resources.store_plural"}}
+              @route="stores">
+              {{t "resources.store_plural"}}
+              <FaIcon @icon="chevron-right" />
+            </listItem.link>
+          </list.item>
+          <list.item as |listItem|>
+            <listItem.link
+              @title={{t "resources.shopping-list"}}
+              @route="list.manage">
+              {{t "resources.shopping-list"}}
+              <FaIcon @icon="chevron-right" />
+            </listItem.link>
+          </list.item>
+        </group.list>
+        <group.heading>
+          {{t "actions.default.go_shopping"}}
+        </group.heading>
+        <group.list as |list|>
+          <list.item as |listItem|>
+            <listItem.link
+              @route="list.shop"
+              @title={{t "titles.shopping-list.shop"}}>
+              {{t "titles.shopping-list.shop"}}
+              <FaIcon @icon="chevron-right" />
+            </listItem.link>
+          </list.item>
+        </group.list>
+      </listSet.group>
+    </ListSet>
+  </panel.body>
+
+</Section::Panel>

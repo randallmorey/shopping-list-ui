@@ -7,7 +7,8 @@
       "delete": "Delete",
       "done": "Done",
       "increase-order": "Increase order",
-      "save": "Save"
+      "save": "Save",
+      "go_shopping": "Go Shopping"
     },
     "items": {
       "add": "Add $t(resources.item)",
@@ -75,7 +76,7 @@
     },
     "shopping-list": {
       "manage": "Manage $t(resources.shopping-list)",
-      "shop": "Shopping"
+      "shop": "Shopping List"
     },
     "store": {
       "edit": "Edit $t(resources.store)",
@@ -98,7 +99,8 @@
     "store": "Store",
     "store_plural": "Stores",
     "store-item-category": "Category",
-    "store-item-category_plural": "Categories"
+    "store-item-category_plural": "Categories",
+    "manage": "Manage"
   },
   "categories": {
     "uncategorized": "Uncategorized"

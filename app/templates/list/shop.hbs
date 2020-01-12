@@ -31,7 +31,11 @@
     <ListSet as |listSet|>
       {{#unless this.hasUnpurchasedItems}}
         <listSet.emptyListMessage>
-          {{t "list.no-shopping-list-items"}}
+          <ImageMessage
+            @src="images/illustrations/shopping-list/empty-cart.svg"
+            @message={{t "list.no-shopping-list-items"}}>
+            <Link::Add @route="list.manage">{{t "actions.items.add-shopping"}}</Link::Add>
+          </ImageMessage>
         </listSet.emptyListMessage>
       {{/unless}}
 

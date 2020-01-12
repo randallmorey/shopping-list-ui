@@ -10,7 +10,8 @@
       "save": "Save"
     },
     "items": {
-      "add": "Add $t(resources.item)"
+      "add": "Add $t(resources.item)",
+      "add-shopping": "Add $t(resources.item_plural) to $t(resources.shopping-list)"
     },
     "item-category": {
       "add": "Add $t(resources.item-category)",
@@ -105,7 +106,8 @@
   "list": {
     "no-items": "No items yet",
     "no-item-categories": "No categories yet",
-    "no-shopping-list-items": "No items yet"
+    "no-shopping-list-items": "No items yet",
+    "no-stores": "No stores yet"
   },
   "messages": {
     "items": {

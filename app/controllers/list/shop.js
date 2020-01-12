@@ -2,8 +2,7 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
-export default class ShoppingListsShoppingListShopController extends
-  Controller {
+export default class ListShopController extends Controller {
 
   // =properties
 
@@ -16,6 +15,13 @@ export default class ShoppingListsShoppingListShopController extends
 
   // =computed
 
+  @computed('model.items.@each.{quantity,purchased}')
+  get hasUnpurchasedItems() {
+    return this.model.items
+      .filter(item => item.quantity > 0)
+      .length;
+  }
+
   @computed('selectedStore', 'model.stores.[]')
   get currentStore() {
     return this.selectedStore || this.model.stores.firstObject;
@@ -24,17 +30,17 @@ export default class ShoppingListsShoppingListShopController extends
   /**
    * Returns shopping list items that belong to a store item category for
    * the current store.
-   * @type {ShoppingListItemModel[]}
+   * @type {ItemModel[]}
    */
   @computed(
     'currentStore',
     'currentStore.categories.@each.itemCategory',
-    'model.shoppingListItems.@each.category'
+    'model.items.@each.category'
   )
   get categorized() {
     const store = this.currentStore;
     const storeItemCategories = store.get('categories');
-    return this.model.shoppingListItems.filter(item =>
+    return this.model.items.filter(item =>
       storeItemCategories.findBy('itemCategory.id', item.get('category.id'))
     );
   }
@@ -42,20 +48,20 @@ export default class ShoppingListsShoppingListShopController extends
   /**
    * Lists shopping list items that *do not* belong to a store item category
    * for the current store.
-   * @type {ShoppingListItemModel[]}
+   * @type {ItemModel[]}
    */
    @computed(
      'currentStore',
      'currentStore.categories.@each.itemCategory',
-     'model.shoppingListItems.@each.category'
+     'model.items.@each.category'
    )
   get uncategorized() {
     const store = this.currentStore;
     const storeItemCategories = store.get('categories');
-    return this.model.shoppingListItems.filter(item =>
+    return this.model.items.filter(item =>
       !storeItemCategories.findBy('itemCategory.id', item.get('category.id')) &&
       item.quantity
-    );
+    ).sortBy('name');
   }
 
   /**
@@ -70,11 +76,12 @@ export default class ShoppingListsShoppingListShopController extends
     const storeItemCategories = store.get('categories');
     return storeItemCategories.sortBy('order').map(category => ({
         category,
-        shoppingListItems: categorized
+        items: categorized
           .filterBy('category.id', category.get('itemCategory.id'))
           .filter(item => item.quantity)
+          .sortBy('name')
       }))
-      .filter(group => group.shoppingListItems.length);
+      .filter(group => group.items.length);
   }
 
 }

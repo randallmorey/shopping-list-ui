@@ -47,8 +47,9 @@ export default class ListManageRoute extends Route {
   async clear() {
     await all(
       this.currentModel.items
-        .filter(item => item.quantity > 0)
+        .filter(item => (item.quantity > 0) || item.purchased)
         .map(item => {
+          item.purchased = false;
           item.quantity = 0;
           return item.save();
         })

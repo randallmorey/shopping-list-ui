@@ -21,4 +21,17 @@ module('Unit | Model | item', function(hooks) {
     model.name = '';
     assert.equal(model.displayName, '&hellip;');
   });
+
+  test('it validates quantity is an integer >= 0', function(assert) {
+    assert.expect(4);
+    const store = this.owner.lookup('service:store');
+    let model = store.createRecord('item', {name: 'Test', quantity: 0});
+    assert.ok(model.validate());
+    model.quantity = -1;
+    assert.notOk(model.validate());
+    model.quantity = 1.5;
+    assert.notOk(model.validate());
+    model.quantity = 1;
+    assert.ok(model.validate());
+  });
 });

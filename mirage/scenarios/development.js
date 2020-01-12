@@ -2,15 +2,8 @@
 
 export default function(server) {
 
-  // shopping list
-  const list = server.create('shopping-list');
-  // shopping list item *without* inverse item
-  server.create('shopping-list-item', {list});
-
   // items *without* categories
-  server.createList('item', 3).map(item =>
-    server.create('shopping-list-item', {item, list})
-  );
+  server.createList('item', 3);
   // category *without* items
   server.createList('item-category', 1);
   // item categories
@@ -19,12 +12,6 @@ export default function(server) {
   );
 
   const allItemCategories = server.schema.itemCategories.all().models;
-
-  const allItems = server.schema.items.all().models;
-
-  allItems.map(item =>
-    server.create('shopping-list-item', {item, list})
-  );
 
   // stores
   server.createList('store', 5).map(storeProperty => {

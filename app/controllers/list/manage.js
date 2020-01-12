@@ -21,7 +21,9 @@ export default class ListManageController extends Controller {
     return this.model.categories.sortBy('name').map(category => ({
       category,
       items:
-        categorized.filter(item => item.get('category.id') === category.id)
+        categorized
+          .filter(item => item.get('category.id') === category.id)
+          .sortBy('name')
     })).filter(group => group.items.length);
   }
 
@@ -31,11 +33,13 @@ export default class ListManageController extends Controller {
    */
   @computed('model.items.@each.category')
   get uncategorized() {
-    return this.model.items.filter(item => !item.get('category.content'));
+    return this.model.items
+      .filter(item => !item.get('category.content'))
+      .sortBy('name');
   }
 
   /**
-   * Returns true if list has items with quantity grater than 0.
+   * Returns true if list has items with quantity greater than 0.
    * @type {ItemModel[]}
    */
   @computed('model.items.@each.quantity')

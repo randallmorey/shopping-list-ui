@@ -13,21 +13,23 @@
 
   <panel.body>
 
-    <Container>
-      <Form::Field::Select
-        @id="store"
-        @name="store"
-        @label={{t "resources.store"}}
-        @value={{this.currentStore}}
-        @onChange={{fn (mut this.selectedStore)}} as |xs|>
-        {{#each @model.stores as |store|}}
-          <xs.option @value={{store}}>{{store.name}}</xs.option>
-        {{/each}}
-      </Form::Field::Select>
-    </Container>
+    {{#if this.hasUnpurchasedItems}}
+      <Container>
+        <Form::Field::Select
+          @id="store"
+          @name="store"
+          @label={{t "resources.store"}}
+          @value={{this.currentStore}}
+          @onChange={{fn (mut this.selectedStore)}} as |xs|>
+          {{#each @model.stores as |store|}}
+            <xs.option @value={{store}}>{{store.name}}</xs.option>
+          {{/each}}
+        </Form::Field::Select>
+      </Container>
+    {{/if}}
 
     <ListSet as |listSet|>
-      {{#unless @model.shoppingListItems}}
+      {{#unless this.hasUnpurchasedItems}}
         <listSet.emptyListMessage>
           {{t "list.no-shopping-list-items"}}
         </listSet.emptyListMessage>
@@ -39,7 +41,7 @@
             {{categoryGroup.category.itemCategory.name}}
           </group.heading>
           <group.list as |list|>
-            {{#each categoryGroup.shoppingListItems as |item|}}
+            {{#each categoryGroup.items as |item|}}
               <list.item as |listItem|>
                 <listItem.checkbox
                 @checked={{item.purchased}}

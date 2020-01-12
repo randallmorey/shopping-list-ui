@@ -15,24 +15,33 @@
           {{/if}}
         </group.heading>
 
-        <List::Sortable
-          @disabled={{or @model.isSaving @model.categoriesSaving}}
-          @model={{@model.categoriesByOrder}}
-          @onChange={{route-action "dragCategoryOrder"}}
-          as |list|>
-          {{#each @model.categoriesByOrder as |category|}}
-            <list.item
-              @model={{category}}
-              @decrease={{route-action "decreaseCategoryOrder" category}}
-              @increase={{route-action "increaseCategoryOrder" category}}
-              @increaseDisabled=
-                {{eq category @model.categoriesByOrder.lastObject}}
-              @decreaseDisabled=
-                {{eq category @model.categoriesByOrder.firstObject}}>
-              {{category.itemCategory.name}}
-            </list.item>
-          {{/each}}
-        </List::Sortable>
+        {{!--
+        TODO: Sortable will break unless it is rerendered between routes.
+              To accomplish this, we hack `loadingStoreRoute` to wait a little
+              longer after loading is complete and the route is entered.  When
+              the sortable is wrapped in this conditional, it will be force to
+              unrender and rerender, which works around the bug for now.
+        --}}
+        {{#unless @model.loadingStoreRoute}}
+          <List::Sortable
+            @disabled={{or @model.isSaving @model.categoriesSaving}}
+            @model={{@model.categoriesByOrder}}
+            @onChange={{route-action "dragCategoryOrder"}}
+            as |list|>
+            {{#each @model.categoriesByOrder as |category|}}
+              <list.item
+                @model={{category}}
+                @decrease={{route-action "decreaseCategoryOrder" category}}
+                @increase={{route-action "increaseCategoryOrder" category}}
+                @increaseDisabled=
+                  {{eq category @model.categoriesByOrder.lastObject}}
+                @decreaseDisabled=
+                  {{eq category @model.categoriesByOrder.firstObject}}>
+                {{category.itemCategory.name}}
+              </list.item>
+            {{/each}}
+          </List::Sortable>
+        {{/unless}}
 
       </listSet.group>
     </ListSet>

@@ -1,0 +1,45 @@
+<Section::Panel as |panel|>
+
+  <panel.header as |header|>
+    <header.columnLeft>
+      <Link::Home />
+    </header.columnLeft>
+    <header.columnCenter>
+      <header.title>{{t "resources.store_plural"}}</header.title>
+    </header.columnCenter>
+    <header.columnRight>
+      <Link::Add @route="stores.new">{{t "actions.stores.add"}}</Link::Add>
+    </header.columnRight>
+  </panel.header>
+
+  <panel.body>
+    <ListSet as |listSet|>
+      {{#if this.stores}}
+        <listSet.group as |group|>
+          <group.list as |list|>
+            {{#each this.stores as |store|}}
+              <list.item as |listItem|>
+                <listItem.link @route="stores.store" @model={{store}}>
+                  <Multiline as |Line|>
+                    <Line>{{store.displayName}}</Line>
+                    <Line @secondary={{true}}>{{store.location}}</Line>
+                  </Multiline>
+                  {{#if store.loadingStoreRoute}}
+                    <FaIcon @icon="circle-notch" @spin={{true}} />
+                  {{else}}
+                    <FaIcon @icon="chevron-right" />
+                  {{/if}}
+                </listItem.link>
+              </list.item>
+            {{/each}}
+          </group.list>
+        </listSet.group>
+      {{else}}
+        <listSet.emptyListMessage>
+          {{t 'list.no-stores'}}
+        </listSet.emptyListMessage>
+      {{/if}}
+    </ListSet>
+  </panel.body>
+
+</Section::Panel>

@@ -1,0 +1,32 @@
+<Section::Panel as |panel|>
+  <form class="form-panel" ...attributes>
+
+    <panel.header as |header|>
+      <header.columnLeft>
+        <Button::Cancel {{on "click" @cancel}} @disabled={{@saving}} />
+      </header.columnLeft>
+      <header.columnCenter>
+        <header.title>{{@title}}</header.title>
+      </header.columnCenter>
+      <header.columnRight>
+        <Button::Save @loading={{@saving}} @disabled={{not @dirty}} />
+      </header.columnRight>
+    </panel.header>
+
+    <panel.body>
+      <Container>
+
+        {{yield (hash
+          delete=(component "button/delete" loading=@saving disabled=@dirty)
+          fieldsetList=(component "form/fieldset-list")
+          text=(component "form/field/text")
+          radio=(component "form/field/radio")
+          textarea=(component "form/field/textarea")
+          integer=(component "form/field/integer")
+        )}}
+
+      </Container>
+    </panel.body>
+
+  </form>
+</Section::Panel>

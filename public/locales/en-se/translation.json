@@ -1,0 +1,125 @@
+{
+  "actions": {
+    "default": {
+      "cancel": "Cancel",
+      "clear": "Clear",
+      "decrease-order": "Decrease order",
+      "delete": "Delete",
+      "done": "Done",
+      "increase-order": "Increase order",
+      "save": "Save",
+      "go-shopping": "Go Shopping"
+    },
+    "items": {
+      "add": "Add $t(resources.item)",
+      "add-shopping": "Add $t(resources.item_plural) to $t(resources.shopping-list)"
+    },
+    "item-category": {
+      "add": "Add $t(resources.item-category)",
+      "edit-name": "Edit category {{name}}"
+    },
+    "shopping-list-item": {
+      "add-name": "Add $t(resources.shopping-list-item) {{name}}",
+      "increment": "Increase quantity of {{name}} by one.",
+      "decrement": "Decrease quantity of {{name}} by one.",
+      "clear": "Clear"
+    },
+    "stores": {
+      "add": "Add $t(resources.store)",
+      "edit-name": "Edit store {{name}}"
+    }
+  },
+  "categories": {
+    "uncategorized": "Uncategorized"
+  },
+  "confirm": {
+    "default": {
+      "message": "This action cannot be undone.",
+      "confirm": "Yes",
+      "dismiss": "No"
+    },
+    "delete": {
+      "heading": "Confirm Delete?",
+      "message": "$t(confirm.default.message)",
+      "confirm": "$t(confirm.default.confirm)",
+      "dismiss": "$t(confirm.default.dismiss)"
+    },
+    "abandon": {
+      "heading": "Abandon Changes?",
+      "message": "$t(confirm.default.message)",
+      "confirm": "$t(confirm.default.confirm)",
+      "dismiss": "$t(confirm.default.dismiss)"
+    }
+  },
+  "fields": {
+    "labels": {
+      "default": {
+        "name": "Name",
+        "location": "Location",
+        "notes": "Notes"
+      }
+    },
+    "errors": {
+      "default": {
+        "cant-be-blank": "This field is required."
+      }
+    }
+  },
+  "titles": {
+    "item": {
+      "edit": "Edit $t(resources.item)",
+      "new": "New $t(resources.item)"
+    },
+    "item-category": {
+      "edit": "Edit $t(resources.item-category)",
+      "new": "New $t(resources.item-category)"
+    },
+    "shopping-list": {
+      "manage": "Manage",
+      "shop": "Shop"
+    },
+    "store": {
+      "edit": "Edit $t(resources.store)",
+      "new": "New $t(resources.store)"
+    },
+    "store-item-category": {
+      "order": "$t(resources.store-item-category) Order"
+    }
+  },
+  "resources": {
+    "home": "Home",
+    "item": "Item",
+    "item_plural": "Items",
+    "item-category": "Category",
+    "item-category_plural": "Categories",
+    "shopping-list": "List",
+    "shopping-list_plural": "Lists",
+    "shopping-list-item": "Item",
+    "shopping-list-item_plural": "Items",
+    "store": "Store",
+    "store_plural": "Stores",
+    "store-item-category": "Category",
+    "store-item-category_plural": "Categories",
+    "manage": "Manage"
+  },
+  "categories": {
+    "uncategorized": "Uncategorized"
+  },
+  "list": {
+    "no-items": "No items yet",
+    "no-item-categories": "No categories yet",
+    "no-shopping-list-items": "No items yet",
+    "no-stores": "No stores yet"
+  },
+  "messages": {
+    "items": {
+      "welcome": "Manage all of your items here.  Once created, items may be added quickly to shopping lists."
+    },
+    "stores": {
+      "welcome": "Manage your stores here.  Then sort item categories to optimize shopping routes by store."
+    },
+    "shopping-list-items": {
+      "welcome": "Add items to your shopping list, change their quantities, and add notes."
+    }
+  }
+}

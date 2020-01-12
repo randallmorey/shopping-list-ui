@@ -1,5 +1,25 @@
 'use strict';
 
+// While a firebase config is always required, for safety it is disabled
+// by default, except in production when it is enabled by default.
+const useFirebase = (process.env.USE_FIREBASE) ?
+      JSON.parse(process.env.USE_FIREBASE) : false;
+
+const firebaseConfig = (process.env.FIREBASE_CONFIG_JSON) ?
+      JSON.parse(process.env.FIREBASE_CONFIG_JSON) :
+      {
+        apiKey: "AIzaSyC4Aglp5xJiWZt-yZBf5SoxfwcNGOygghQ",
+        authDomain: "shopping-list-developmen-5cde7.firebaseapp.com",
+        databaseURL: "https://shopping-list-developmen-5cde7.firebaseio.com",
+        projectId: "shopping-list-developmen-5cde7",
+        storageBucket: "shopping-list-developmen-5cde7.appspot.com",
+        messagingSenderId: "263121214343",
+        appId: "1:263121214343:web:408fbb1622407ce4c45122"
+      };
+
+// Support for multiple mirage scenarios
+const mirageScenario = process.env.MIRAGE_SCENARIO || 'development';
+
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'shopping-list-ui',
@@ -20,7 +40,46 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+
+    useFirebase,
+    firebase: firebaseConfig,
+
+    contentSecurityPolicyHeader: 'Content-Security-Policy',
+    contentSecurityPolicyMeta: true,
+    contentSecurityPolicy: {
+      'default-src': ["'none'"],
+      'script-src':  ["'self'"],
+      'frame-src':   ["'self'"],
+      'font-src':    ["'self'"],
+      'connect-src': ["'self'"],
+      'img-src':     ["'self'"],
+      'style-src':   ["'self'"],
+      'media-src':   ["'self'"]
+    },
+
+    i18nextOptions: {
+      lowerCaseLng: true,
+      fallbackLng: 'en-se',
+      whitelist: ['en-se']
+    },
+
+    mirageScenario
+  };
+
+  // Firebase requires access to certain Google domains
+  const enableFirebaseCSP = () => {
+    ENV.contentSecurityPolicy['connect-src']
+      .push('https://firestore.googleapis.com');
+    ENV.contentSecurityPolicy['frame-src']
+      .push(`https://${firebaseConfig.projectId}.firebaseapp.com`);
+  };
+
+  // Unsafe script eval and inline is necessary in
+  // development and test environments
+  const enableUnsafeCSP = () => {
+    ENV.contentSecurityPolicy['script-src'].push("'unsafe-eval'");
+    ENV.contentSecurityPolicy['style-src'].push("'unsafe-inline'");
   };
 
   if (environment === 'development') {
@@ -29,6 +88,18 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV['ember-a11y-testing'] = {
+      componentOptions: {
+        axeOptions: {
+          checks: {
+            'color-contrast': {options: {noScroll: true}}
+          }
+        }
+      }
+    };
+
+    enableUnsafeCSP();
   }
 
   if (environment === 'test') {
@@ -41,10 +112,23 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    // CSP will break test coverage, so it is disabled
+    ENV.contentSecurityPolicyMeta = false;
+
+    ENV.useFirebase = false;
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
+    ENV.useFirebase = (process.env.USE_FIREBASE) ?
+      JSON.parse(process.env.USE_FIREBASE) : true;
+  }
+
+  // When enabled for any environment, Firebase requires Mirage to be
+  // disabled and certain CSP directives to be added.
+  if (ENV.useFirebase) {
+    ENV['ember-cli-mirage'] = {enabled: false};
+    enableFirebaseCSP();
   }
 
   return ENV;

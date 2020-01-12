@@ -1,0 +1,35 @@
+name: Build & Deploy Production
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_and_deploy_production:
+    name: Build & Deploy
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [12.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install and test
+        run: |
+          npm install
+          npm test
+        env:
+          CI: true
+      - name: Build
+        run: npm run build:production
+        env:
+          FIREBASE_CONFIG_JSON: ${{ secrets.FIREBASE_CONFIG_JSON_PRODUCTION }}
+      - name: Deploy to Firebase
+        run: npm run deploy
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID_PRODUCTION }}

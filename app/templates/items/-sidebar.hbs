@@ -1,0 +1,57 @@
+<Section::Panel as |panel|>
+
+  <panel.header as |header|>
+    <header.columnLeft>
+      <Link::Home />
+    </header.columnLeft>
+    <header.columnCenter>
+      <header.title>{{t "resources.item_plural"}}</header.title>
+    </header.columnCenter>
+    <header.columnRight>
+      <Link::Add @route="items.new">{{t "actions.items.add"}}</Link::Add>
+    </header.columnRight>
+  </panel.header>
+
+  <panel.body>
+    <ListSet as |listSet|>
+      {{#unless @model.items}}
+        <listSet.emptyListMessage>
+          {{t 'list.no-items'}}
+        </listSet.emptyListMessage>
+      {{/unless}}
+      {{#each this.categories as |category|}}
+        {{#if category.items}}
+          <listSet.group as |group|>
+            <group.heading>{{category.displayName}}</group.heading>
+            <group.list as |list|>
+              {{#each category.items as |item|}}
+                <list.item as |listItem|>
+                  <listItem.link @route="items.item" @model={{item}}>
+                    {{item.displayName}}
+                    <FaIcon @icon="chevron-right" />
+                  </listItem.link>
+                </list.item>
+              {{/each}}
+            </group.list>
+          </listSet.group>
+        {{/if}}
+      {{/each}}
+      {{#if this.uncategorized}}
+        <listSet.group as |group|>
+          <group.heading>{{t "categories.uncategorized"}}</group.heading>
+          <group.list as |list|>
+            {{#each this.uncategorized as |item|}}
+              <list.item as |listItem|>
+                <listItem.link @route="items.item" @model={{item}}>
+                  {{item.displayName}}
+                  <FaIcon @icon="chevron-right" />
+                </listItem.link>
+              </list.item>
+            {{/each}}
+          </group.list>
+        </listSet.group>
+      {{/if}}
+    </ListSet>
+  </panel.body>
+
+</Section::Panel>

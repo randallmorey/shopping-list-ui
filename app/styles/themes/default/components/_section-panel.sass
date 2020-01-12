@@ -1,0 +1,47 @@
+.section-panel
+  @extend .card
+  border-right: 1px solid $grey-lighter
+  box-shadow: none
+  display: flex
+  flex-direction: column
+  height: 100vh
+
+  .section-panel-header
+    @extend .card-header
+    align-items: center
+    border-bottom: 1px solid $grey-lighter
+    box-shadow: none
+    padding-left: $size-6 / 2
+    padding-right: $size-6 / 2
+
+    [class^='section-panel-header-column-']
+      @extend .column
+      padding: 0
+      white-space: nowrap
+
+    .section-panel-header-column-left
+      &,
+      & > *
+        text-align: left
+
+    .section-panel-header-column-center
+      &,
+      & > *
+        text-align: center
+
+    .section-panel-header-column-right
+      &,
+      & > *
+        text-align: right
+
+    .section-panel-heading
+      @extend .card-header-title
+      display: block
+
+  .section-panel-body
+    @extend .card-content
+    display: flex
+    flex: 1
+    flex-direction: column
+    overflow-y: scroll
+    padding: 0

@@ -1,0 +1,28 @@
+[class^='button-']
+  @extend .button, .is-rounded
+
+%button-block
+  display: block
+  margin-bottom: $size-7
+  width: 100%
+
+.button-save
+  @extend .is-primary
+
+.button-cancel
+  @extend .is-dark, .is-outlined
+
+.button-delete
+  @extend %button-block, .is-danger, .is-outlined
+
+  &:focus,
+  &:hover
+    // sass-lint:disable no-important
+    color: $white !important
+    // sass-lint:enable no-important
+
+.button-clear
+  @extend .is-danger, .is-outlined
+
+.button-done
+  @extend .is-primary

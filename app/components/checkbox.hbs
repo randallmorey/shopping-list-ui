@@ -1,0 +1,12 @@
+<button
+  class="list-item-link"
+  {{on "click" @toggleAction}}
+  role="checkbox"
+  aria-checked={{if @checked "true" "false"}}>
+  {{yield}}
+  <Tag @inverted={{@checked}}>
+    {{#if @checked}}
+    <FaIcon @icon="check" @size="2x" @transform="shrink-5"/>
+    {{/if}}
+  </Tag>
+</button>

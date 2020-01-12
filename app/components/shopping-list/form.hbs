@@ -1,0 +1,23 @@
+<Form::Panel
+  @title={{@title}}
+  @saving={{@model.isSaving}}
+  @dirty={{@model.isDirty}}
+  @cancel={{action @cancel}}
+  {{action @submit on="submit"}}
+  as |form|>
+
+  <form.integer
+    @value={{@model.quantity}}
+    @disabled={{eq @model.quantity 0}}
+    @title={{@model.item.name}}
+    @decrement={{@decrement}}
+    @increment={{@increment}}
+  />
+
+  <form.textarea
+    @id={{concat 'note-item-' @model.id}}
+    @label={{t 'fields.labels.default.notes'}}
+    @value={{@model.notes}}
+  />
+
+</Form::Panel>

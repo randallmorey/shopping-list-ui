@@ -1,0 +1,21 @@
+.layout-split
+  @extend .columns, .is-gapless
+
+  &:not(:last-child)
+    margin-bottom: 0
+
+  .pane
+    @extend .column
+
+    &:first-child
+      @extend .is-one-third
+
+    & + .pane
+      @extend .is-two-thirds
+
+  +mobile
+    .pane
+      display: none
+
+      &.active
+        display: block

@@ -1,0 +1,15 @@
+<Section::Panel as |panel|>
+
+  <panel.body>
+
+    <Container::Centering>
+      <ImageMessage
+        @src="images/illustrations/shopping-list/welcome.svg"
+        @message={{t 'messages.shopping-list-items.welcome'}}>
+      </ImageMessage>
+      <Link::Add @route="items.new">{{t "actions.items.add"}}</Link::Add>
+    </Container::Centering>
+
+  </panel.body>
+
+</Section::Panel>

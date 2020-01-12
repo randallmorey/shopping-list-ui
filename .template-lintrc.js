@@ -1,8 +1,9 @@
 'use strict';
 
 module.exports = {
-  extends: 'recommended',
+  extends: 'octane',
   rules: {
-    'no-implicit-this': true,
+    'no-action': false,
+    'no-bare-strings': true
   }
 };

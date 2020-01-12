@@ -1,0 +1,7 @@
+<li class="list-item" ...attributes>
+  {{yield (hash
+    list=(component "list/list")
+    link=(component "link-to" class="list-item-link" title=@title)
+    checkbox=(component "checkbox")
+  )}}
+</li>

@@ -1,0 +1,24 @@
+<div class="field">
+  <label class="label" for={{@id}}>{{@label}}</label>
+  <div class="control">
+    {{#if @autofocus}}
+      <Input
+        class="input{{if @hasError " has-error"}}"
+        id={{@id}}
+        name={{@name}}
+        type="text"
+        @value={{@value}}
+        {{autofocus}} />
+    {{else}}
+      <Input
+        class="input{{if @hasError " has-error"}}"
+        id={{@id}}
+        name={{@name}}
+        type="text"
+        @value={{@value}} />
+    {{/if}}
+  </div>
+
+  {{yield (hash error=(component "form/field/help/error"))}}
+
+</div>

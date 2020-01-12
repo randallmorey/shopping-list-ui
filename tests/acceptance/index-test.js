@@ -16,24 +16,24 @@ module('Acceptance | index', function(hooks) {
   });
 
   test('home navigation works', async function(assert) {
+    assert.expect(4);
+
     this.server.createList('store', 1);
 
-    assert.expect(4);
     await visit('/');
-    await click("a[title='Items']");
+    await click(".list:nth-child(2) .list-item:first-child a");
     assert.equal(currentURL(), '/items');
 
     await visit('/');
-    await click("a[title='Stores']");
+    await click(".list:nth-child(2) .list-item:nth-child(2) a");
     assert.equal(currentURL(), '/stores');
 
     await visit('/');
-    await click("a[title='List']");
+    await click(".list:nth-child(2) .list-item:nth-child(3) a");
     assert.equal(currentURL(), '/list/manage');
 
     await visit('/');
-    await visit('/');
-    await click("a[title^='Shopping']");
+    await click(".list:nth-child(4) .list-item:first-child a");
     assert.equal(currentURL(), '/list/shop');
   })
 });

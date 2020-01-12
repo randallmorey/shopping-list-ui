@@ -25,6 +25,8 @@
         text-align: left
 
     .section-panel-header-column-center
+      max-width: 35%
+
       &,
       & > *
         text-align: center
@@ -37,6 +39,8 @@
     .section-panel-heading
       @extend .card-header-title
       display: block
+      overflow: hidden
+      text-overflow: ellipsis
 
   .section-panel-body
     @extend .card-content

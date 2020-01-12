@@ -2,7 +2,7 @@
   "actions": {
     "default": {
       "cancel": "Cancel",
-      "clear": "Clear Items",
+      "clear": "Clear",
       "decrease-order": "Decrease order",
       "delete": "Delete",
       "done": "Done",
@@ -22,7 +22,7 @@
       "add-name": "Add $t(resources.shopping-list-item) {{name}}",
       "increment": "Increase quantity of {{name}} by one.",
       "decrement": "Decrease quantity of {{name}} by one.",
-      "clear": "Clear $t(resources.shopping-list-item_plural)"
+      "clear": "Clear"
     },
     "stores": {
       "add": "Add $t(resources.store)",
@@ -75,8 +75,8 @@
       "new": "New $t(resources.item-category)"
     },
     "shopping-list": {
-      "manage": "Manage $t(resources.shopping-list)",
-      "shop": "Shopping List"
+      "manage": "Manage",
+      "shop": "Shop"
     },
     "store": {
       "edit": "Edit $t(resources.store)",

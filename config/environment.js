@@ -55,7 +55,8 @@ module.exports = function(environment) {
       'connect-src': ["'self'"],
       'img-src':     ["'self'"],
       'style-src':   ["'self'"],
-      'media-src':   ["'self'"]
+      'media-src':   ["'self'"],
+      'manifest-src': ["'self'"]
     },
 
     i18nextOptions: {

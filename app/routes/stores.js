@@ -1,14 +1,11 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import RealtimeRouteMixin from '../mixins/realtime-route';
 
 /**
  * A route to load and display all stores.
- * @augments Route
- * @augments RealtimeRouteMixin
  */
-export default class StoresRoute extends Route.extend(RealtimeRouteMixin) {
+export default class StoresRoute extends Route {
 
   // =services
 
@@ -22,15 +19,6 @@ export default class StoresRoute extends Route.extend(RealtimeRouteMixin) {
    */
    model() {
      return this.store.findAll('store');
-   }
-
-   /**
-    * Subscribe to realtime updates on stores.
-    * @param {Object} model
-    */
-   afterModel(model) {
-     this.subscribe(model);
-     return super.afterModel(...arguments);
    }
 
    /**

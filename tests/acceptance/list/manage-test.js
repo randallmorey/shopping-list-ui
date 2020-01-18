@@ -29,17 +29,20 @@ module('Acceptance | list/manage', function(hooks) {
   test('can clear shopping list items, resetting them to quantity 0 and purchased false', async function(assert) {
     this.server.create('item', {quantity: 1});
     this.server.create('item', {quantity: 2});
-    this.server.create('item', {purchased: true});
-    assert.expect(7);
+    this.server.create('item', {quantity: 1, purchased: true});
+    this.server.create('item', {quantity: 0, purchased: true});
+    assert.expect(9);
     await visit('/list/manage');
     assert.equal(this.server.db.items[0].quantity, 1);
     assert.equal(this.server.db.items[1].quantity, 2);
     assert.equal(this.server.db.items[2].purchased, true);
+    assert.equal(this.server.db.items[3].purchased, true);
     await click('.button-clear');
     await settled();
     assert.equal(this.server.db.items[0].quantity, 0);
     assert.equal(this.server.db.items[1].quantity, 0);
     assert.equal(this.server.db.items[2].purchased, false);
+    assert.equal(this.server.db.items[3].purchased, false);
     assert.equal(currentURL(), '/');
   });
 });

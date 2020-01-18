@@ -129,19 +129,12 @@ export default class RealtimeListenerService extends Service.extend({
                                   const normalizedCreatedData = serializer.normalizeCreateRecordResponse(store, modelClass, change.doc, change.doc.id);
                                   const current = content.objectAt(change.newIndex);
                                   if (current == null || current.id !== change.doc.id) {
-                                      const doc = store.push(normalizedCreatedData);
-                                      content.insertAt(change.newIndex, doc._internalModel);
+                                      store.push(normalizedCreatedData);
                                   }
                                   break;
                               }
                               case 'modified': {
                                   const current = content.objectAt(change.oldIndex);
-                                  if (current == null || current.id == change.doc.id) {
-                                      if (change.newIndex !== change.oldIndex) {
-                                          content.removeAt(change.oldIndex);
-                                          content.insertAt(change.newIndex, current);
-                                      }
-                                  }
                                   store.push(normalizedData);
                                   break;
                               }

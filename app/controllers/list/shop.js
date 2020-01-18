@@ -15,10 +15,10 @@ export default class ListShopController extends Controller {
 
   // =computed
 
-  @computed('model.items.@each.{quantity,purchased}')
+  @computed('model.items.[]', 'model.items.@each.{quantity,purchased}')
   get hasUnpurchasedItems() {
     return this.model.items
-      .filter(item => item.quantity > 0)
+      .filter(item => (item.quantity > 0) && !item.purchased)
       .length;
   }
 
@@ -34,8 +34,8 @@ export default class ListShopController extends Controller {
    */
   @computed(
     'currentStore',
-    'currentStore.categories.@each.itemCategory',
-    'model.items.@each.category'
+    'currentStore.categories.{[],@each.itemCategory,@each.order}',
+    'model.items.@each.{quantity,purchased,category}'
   )
   get categorized() {
     const store = this.currentStore;
@@ -52,8 +52,8 @@ export default class ListShopController extends Controller {
    */
    @computed(
      'currentStore',
-     'currentStore.categories.@each.itemCategory',
-     'model.items.@each.category'
+     'currentStore.categories.{[],@each.itemCategory,@each.order}',
+     'model.items.@each.{quantity,purchased,category}'
    )
   get uncategorized() {
     const store = this.currentStore;

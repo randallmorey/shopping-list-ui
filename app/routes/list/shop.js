@@ -3,6 +3,10 @@ import RealtimeRouteMixin from '../../mixins/realtime-route';
 import { hash } from 'rsvp';
 import { action } from '@ember/object';
 
+/**
+ * @augments Route
+ * @augments RealtimeRouteMixin
+ */
 export default class ListShopRoute extends Route.extend(RealtimeRouteMixin) {
 
   // =methods
@@ -19,11 +23,12 @@ export default class ListShopRoute extends Route.extend(RealtimeRouteMixin) {
   }
 
   /**
-   * Subscribe to realtime updates on shopping list items.
+   * Subscribe to realtime updates on stores.
    * @param {Object} model
    */
   afterModel(model) {
-    this.subscribe(model.items);
+    this.subscribe(model.stores);
+    this.subscribe(model.storeItemCategories);
     return super.afterModel(...arguments);
   }
 

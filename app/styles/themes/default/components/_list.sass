@@ -27,13 +27,6 @@ $list-item-padding: $list-item-y-padding $list-item-x-padding
   justify-content: space-between
   padding: 0
 
-  button
-    &.list-item-link
-      @extend .button
-      border-bottom: 0
-      border-top: 0
-      height: 100%
-
   a,
   button
     &.list-item-link
@@ -44,10 +37,24 @@ $list-item-padding: $list-item-y-padding $list-item-x-padding
       display: flex
       flex: 1
       justify-content: space-between
+      max-width: 100%
       padding: $list-item-padding
 
+      .tag
+        margin: 0
+
       .multiline
-        margin-right: auto
+        flex-grow: 1
+        margin-left: 0.5rem
+
+        +mobile
+          max-width: 67%
+          margin-right: auto
+
+        .multiline-line,
+        .multiline-line-secondary
+          max-width: 100%
+          text-align: left
 
       &.active,
       &:active
@@ -62,6 +69,14 @@ $list-item-padding: $list-item-y-padding $list-item-x-padding
       &:hover
         &:not(.active)
           @extend .has-background-light
+
+  button
+    &.list-item-link
+      @extend .button
+      border-bottom: 0
+      border-top: 0
+      height: 100%
+      padding: $list-item-y-padding
 
   > .field-radio
     flex: 100
